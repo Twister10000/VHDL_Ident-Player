@@ -8,6 +8,7 @@
 #**************************************************************
 create_clock -period "10.0 MHz" [get_ports ADC_CLK_10]
 create_clock -period "50.0 MHz" [get_ports CLK]
+create_clock -period "50.0 MHz" [get_ports MADI_CLK]
 create_clock -period "50.0 MHz" [get_ports MAX10_CLK2_50]
 
 #**************************************************************
@@ -37,12 +38,17 @@ derive_clock_uncertainty
 set_input_delay -clock CLK -max 0ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO*}] 
 set_input_delay -clock CLK -min 0.000ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO*}] 
 
+
+
 #**************************************************************
 # Set Output Delay
 #**************************************************************
 
 set_output_delay	-clock	CLK	-max 0ns [get_ports {LED* GPIO* HEX0* HEX1* HEX2* HEX3* HEX4* HEX5* ARDUINO_IO*}]
 set_output_delay	-clock	CLK	-min -0ns [get_ports {LED* GPIO* HEX0* HEX1* HEX2* HEX3* HEX4* HEX5* ARDUINO_IO*}]
+
+set_output_delay	-clock	MADI_CLK	-max 0ns [get_ports {MADI_OUT}]
+set_output_delay	-clock	MADI_CLK	-min -0ns [get_ports {MADI_OUT}]
 
 #**************************************************************
 # Set Clock Groups
