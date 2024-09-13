@@ -24,9 +24,38 @@
 # Copying C:/intelfpga_lite/23.1std/questa_fse/win64/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
+# vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/AES10_DATA_ENCODER.vhd}
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:15:05 on Sep 13,2024
+# vcom -reportprogress 300 -2008 -work work C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:15:05 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/AES10_DATA_MAPPER.vhd}
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:15:05 on Sep 13,2024
+# vcom -reportprogress 300 -2008 -work work C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/AES10_DATA_MAPPER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_MAPPER
+# -- Compiling architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:15:05 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 # vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd}
 # Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 08:59:52 on Sep 13,2024
+# Start time: 11:15:06 on Sep 13,2024
 # vcom -reportprogress 300 -2008 -work work C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -36,6 +65,1638 @@
 # -- Loading package STD_LOGIC_UNSIGNED
 # -- Compiling entity Ident_Player_TOP
 # -- Compiling architecture BEH_Ident_Player_TOP of Ident_Player_TOP
-# End time: 08:59:53 on Sep 13,2024, Elapsed time: 0:00:01
+# -- Loading entity AES10_DATA_MAPPER
+# End time: 11:15:06 on Sep 13,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
+do rtl_ENCODER.do
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:15:18 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:15:18 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:15:18 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:15:18 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:15:18 on Sep 13,2024
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Fatal: (vsim-3421) Value 10 is out of range 0 to 9.
+#    Time: 84 ns  Iteration: 1  Process: /aes10_data_encoder_vhd_tst/i1/NRZI_encoding File: ../../AES10_DATA_ENCODER.vhd Line: 92
+# Fatal error in Process NRZI_encoding at ../../AES10_DATA_ENCODER.vhd line 92
+# 
+# HDL call sequence:
+# Stopped at ../../AES10_DATA_ENCODER.vhd 92 Process NRZI_encoding
+# 
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:17:16 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:17:17 on Sep 13,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:17:17 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:17:17 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:17:18 on Sep 13,2024, Elapsed time: 0:02:00
+# Errors: 1, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:17:18 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/MADI_CLK
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/MADI_OUT
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/Send_SYNC
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/MADI_DATA
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/i1/MADI_CLK
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/i1/MADI_DATA
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/i1/MADI_OUT
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/i1/MADI_DATA_5bit
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/simulation/questa/wave.do}
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:19:12 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:19:12 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:19:12 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:19:13 on Sep 13,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# End time: 11:19:14 on Sep 13,2024, Elapsed time: 0:01:56
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:19:14 on Sep 13,2024
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:19:56 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:19:56 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:19:56 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:19:56 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:19:57 on Sep 13,2024, Elapsed time: 0:00:43
+# Errors: 0, Warnings: 0
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:19:57 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Fatal: (vsim-3421) Value 5 is out of range 0 to 4.
+#    Time: 44 ns  Iteration: 1  Process: /aes10_data_encoder_vhd_tst/i1/NRZI_encoding File: ../../AES10_DATA_ENCODER.vhd Line: 82
+# Fatal error in Process NRZI_encoding at ../../AES10_DATA_ENCODER.vhd line 82
+# 
+# HDL call sequence:
+# Stopped at ../../AES10_DATA_ENCODER.vhd 82 Process NRZI_encoding
+# 
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:21:33 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:21:33 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:21:33 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:21:33 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:21:34 on Sep 13,2024, Elapsed time: 0:01:37
+# Errors: 1, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:21:34 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:24:13 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:24:13 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:24:13 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:24:13 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:24:15 on Sep 13,2024, Elapsed time: 0:02:41
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:24:15 on Sep 13,2024
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:24:32 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:24:32 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:24:32 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:24:32 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:24:33 on Sep 13,2024, Elapsed time: 0:00:18
+# Errors: 0, Warnings: 0
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:24:33 on Sep 13,2024
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# Causality operation skipped due to absence of debug database file
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/i1/CTN
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/simulation/questa/wave.do}
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:25:14 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:25:14 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:25:14 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:25:14 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:25:15 on Sep 13,2024, Elapsed time: 0:00:42
+# Errors: 0, Warnings: 0
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:25:15 on Sep 13,2024
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:25:45 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:25:45 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:25:45 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:25:45 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:25:47 on Sep 13,2024, Elapsed time: 0:00:32
+# Errors: 0, Warnings: 0
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:25:47 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:27:02 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:27:02 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:27:02 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:27:02 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:27:03 on Sep 13,2024, Elapsed time: 0:01:16
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:27:03 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:29:43 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:29:43 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:29:43 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:29:43 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:29:45 on Sep 13,2024, Elapsed time: 0:02:42
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:29:45 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:31:27 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:31:27 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:31:27 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:31:28 on Sep 13,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# End time: 11:31:29 on Sep 13,2024, Elapsed time: 0:01:44
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:31:29 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:34:24 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:34:24 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:34:24 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:34:24 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:34:25 on Sep 13,2024, Elapsed time: 0:02:56
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:34:25 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:37:40 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:37:40 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:37:40 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:37:40 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:37:47 on Sep 13,2024, Elapsed time: 0:03:22
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:37:47 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/simulation/questa/wave.do}
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:43:08 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:43:08 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:43:08 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# End time: 11:43:08 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:43:09 on Sep 13,2024, Elapsed time: 0:05:22
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:43:09 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:44:52 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:44:52 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:44:52 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(75): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(77): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 11:44:52 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+# End time: 11:44:53 on Sep 13,2024, Elapsed time: 0:01:44
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:44:53 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:45:56 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:45:56 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:45:56 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(75): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(77): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 11:45:56 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+# End time: 11:45:57 on Sep 13,2024, Elapsed time: 0:01:04
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:45:57 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:47:34 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:47:34 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:47:34 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(75): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(77): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(81): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 11:47:34 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 11:47:35 on Sep 13,2024, Elapsed time: 0:01:38
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:47:36 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:50:03 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:50:03 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:50:03 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 11:50:03 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 11:50:04 on Sep 13,2024, Elapsed time: 0:02:28
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:50:04 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 64 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:53:09 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:53:09 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:53:09 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 11:53:09 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 11:53:10 on Sep 13,2024, Elapsed time: 0:03:06
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:53:10 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 64 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:54:27 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:54:27 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:54:27 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 11:54:27 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 11:54:28 on Sep 13,2024, Elapsed time: 0:01:18
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:54:28 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 72 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:56:42 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 11:56:42 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 11:56:42 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 11:56:42 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 11:56:43 on Sep 13,2024, Elapsed time: 0:02:15
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 11:56:43 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 72 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:00:08 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:00:08 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:00:09 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:00:09 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 12:00:10 on Sep 13,2024, Elapsed time: 0:03:27
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:00:10 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 72 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Fatal: (vsim-3421) Value 12 is out of range 0 to 4.
+#    Time: 140 ns  Iteration: 1  Process: /aes10_data_encoder_vhd_tst/i1/NRZI_encoding File: ../../AES10_DATA_ENCODER.vhd Line: 84
+# Fatal error in Process NRZI_encoding at ../../AES10_DATA_ENCODER.vhd line 84
+# 
+# HDL call sequence:
+# Stopped at ../../AES10_DATA_ENCODER.vhd 84 Process NRZI_encoding
+# 
+add wave -position end  sim:/aes10_data_encoder_vhd_tst/i1/CTN_SYNC
+write format wave -window .main_pane.wave.interior.cs.body.pw.wf {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/simulation/questa/wave.do}
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:00:22 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:00:22 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:00:22 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:00:22 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 12:00:23 on Sep 13,2024, Elapsed time: 0:00:13
+# Errors: 1, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:00:23 on Sep 13,2024
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 72 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Fatal: (vsim-3421) Value 12 is out of range 0 to 4.
+#    Time: 140 ns  Iteration: 1  Process: /aes10_data_encoder_vhd_tst/i1/NRZI_encoding File: ../../AES10_DATA_ENCODER.vhd Line: 84
+# Fatal error in Process NRZI_encoding at ../../AES10_DATA_ENCODER.vhd line 84
+# 
+# HDL call sequence:
+# Stopped at ../../AES10_DATA_ENCODER.vhd 84 Process NRZI_encoding
+# 
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:01:19 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:01:19 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:01:19 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:01:19 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 12:01:20 on Sep 13,2024, Elapsed time: 0:00:57
+# Errors: 1, Warnings: 0
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:01:20 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 72 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:05:22 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:05:22 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:05:22 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:05:22 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 12:05:23 on Sep 13,2024, Elapsed time: 0:04:03
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:05:23 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 40 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 80 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:07:35 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:07:35 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:07:35 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:07:36 on Sep 13,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 4
+# End time: 12:07:37 on Sep 13,2024, Elapsed time: 0:02:14
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:07:37 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 64 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:09:30 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:09:30 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:09:30 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(84): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:09:30 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 12:09:31 on Sep 13,2024, Elapsed time: 0:01:54
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:09:31 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 72 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:11:12 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:11:12 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:11:12 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(85): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:11:12 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 12:11:13 on Sep 13,2024, Elapsed time: 0:01:42
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:11:13 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 72 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll nicht geschickt werden
+#    Time: 152 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+do rtl_ENCODER.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is mikaj@DESKTOP-5EPU23T.
+# ** Warning: (vlib-34) Library already exists at "rtl_work".
+# Errors: 0, Warnings: 1
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Modifying modelsim.ini
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:14:12 on Sep 13,2024
+# vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity AES10_DATA_ENCODER
+# -- Compiling architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER
+# End time: 12:14:12 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vcom 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 12:14:12 on Sep 13,2024
+# vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity AES10_DATA_ENCODER_vhd_tst
+# -- Compiling architecture BEH_AES10_DATA_ENCODER_vhd_tst of AES10_DATA_ENCODER_vhd_tst
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading entity AES10_DATA_ENCODER
+# ** Warning: TB_AES10_DATA_ENCODER.vht(76): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(79): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(82): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# ** Warning: TB_AES10_DATA_ENCODER.vht(85): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+# End time: 12:14:12 on Sep 13,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 4
+# End time: 12:14:13 on Sep 13,2024, Elapsed time: 0:03:00
+# Errors: 0, Warnings: 1
+# vsim -t 1ps -voptargs=""+acc"" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst 
+# Start time: 12:14:13 on Sep 13,2024
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.aes10_data_encoder_vhd_tst(beh_aes10_data_encoder_vhd_tst)#1
+# Loading work.aes10_data_encoder(beh_aes10_data_encoder)#1
+# ** Note: 0000 ist Rengeschrieben
+#    Time: 0 ps  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: 0011 ist Rengeschrieben
+#    Time: 32 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll geschickt werden
+#    Time: 80 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst
+# ** Note: Sync Symbol soll nicht geschickt werden
+#    Time: 160 ns  Iteration: 0  Instance: /aes10_data_encoder_vhd_tst

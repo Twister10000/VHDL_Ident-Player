@@ -1,6 +1,56 @@
 m255
 K4
 z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
 !s11e vcom 2023.3 2023.07, Jul 17 2023
 13
 !s112 1.1
@@ -8,51 +58,108 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/simulation/questa
-Eident_player_top
-Z1 w1726209779
-Z2 DPx4 ieee 15 std_logic_arith 0 22 B[jVX6I8iRX2o6WYW0BB>3
-Z3 DPx4 ieee 18 std_logic_unsigned 0 22 o4hn5gYc0WVo72BSL@Ta50
-Z4 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
-Z5 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
-Z6 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
+Z2 dC:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/simulation/questa
+T_opt
+!s110 1726222454
+Ve_IO9LPhP`RDZX>5liBQC3
+04 26 30 work aes10_data_encoder_vhd_tst beh_aes10_data_encoder_vhd_tst 1
+=1-18c04d892ec1-66e41075-313-3110
+R1
+!s12b OEM100
+!s124 OEM10U2 
+o-quiet -auto_acc_if_foreign -work work +acc
+tCvgOpt 0
+n@_opt
+OL;O;2023.3;77
+Eaes10_data_encoder
+Z3 w1726221675
+Z4 DPx4 ieee 15 std_logic_arith 0 22 B[jVX6I8iRX2o6WYW0BB>3
+Z5 DPx4 ieee 18 std_logic_unsigned 0 22 o4hn5gYc0WVo72BSL@Ta50
+Z6 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
+Z7 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
+Z8 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
 !i122 0
-R0
-Z7 8C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd
-Z8 FC:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd
+R2
+Z9 8../../AES10_DATA_ENCODER.vhd
+Z10 F../../AES10_DATA_ENCODER.vhd
 l0
 L9 1
-VYMQFnPN;D@P2G7jQF`Fz=2
-!s100 PACm><4PP20Y87_73Soie1
-Z9 OL;C;2023.3;77
+V]?X0gYe_zF5aJSZ_JHf>g0
+!s100 j:D74Pd?:@:d?F@YocjW:0
+Z11 OL;C;2023.3;77
 33
-Z10 !s110 1726210793
+Z12 !s110 1726222452
 !i10b 1
-Z11 !s108 1726210792.000000
-Z12 !s90 -reportprogress|300|-2008|-work|work|C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd|
-!s107 C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd|
+Z13 !s108 1726222452.000000
+Z14 !s90 -reportprogress|300|-work|work|../../AES10_DATA_ENCODER.vhd|
+Z15 !s107 ../../AES10_DATA_ENCODER.vhd|
 !i113 0
-Z13 o-2008 -work work
-Z14 tExplicit 1 CvgOpt 0
-Abeh_ident_player_top
-R2
-R3
+Z16 o-work work
+Z17 tExplicit 1 CvgOpt 0
+Abeh_aes10_data_encoder
 R4
 R5
 R6
-DEx4 work 16 ident_player_top 0 22 YMQFnPN;D@P2G7jQF`Fz=2
+R7
+R8
+Z18 DEx4 work 18 aes10_data_encoder 0 22 ]?X0gYe_zF5aJSZ_JHf>g0
 !i122 0
-l79
-L75 37
-V@?PVWfYan`EzYg4g:1Sha1
-!s100 XEaIZ6h:ETEOTL?4GX8]C1
-R9
-33
-R10
-!i10b 1
+l36
+L25 82
+VB8ghHaoJL50UcPP2IFUK>1
+!s100 @=_?f41VY0k8?d``FlB;L2
 R11
+33
 R12
-Z15 !s107 C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd|
-!i113 0
+!i10b 1
 R13
 R14
+R15
+!i113 0
+R16
+R17
+Eaes10_data_encoder_vhd_tst
+Z19 w1726222448
+R7
+R8
+!i122 1
+R2
+Z20 8TB_AES10_DATA_ENCODER.vht
+Z21 FTB_AES10_DATA_ENCODER.vht
+l0
+L31 1
+VjGHUE=;iC21PzZ8OC932M0
+!s100 ?MH:hOk4YLEX`O?DGnS2J3
+R11
+33
+R12
+!i10b 1
+R13
+Z22 !s90 -reportprogress|300|-work|work|TB_AES10_DATA_ENCODER.vht|
+Z23 !s107 TB_AES10_DATA_ENCODER.vht|
+!i113 0
+R16
+R17
+Abeh_aes10_data_encoder_vhd_tst
+R4
+R5
+R6
+R18
+R7
+R8
+DEx4 work 26 aes10_data_encoder_vhd_tst 0 22 jGHUE=;iC21PzZ8OC932M0
+!i122 1
+l44
+L33 57
+V]b8XgC[Tkf<37`_zoPN?e2
+!s100 CW3OhW0I;?ClJCIZ]jK4M1
+R11
+33
+R12
+!i10b 1
+R13
+R22
+R23
+!i113 0
+R16
+R17
