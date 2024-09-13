@@ -91,3 +91,12 @@ Source/VGA_DEMO.qws
 *.zip
 Source/output_files/VGA_DEMO.sof
 *.sof
+Source/Ident_Player.asm.rpt
+Source/Ident_Player.done
+Source/Ident_Player.fit.rpt
+Source/Ident_Player.fit.summary
+Source/Ident_Player.flow.rpt
+Source/Ident_Player.map.rpt
+Source/Ident_Player.map.summary
+Source/Ident_Player.qsf
+Source/Ident_Player.sta.rpt
