@@ -103,3 +103,4 @@ Source/output_files/VGA_DEMO.sof
 *.rpt
 *.done
 *.summary
+*.vho
