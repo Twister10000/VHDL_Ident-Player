@@ -1,0 +1,46 @@
+-- A library clause declares a name as a library.  It 
+-- does not create the library; it simply forward declares 
+-- it. 
+library ieee;
+use	ieee.std_logic_1164.all;
+use	ieee.numeric_std.all;
+use	ieee.std_logic_unsigned.all;
+
+entity AES10_DATA_ENCODER is
+
+	port
+	(
+		-- Input ports
+		MADI_CLK	: in  std_logic;
+		FIFO_DATA	: in  std_logic_vector (23 downto 0) := (others => '0');
+
+		-- Output ports
+		MADI_OUT	: out std_logic	:= '0'
+		
+	);
+end AES10_DATA_ENCODER;
+
+-- Library Clause(s) (optional)
+-- Use Clause(s) (optional)
+
+architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
+
+	-- Declarations (optional)
+
+begin
+
+	-- Process Statement (optional)
+
+	-- Concurrent Procedure Call (optional)
+
+	-- Concurrent Signal Assignment (optional)
+
+	-- Conditional Signal Assignment (optional)
+
+	-- Selected Signal Assignment (optional)
+
+	-- Component Instantiation Statement (optional)
+
+	-- Generate Statement (optional)
+
+end BEH_AES10_DATA_ENCODER;
