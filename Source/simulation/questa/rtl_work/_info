@@ -1,8 +1,9 @@
 m255
 K4
 z2
-Z0 !s12c _opt
-Z1 !s99 nomlopt
+!s12c _opt1
+Z0 !s99 nomlopt
+Z1 !s12c _opt
 R0
 R1
 R0
@@ -51,6 +52,7 @@ R0
 R1
 R0
 R1
+R0
 !s11e vcom 2023.3 2023.07, Jul 17 2023
 13
 !s112 1.1
@@ -62,104 +64,117 @@ Z2 dC:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diploma
 T_opt
 !s110 1726222454
 Ve_IO9LPhP`RDZX>5liBQC3
-04 26 30 work aes10_data_encoder_vhd_tst beh_aes10_data_encoder_vhd_tst 1
+Z3 04 26 30 work aes10_data_encoder_vhd_tst beh_aes10_data_encoder_vhd_tst 1
 =1-18c04d892ec1-66e41075-313-3110
-R1
-!s12b OEM100
-!s124 OEM10U2 
-o-quiet -auto_acc_if_foreign -work work +acc
-tCvgOpt 0
+R0
+Z4 !s12b OEM100
+Z5 !s124 OEM10U2 
+Z6 o-quiet -auto_acc_if_foreign -work work +acc
+Z7 tCvgOpt 0
 n@_opt
-OL;O;2023.3;77
+Z8 OL;O;2023.3;77
+R2
+T_opt1
+!s110 1726227364
+VjcA9bHeD;:HF^RcWkV@LF2
+R3
+=1-18c04d892ec1-66e423a3-30f-44a8
+R0
+R4
+R5
+R6
+R7
+n@_opt1
+R8
 Eaes10_data_encoder
-Z3 w1726221675
-Z4 DPx4 ieee 15 std_logic_arith 0 22 B[jVX6I8iRX2o6WYW0BB>3
-Z5 DPx4 ieee 18 std_logic_unsigned 0 22 o4hn5gYc0WVo72BSL@Ta50
-Z6 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
-Z7 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
-Z8 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
+Z9 w1726222734
+Z10 DPx4 ieee 15 std_logic_arith 0 22 B[jVX6I8iRX2o6WYW0BB>3
+Z11 DPx4 ieee 18 std_logic_unsigned 0 22 o4hn5gYc0WVo72BSL@Ta50
+Z12 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
+Z13 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
+Z14 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
 !i122 0
 R2
-Z9 8../../AES10_DATA_ENCODER.vhd
-Z10 F../../AES10_DATA_ENCODER.vhd
+Z15 8../../AES10_DATA_ENCODER.vhd
+Z16 F../../AES10_DATA_ENCODER.vhd
 l0
 L9 1
 V]?X0gYe_zF5aJSZ_JHf>g0
 !s100 j:D74Pd?:@:d?F@YocjW:0
-Z11 OL;C;2023.3;77
+Z17 OL;C;2023.3;77
 33
-Z12 !s110 1726222452
+!s110 1726227362
 !i10b 1
-Z13 !s108 1726222452.000000
-Z14 !s90 -reportprogress|300|-work|work|../../AES10_DATA_ENCODER.vhd|
-Z15 !s107 ../../AES10_DATA_ENCODER.vhd|
+Z18 !s108 1726227362.000000
+Z19 !s90 -reportprogress|300|-work|work|../../AES10_DATA_ENCODER.vhd|
+Z20 !s107 ../../AES10_DATA_ENCODER.vhd|
 !i113 0
-Z16 o-work work
-Z17 tExplicit 1 CvgOpt 0
+Z21 o-work work
+Z22 tExplicit 1 CvgOpt 0
 Abeh_aes10_data_encoder
-R4
-R5
-R6
-R7
-R8
-Z18 DEx4 work 18 aes10_data_encoder 0 22 ]?X0gYe_zF5aJSZ_JHf>g0
-!i122 0
-l36
-L25 82
-VB8ghHaoJL50UcPP2IFUK>1
-!s100 @=_?f41VY0k8?d``FlB;L2
+R10
 R11
-33
 R12
-!i10b 1
 R13
 R14
-R15
-!i113 0
-R16
+Z23 DEx4 work 18 aes10_data_encoder 0 22 ]?X0gYe_zF5aJSZ_JHf>g0
+!i122 0
+l36
+L25 80
+VNAmTRlSUGSCVb5PieP^@W2
+!s100 KUNLI8TPfoYUeeEEh[5OQ1
 R17
+33
+Z24 !s110 1726227363
+!i10b 1
+R18
+R19
+R20
+!i113 0
+R21
+R22
 Eaes10_data_encoder_vhd_tst
-Z19 w1726222448
-R7
-R8
+Z25 w1726222448
+R13
+R14
 !i122 1
 R2
-Z20 8TB_AES10_DATA_ENCODER.vht
-Z21 FTB_AES10_DATA_ENCODER.vht
+Z26 8TB_AES10_DATA_ENCODER.vht
+Z27 FTB_AES10_DATA_ENCODER.vht
 l0
 L31 1
 VjGHUE=;iC21PzZ8OC932M0
 !s100 ?MH:hOk4YLEX`O?DGnS2J3
-R11
-33
-R12
-!i10b 1
-R13
-Z22 !s90 -reportprogress|300|-work|work|TB_AES10_DATA_ENCODER.vht|
-Z23 !s107 TB_AES10_DATA_ENCODER.vht|
-!i113 0
-R16
 R17
+33
+R24
+!i10b 1
+Z28 !s108 1726227363.000000
+Z29 !s90 -reportprogress|300|-work|work|TB_AES10_DATA_ENCODER.vht|
+Z30 !s107 TB_AES10_DATA_ENCODER.vht|
+!i113 0
+R21
+R22
 Abeh_aes10_data_encoder_vhd_tst
-R4
-R5
-R6
-R18
-R7
-R8
+R10
+R11
+R12
+R23
+R13
+R14
 DEx4 work 26 aes10_data_encoder_vhd_tst 0 22 jGHUE=;iC21PzZ8OC932M0
 !i122 1
 l44
 L33 57
 V]b8XgC[Tkf<37`_zoPN?e2
 !s100 CW3OhW0I;?ClJCIZ]jK4M1
-R11
-33
-R12
-!i10b 1
-R13
-R22
-R23
-!i113 0
-R16
 R17
+33
+R24
+!i10b 1
+R28
+R29
+R30
+!i113 0
+R21
+R22
