@@ -1,0 +1,18 @@
+Fitter Status : Successful - Fri Sep 13 08:25:03 2024
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+Revision Name : Ident_Player
+Top-level Entity Name : Ident_Player_TOP
+Family : MAX 10
+Device : 10M50DAF484C7G
+Timing Models : Final
+Total logic elements : 2 / 49,760 ( < 1 % )
+    Total combinational functions : 1 / 49,760 ( < 1 % )
+    Dedicated logic registers : 1 / 49,760 ( < 1 % )
+Total registers : 1
+Total pins : 165 / 360 ( 46 % )
+Total virtual pins : 0
+Total memory bits : 0 / 1,677,312 ( 0 % )
+Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 2 ( 0 % )

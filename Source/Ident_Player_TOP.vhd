@@ -1,41 +1,103 @@
 -- A library clause declares a name as a library.  It 
 -- does not create the library; it simply forward declares 
 -- it. 
-library <library_name>;
-entity <entity_name> is
-	generic
-	(
-		<name>	: <type>  :=	<default_value>;
-		...
-		<name>	: <type>  :=	<default_value>
-	);
+library ieee;
+use	ieee.std_logic_1164.all;
+use	ieee.numeric_std.all;
+use	ieee.std_logic_unsigned.all;
+
+entity Ident_Player_TOP is
+--	generic
+--	(
+--		<name>	: <type>  :=	<default_value>;
+--		...
+--		<name>	: <type>  :=	<default_value>
+--	);
 
 
 	port
 	(
 		-- Input ports
-		<name>	: in  <type>;
-		<name>	: in  <type> := <default_value>;
+			-- CLOCK --
+			ADC_CLK_10 			: in std_logic;
+			CLK 						: in std_logic;
+			MAX10_CLK2_50 	: in std_logic;
+			
+			-- Buttons --
+			BTN 						: in std_logic_vector(1 downto 0);
+			
+			-- Sliders--
+			Slider 					: in std_logic_vector(9 downto 0);
 
+		
 		-- Inout ports
-		<name>	: inout <type>;
+			-- ARDUINO Shield Pins
+			ARDUINO_IO 			: inout std_logic_vector(15 downto 0);
+			ARDUINO_RESET_N : inout std_logic;
+			
+			-- 2x20 GPIO Connector--
+			GPIO 						: inout std_logic_vector(35 downto 0);
+			
+			-- SDRAM PINS --
+			DRAM_DQ 				: inout std_logic_vector(15 downto 0);
 
+			
 		-- Output ports
-		<name>	: out <type>;
-		<name>	: out <type> := <default_value>
+			-- SDRAM Pins --
+			DRAM_CAS_N 			: out std_logic;
+			DRAM_CKE 				: out std_logic;
+			DRAM_CLK 				: out std_logic;
+			DRAM_CS_N 			: out std_logic;
+			DRAM_LDQM 			: out std_logic;
+			DRAM_RAS_N 			: out std_logic;
+			DRAM_UDQM 			: out std_logic;
+			DRAM_WE_N 			: out std_logic;
+	
+			DRAM_ADDR 			: out std_logic_vector(12 downto 0);
+			DRAM_BA 				: out std_logic_vector(1 downto 0);
+			
+
+			-- 7Segment Pins --
+			
+			HEX0 						: out std_logic_vector(7 downto 0)	:=	(others	=>	'1');
+			HEX1 						: out std_logic_vector(7 downto 0)	:=	(others	=>	'1');
+			HEX2 						: out std_logic_vector(7 downto 0)	:=	(others	=>	'1');
+			HEX3 						: out std_logic_vector(7 downto 0)	:=	(others	=>	'1');
+			HEX4 						: out std_logic_vector(7 downto 0)	:=	(others	=>	'1');
+			HEX5 						: out std_logic_vector(7 downto 0)	:=	(others	=>	'1');
+
+			-- LEDS Pins --
+			LED 						: out std_logic_vector(9 downto 0)	:=	(others	=>	'0')
+
 	);
-end <entity_name>;
+end Ident_Player_TOP;
 
 -- Library Clause(s) (optional)
 -- Use Clause(s) (optional)
 
-architecture <arch_name> of <entity_name> is
+architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 
 	-- Declarations (optional)
 
 begin
 
 	-- Process Statement (optional)
+	
+	main	:	process	(all)
+	
+	begin
+	
+						if rising_edge(CLK)	then
+						
+						if BTN(0) = '1' then
+							LED(1) <= '1';
+						else
+							LED(1) <= '0';
+						end if;
+						
+						end if;
+	
+	end process	main;
 
 	-- Concurrent Procedure Call (optional)
 
@@ -49,4 +111,4 @@ begin
 
 	-- Generate Statement (optional)
 
-end <arch_name>;
+end BEH_Ident_Player_TOP;

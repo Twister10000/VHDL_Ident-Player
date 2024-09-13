@@ -1,0 +1,52 @@
+-- A library clause declares a name as a library.  It 
+-- does not create the library; it simply forward declares 
+-- it. 
+library <library_name>;
+entity <entity_name> is
+	generic
+	(
+		<name>	: <type>  :=	<default_value>;
+		...
+		<name>	: <type>  :=	<default_value>
+	);
+
+
+	port
+	(
+		-- Input ports
+		<name>	: in  <type>;
+		<name>	: in  <type> := <default_value>;
+
+		-- Inout ports
+		<name>	: inout <type>;
+
+		-- Output ports
+		<name>	: out <type>;
+		<name>	: out <type> := <default_value>
+	);
+end <entity_name>;
+
+-- Library Clause(s) (optional)
+-- Use Clause(s) (optional)
+
+architecture <arch_name> of <entity_name> is
+
+	-- Declarations (optional)
+
+begin
+
+	-- Process Statement (optional)
+
+	-- Concurrent Procedure Call (optional)
+
+	-- Concurrent Signal Assignment (optional)
+
+	-- Conditional Signal Assignment (optional)
+
+	-- Selected Signal Assignment (optional)
+
+	-- Component Instantiation Statement (optional)
+
+	-- Generate Statement (optional)
+
+end <arch_name>;
