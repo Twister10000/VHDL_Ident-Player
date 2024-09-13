@@ -19,9 +19,14 @@ entity Ident_Player_TOP is
 	(
 		-- Input ports
 			-- CLOCK --
-			ADC_CLK_10 			: in std_logic;
-			CLK 						: in std_logic;
-			MAX10_CLK2_50 	: in std_logic;
+			ADC_CLK_10 			: in 	std_logic;
+			CLK 						: in	std_logic;
+			MADI_CLK				:	in	std_logic;
+			MAX10_CLK2_50 	: in 	std_logic;
+			
+			
+			-- MADI--
+			MADI_IN					:	in	std_logic;
 			
 			-- Buttons --
 			BTN 						: in std_logic_vector(1 downto 0);
@@ -36,7 +41,7 @@ entity Ident_Player_TOP is
 			ARDUINO_RESET_N : inout std_logic;
 			
 			-- 2x20 GPIO Connector--
-			GPIO 						: inout std_logic_vector(35 downto 0);
+			GPIO 						: inout std_logic_vector(32 downto 0);
 			
 			-- SDRAM PINS --
 			DRAM_DQ 				: inout std_logic_vector(15 downto 0);
@@ -67,7 +72,11 @@ entity Ident_Player_TOP is
 			HEX5 						: out std_logic_vector(7 downto 0)	:=	(others	=>	'1');
 
 			-- LEDS Pins --
-			LED 						: out std_logic_vector(9 downto 0)	:=	(others	=>	'0')
+			LED 						: out std_logic_vector(9 downto 0)	:=	(others	=>	'0');
+			
+			-- MADI Pins --
+			
+			MADI_OUT				:	out	std_logic	:=	'0'
 
 	);
 end Ident_Player_TOP;
