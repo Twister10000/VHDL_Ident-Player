@@ -1,0 +1,58 @@
+m255
+K4
+z2
+!s11e vcom 2023.3 2023.07, Jul 17 2023
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/simulation/questa
+Eident_player_top
+Z1 w1726209779
+Z2 DPx4 ieee 15 std_logic_arith 0 22 B[jVX6I8iRX2o6WYW0BB>3
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 o4hn5gYc0WVo72BSL@Ta50
+Z4 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
+Z5 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
+Z6 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
+!i122 0
+R0
+Z7 8C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd
+Z8 FC:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd
+l0
+L9 1
+VYMQFnPN;D@P2G7jQF`Fz=2
+!s100 PACm><4PP20Y87_73Soie1
+Z9 OL;C;2023.3;77
+33
+Z10 !s110 1726210793
+!i10b 1
+Z11 !s108 1726210792.000000
+Z12 !s90 -reportprogress|300|-2008|-work|work|C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd|
+!s107 C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd|
+!i113 0
+Z13 o-2008 -work work
+Z14 tExplicit 1 CvgOpt 0
+Abeh_ident_player_top
+R2
+R3
+R4
+R5
+R6
+DEx4 work 16 ident_player_top 0 22 YMQFnPN;D@P2G7jQF`Fz=2
+!i122 0
+l79
+L75 37
+V@?PVWfYan`EzYg4g:1Sha1
+!s100 XEaIZ6h:ETEOTL?4GX8]C1
+R9
+33
+R10
+!i10b 1
+R11
+R12
+Z15 !s107 C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd|
+!i113 0
+R13
+R14
