@@ -100,3 +100,6 @@ Source/Ident_Player.map.rpt
 Source/Ident_Player.map.summary
 Source/Ident_Player.qsf
 Source/Ident_Player.sta.rpt
+*.rpt
+*.done
+*.summary
