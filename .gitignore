@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/alteraquartusii,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=alteraquartusii,windows
+# Created by https://www.toptal.com/developers/gitignore/api/windows,alteraquartusii
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,alteraquartusii
 
 ### AlteraQuartusII ###
 ##list taken from http://www.alterawiki.com/wiki/Version_Control (01.10.2015)
@@ -38,7 +38,11 @@
 
 # software binary files
 
-/*
+/Source/simulation/modelsim/*
+/Source/db/*
+/Source/greybox_tmp/*
+/Source/incremental_db/*
+/Source/output_files/*
 !/*.gitignore
 ##
 !*.qpf
@@ -82,4 +86,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/alteraquartusii,windows
+# End of https://www.toptal.com/developers/gitignore/api/windows,alteraquartusii
+Source/VGA_DEMO.qws
+*.zip
+Source/output_files/VGA_DEMO.sof
+*.sof
