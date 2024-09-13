@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition"
 
--- DATE "09/13/2024 09:25:50"
+-- DATE "09/13/2024 09:46:33"
 
 -- 
 -- Device: Altera 10M50DAF484C7G Package FBGA484
@@ -97,28 +97,28 @@ ENTITY 	Ident_Player_TOP IS
 	MADI_IN : IN std_logic;
 	BTN : IN std_logic_vector(1 DOWNTO 0);
 	Slider : IN std_logic_vector(9 DOWNTO 0);
-	ARDUINO_IO : BUFFER std_logic_vector(15 DOWNTO 0);
-	ARDUINO_RESET_N : BUFFER std_logic;
-	GPIO : BUFFER std_logic_vector(32 DOWNTO 0);
-	DRAM_DQ : BUFFER std_logic_vector(15 DOWNTO 0);
-	DRAM_CAS_N : BUFFER std_logic;
-	DRAM_CKE : BUFFER std_logic;
-	DRAM_CLK : BUFFER std_logic;
-	DRAM_CS_N : BUFFER std_logic;
-	DRAM_LDQM : BUFFER std_logic;
-	DRAM_RAS_N : BUFFER std_logic;
-	DRAM_UDQM : BUFFER std_logic;
-	DRAM_WE_N : BUFFER std_logic;
-	DRAM_ADDR : BUFFER std_logic_vector(12 DOWNTO 0);
-	DRAM_BA : BUFFER std_logic_vector(1 DOWNTO 0);
-	HEX0 : BUFFER std_logic_vector(7 DOWNTO 0);
-	HEX1 : BUFFER std_logic_vector(7 DOWNTO 0);
-	HEX2 : BUFFER std_logic_vector(7 DOWNTO 0);
-	HEX3 : BUFFER std_logic_vector(7 DOWNTO 0);
-	HEX4 : BUFFER std_logic_vector(7 DOWNTO 0);
-	HEX5 : BUFFER std_logic_vector(7 DOWNTO 0);
-	LED : BUFFER std_logic_vector(9 DOWNTO 0);
-	MADI_OUT : BUFFER std_logic
+	ARDUINO_IO : INOUT std_logic_vector(15 DOWNTO 0);
+	ARDUINO_RESET_N : INOUT std_logic;
+	GPIO : INOUT std_logic_vector(32 DOWNTO 0);
+	DRAM_DQ : INOUT std_logic_vector(15 DOWNTO 0);
+	DRAM_CAS_N : OUT std_logic;
+	DRAM_CKE : OUT std_logic;
+	DRAM_CLK : OUT std_logic;
+	DRAM_CS_N : OUT std_logic;
+	DRAM_LDQM : OUT std_logic;
+	DRAM_RAS_N : OUT std_logic;
+	DRAM_UDQM : OUT std_logic;
+	DRAM_WE_N : OUT std_logic;
+	DRAM_ADDR : OUT std_logic_vector(12 DOWNTO 0);
+	DRAM_BA : OUT std_logic_vector(1 DOWNTO 0);
+	HEX0 : OUT std_logic_vector(7 DOWNTO 0);
+	HEX1 : OUT std_logic_vector(7 DOWNTO 0);
+	HEX2 : OUT std_logic_vector(7 DOWNTO 0);
+	HEX3 : OUT std_logic_vector(7 DOWNTO 0);
+	HEX4 : OUT std_logic_vector(7 DOWNTO 0);
+	HEX5 : OUT std_logic_vector(7 DOWNTO 0);
+	LED : OUT std_logic_vector(9 DOWNTO 0);
+	MADI_OUT : OUT std_logic
 	);
 END Ident_Player_TOP;
 
@@ -307,10 +307,6 @@ SIGNAL ww_MAX10_CLK2_50 : std_logic;
 SIGNAL ww_MADI_IN : std_logic;
 SIGNAL ww_BTN : std_logic_vector(1 DOWNTO 0);
 SIGNAL ww_Slider : std_logic_vector(9 DOWNTO 0);
-SIGNAL ww_ARDUINO_IO : std_logic_vector(15 DOWNTO 0);
-SIGNAL ww_ARDUINO_RESET_N : std_logic;
-SIGNAL ww_GPIO : std_logic_vector(32 DOWNTO 0);
-SIGNAL ww_DRAM_DQ : std_logic_vector(15 DOWNTO 0);
 SIGNAL ww_DRAM_CAS_N : std_logic;
 SIGNAL ww_DRAM_CKE : std_logic;
 SIGNAL ww_DRAM_CLK : std_logic;
@@ -584,10 +580,6 @@ ww_MAX10_CLK2_50 <= MAX10_CLK2_50;
 ww_MADI_IN <= MADI_IN;
 ww_BTN <= BTN;
 ww_Slider <= Slider;
-ARDUINO_IO <= ww_ARDUINO_IO;
-ARDUINO_RESET_N <= ww_ARDUINO_RESET_N;
-GPIO <= ww_GPIO;
-DRAM_DQ <= ww_DRAM_DQ;
 DRAM_CAS_N <= ww_DRAM_CAS_N;
 DRAM_CKE <= ww_DRAM_CKE;
 DRAM_CLK <= ww_DRAM_CLK;
@@ -2827,7 +2819,7 @@ GENERIC MAP (
 	simulate_z_as => "z")
 -- pragma translate_on
 PORT MAP (
-	i => ww_ARDUINO_RESET_N,
+	i => ARDUINO_RESET_N,
 	o => \ARDUINO_RESET_N~input_o\);
 
 -- Location: IOIBUF_X24_Y0_N29
@@ -3685,7 +3677,7 @@ ARDUINO_IO(14) <= \ARDUINO_IO[14]~output_o\;
 
 ARDUINO_IO(15) <= \ARDUINO_IO[15]~output_o\;
 
-ww_ARDUINO_RESET_N <= \ARDUINO_RESET_N~output_o\;
+ARDUINO_RESET_N <= \ARDUINO_RESET_N~output_o\;
 
 GPIO(0) <= \GPIO[0]~output_o\;
 
