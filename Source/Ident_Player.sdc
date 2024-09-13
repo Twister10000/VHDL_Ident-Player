@@ -34,15 +34,15 @@ derive_clock_uncertainty
 # Set Input Delay
 #**************************************************************
 
-set_input_delay -clock CLK -max 0ns [get_ports {BTN*}] 
-set_input_delay -clock CLK -min 0.000ns [get_ports {BTN*}] 
+set_input_delay -clock CLK -max 0ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO*}] 
+set_input_delay -clock CLK -min 0.000ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO*}] 
 
 #**************************************************************
 # Set Output Delay
 #**************************************************************
 
-set_output_delay	-clock	CLK	-max 0ns [get_ports {LEDR*}]
-set_output_delay	-clock	CLK	-min -0ns [get_ports {LEDR*}]
+set_output_delay	-clock	CLK	-max 0ns [get_ports {LED* GPIO* HEX0* HEX1* HEX2* HEX3* HEX4* HEX5* ARDUINO_IO*}]
+set_output_delay	-clock	CLK	-min -0ns [get_ports {LED* GPIO* HEX0* HEX1* HEX2* HEX3* HEX4* HEX5* ARDUINO_IO*}]
 
 #**************************************************************
 # Set Clock Groups
