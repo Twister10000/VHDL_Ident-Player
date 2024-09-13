@@ -72,9 +72,6 @@ entity Ident_Player_TOP is
 	);
 end Ident_Player_TOP;
 
--- Library Clause(s) (optional)
--- Use Clause(s) (optional)
-
 architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 
 	-- Declarations (optional)
