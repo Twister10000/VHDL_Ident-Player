@@ -103,31 +103,3 @@ Source/output_files/VGA_DEMO.sof
 *.rpt
 *.done
 *.summary
-*_generation_script*
-*_inst.vhd
-*.bak
-*.cmp
-*.done
-*.eqn
-*.hex
-*.html
-*.jdi
-*.jpg
-*.mif
-*.pin
-*.pof
-*.ptf.*
-*.qar
-*.qarlog
-*.qws
-*.rpt
-*.smsg
-*.sof
-*.sopc_builder
-*.summary
-*.tcl
-*.txt # Explicitly add any text files used
-*~
-*example*
-*sopc_*
-PLLJ_PLLSPE_INFO.txt # The generated PLL specification file

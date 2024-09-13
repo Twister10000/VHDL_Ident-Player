@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/alteraquartusii,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=alteraquartusii,windows
+# Created by https://www.toptal.com/developers/gitignore/api/windows,alteraquartusii
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,alteraquartusii
 
 ### AlteraQuartusII ###
 ##list taken from http://www.alterawiki.com/wiki/Version_Control (01.10.2015)
@@ -38,9 +38,12 @@
 
 # software binary files
 
-/*
+/Source/simulation/modelsim/*
+/Source/db/*
+/Source/greybox_tmp/*
+/Source/incremental_db/*
+/Source/output_files/*
 !/*.gitignore
-!/*Source
 ##
 !*.qpf
 !*.qsf
@@ -83,4 +86,48 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/alteraquartusii,windows
+# End of https://www.toptal.com/developers/gitignore/api/windows,alteraquartusii
+Source/VGA_DEMO.qws
+*.zip
+Source/output_files/VGA_DEMO.sof
+*.sof
+*Source/Ident_Player.asm.rpt
+*Source/Ident_Player.done
+*Source/Ident_Player.fit.rpt
+*Source/Ident_Player.fit.summary
+*Source/Ident_Player.flow.rpt
+*Source/Ident_Player.map.rpt
+*Source/Ident_Player.map.summary
+*Source/Ident_Player.qsf
+*Source/Ident_Player.sta.rpt
+*.rpt
+*.done
+*.summary
+*_generation_script*
+*_inst.vhd
+*.bak
+*.cmp
+*.done
+*.eqn
+*.hex
+*.html
+*.jdi
+*.jpg
+*.mif
+*.pin
+*.pof
+*.ptf.*
+*.qar
+*.qarlog
+*.qws
+*.rpt
+*.smsg
+*.sof
+*.sopc_builder
+*.summary
+*.tcl
+*.txt # Explicitly add any text files used
+*~
+*example*
+*sopc_*
+PLLJ_PLLSPE_INFO.txt # The generated PLL specification file
