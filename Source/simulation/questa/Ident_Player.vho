@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus Prime"
 -- VERSION "Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition"
 
--- DATE "09/13/2024 10:07:48"
+-- DATE "09/13/2024 10:17:52"
 
 -- 
 -- Device: Altera 10M50DAF484C7G Package FBGA484
@@ -97,34 +97,33 @@ ENTITY 	Ident_Player_TOP IS
 	MADI_IN : IN std_logic;
 	BTN : IN std_logic_vector(1 DOWNTO 0);
 	Slider : IN std_logic_vector(9 DOWNTO 0);
-	ARDUINO_IO : INOUT std_logic_vector(15 DOWNTO 0);
-	ARDUINO_RESET_N : INOUT std_logic;
-	GPIO : INOUT std_logic_vector(32 DOWNTO 0);
-	DRAM_DQ : INOUT std_logic_vector(15 DOWNTO 0);
-	DRAM_CAS_N : OUT std_logic;
-	DRAM_CKE : OUT std_logic;
-	DRAM_CLK : OUT std_logic;
-	DRAM_CS_N : OUT std_logic;
-	DRAM_LDQM : OUT std_logic;
-	DRAM_RAS_N : OUT std_logic;
-	DRAM_UDQM : OUT std_logic;
-	DRAM_WE_N : OUT std_logic;
-	DRAM_ADDR : OUT std_logic_vector(12 DOWNTO 0);
-	DRAM_BA : OUT std_logic_vector(1 DOWNTO 0);
-	HEX0 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX1 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX2 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX3 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX4 : OUT std_logic_vector(7 DOWNTO 0);
-	HEX5 : OUT std_logic_vector(7 DOWNTO 0);
-	LED : OUT std_logic_vector(9 DOWNTO 0);
-	MADI_OUT : OUT std_logic
+	ARDUINO_IO : BUFFER std_logic_vector(15 DOWNTO 0);
+	ARDUINO_RESET_N : BUFFER std_logic;
+	GPIO : BUFFER std_logic_vector(32 DOWNTO 0);
+	DRAM_DQ : BUFFER std_logic_vector(15 DOWNTO 0);
+	DRAM_CAS_N : BUFFER std_logic;
+	DRAM_CKE : BUFFER std_logic;
+	DRAM_CLK : BUFFER std_logic;
+	DRAM_CS_N : BUFFER std_logic;
+	DRAM_LDQM : BUFFER std_logic;
+	DRAM_RAS_N : BUFFER std_logic;
+	DRAM_UDQM : BUFFER std_logic;
+	DRAM_WE_N : BUFFER std_logic;
+	DRAM_ADDR : BUFFER std_logic_vector(12 DOWNTO 0);
+	DRAM_BA : BUFFER std_logic_vector(1 DOWNTO 0);
+	HEX0 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX1 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX2 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX3 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX4 : BUFFER std_logic_vector(7 DOWNTO 0);
+	HEX5 : BUFFER std_logic_vector(7 DOWNTO 0);
+	LED : BUFFER std_logic_vector(9 DOWNTO 0);
+	MADI_OUT : BUFFER std_logic
 	);
 END Ident_Player_TOP;
 
 -- Design Ports Information
 -- ADC_CLK_10	=>  Location: PIN_N5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
--- MADI_CLK	=>  Location: PIN_V10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 -- MAX10_CLK2_50	=>  Location: PIN_N14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 -- MADI_IN	=>  Location: PIN_V5,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 -- BTN[1]	=>  Location: PIN_A7,	 I/O Standard: 3.3 V Schmitt Trigger,	 Current Strength: Default
@@ -288,6 +287,7 @@ END Ident_Player_TOP;
 -- DRAM_DQ[15]	=>  Location: PIN_F22,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 8mA
 -- BTN[0]	=>  Location: PIN_B8,	 I/O Standard: 3.3 V Schmitt Trigger,	 Current Strength: Default
 -- CLK	=>  Location: PIN_P11,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+-- MADI_CLK	=>  Location: PIN_V10,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 
 
 ARCHITECTURE structure OF Ident_Player_TOP IS
@@ -307,6 +307,10 @@ SIGNAL ww_MAX10_CLK2_50 : std_logic;
 SIGNAL ww_MADI_IN : std_logic;
 SIGNAL ww_BTN : std_logic_vector(1 DOWNTO 0);
 SIGNAL ww_Slider : std_logic_vector(9 DOWNTO 0);
+SIGNAL ww_ARDUINO_IO : std_logic_vector(15 DOWNTO 0);
+SIGNAL ww_ARDUINO_RESET_N : std_logic;
+SIGNAL ww_GPIO : std_logic_vector(32 DOWNTO 0);
+SIGNAL ww_DRAM_DQ : std_logic_vector(15 DOWNTO 0);
 SIGNAL ww_DRAM_CAS_N : std_logic;
 SIGNAL ww_DRAM_CKE : std_logic;
 SIGNAL ww_DRAM_CLK : std_logic;
@@ -327,8 +331,8 @@ SIGNAL ww_LED : std_logic_vector(9 DOWNTO 0);
 SIGNAL ww_MADI_OUT : std_logic;
 SIGNAL \~QUARTUS_CREATED_ADC1~_CHSEL_bus\ : std_logic_vector(4 DOWNTO 0);
 SIGNAL \~QUARTUS_CREATED_ADC2~_CHSEL_bus\ : std_logic_vector(4 DOWNTO 0);
+SIGNAL \MADI_CLK~inputclkctrl_INCLK_bus\ : std_logic_vector(3 DOWNTO 0);
 SIGNAL \ADC_CLK_10~input_o\ : std_logic;
-SIGNAL \MADI_CLK~input_o\ : std_logic;
 SIGNAL \MAX10_CLK2_50~input_o\ : std_logic;
 SIGNAL \MADI_IN~input_o\ : std_logic;
 SIGNAL \BTN[1]~input_o\ : std_logic;
@@ -563,6 +567,18 @@ SIGNAL \MADI_OUT~output_o\ : std_logic;
 SIGNAL \CLK~input_o\ : std_logic;
 SIGNAL \BTN[0]~input_o\ : std_logic;
 SIGNAL \LED[1]~reg0_q\ : std_logic;
+SIGNAL \MADI_CLK~input_o\ : std_logic;
+SIGNAL \MADI_CLK~inputclkctrl_outclk\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit[1]~feeder_combout\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[0]~2_combout\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[1]~0_combout\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~_Duplicate_1_q\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[2]~1_combout\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~0_combout\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~1_combout\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~q\ : std_logic;
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit\ : std_logic_vector(4 DOWNTO 0);
+SIGNAL \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\ : std_logic_vector(2 DOWNTO 0);
 
 COMPONENT hard_block
     PORT (
@@ -580,6 +596,10 @@ ww_MAX10_CLK2_50 <= MAX10_CLK2_50;
 ww_MADI_IN <= MADI_IN;
 ww_BTN <= BTN;
 ww_Slider <= Slider;
+ARDUINO_IO <= ww_ARDUINO_IO;
+ARDUINO_RESET_N <= ww_ARDUINO_RESET_N;
+GPIO <= ww_GPIO;
+DRAM_DQ <= ww_DRAM_DQ;
 DRAM_CAS_N <= ww_DRAM_CAS_N;
 DRAM_CKE <= ww_DRAM_CKE;
 DRAM_CLK <= ww_DRAM_CLK;
@@ -605,13 +625,15 @@ ww_devpor <= devpor;
 \~QUARTUS_CREATED_ADC1~_CHSEL_bus\ <= (\~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\);
 
 \~QUARTUS_CREATED_ADC2~_CHSEL_bus\ <= (\~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\ & \~QUARTUS_CREATED_GND~I_combout\);
+
+\MADI_CLK~inputclkctrl_INCLK_bus\ <= (vcc & vcc & vcc & \MADI_CLK~input_o\);
 auto_generated_inst : hard_block
 PORT MAP (
 	devoe => ww_devoe,
 	devclrn => ww_devclrn,
 	devpor => ww_devpor);
 
--- Location: LCCOMB_X1_Y1_N24
+-- Location: LCCOMB_X44_Y52_N16
 \~QUARTUS_CREATED_GND~I\ : fiftyfivenm_lcell_comb
 -- Equation(s):
 -- \~QUARTUS_CREATED_GND~I_combout\ = GND
@@ -2396,7 +2418,7 @@ GENERIC MAP (
 	open_drain_output => "false")
 -- pragma translate_on
 PORT MAP (
-	i => GND,
+	i => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~q\,
 	devoe => ww_devoe,
 	o => \MADI_OUT~output_o\);
 
@@ -2438,18 +2460,6 @@ PORT MAP (
 	devpor => ww_devpor,
 	q => \LED[1]~reg0_q\);
 
--- Location: IOIBUF_X0_Y23_N22
-\ADC_CLK_10~input\ : fiftyfivenm_io_ibuf
--- pragma translate_off
-GENERIC MAP (
-	bus_hold => "false",
-	listen_to_nsleep_signal => "false",
-	simulate_z_as => "z")
--- pragma translate_on
-PORT MAP (
-	i => ww_ADC_CLK_10,
-	o => \ADC_CLK_10~input_o\);
-
 -- Location: IOIBUF_X31_Y0_N22
 \MADI_CLK~input\ : fiftyfivenm_io_ibuf
 -- pragma translate_off
@@ -2461,6 +2471,206 @@ GENERIC MAP (
 PORT MAP (
 	i => ww_MADI_CLK,
 	o => \MADI_CLK~input_o\);
+
+-- Location: CLKCTRL_G19
+\MADI_CLK~inputclkctrl\ : fiftyfivenm_clkctrl
+-- pragma translate_off
+GENERIC MAP (
+	clock_type => "global clock",
+	ena_register_mode => "none")
+-- pragma translate_on
+PORT MAP (
+	inclk => \MADI_CLK~inputclkctrl_INCLK_bus\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	outclk => \MADI_CLK~inputclkctrl_outclk\);
+
+-- Location: LCCOMB_X18_Y1_N26
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit[1]~feeder\ : fiftyfivenm_lcell_comb
+-- Equation(s):
+-- \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit[1]~feeder_combout\ = VCC
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "1111111111111111",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	combout => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit[1]~feeder_combout\);
+
+-- Location: FF_X18_Y1_N27
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \MADI_CLK~inputclkctrl_outclk\,
+	d => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit[1]~feeder_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit\(1));
+
+-- Location: LCCOMB_X18_Y1_N6
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[0]~2\ : fiftyfivenm_lcell_comb
+-- Equation(s):
+-- \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[0]~2_combout\ = !\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0)
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000111100001111",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0),
+	combout => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[0]~2_combout\);
+
+-- Location: FF_X18_Y1_N7
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[0]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \MADI_CLK~inputclkctrl_outclk\,
+	d => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[0]~2_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0));
+
+-- Location: LCCOMB_X18_Y1_N12
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[1]~0\ : fiftyfivenm_lcell_comb
+-- Equation(s):
+-- \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[1]~0_combout\ = \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(1) $ (\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000111111110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datac => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(1),
+	datad => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0),
+	combout => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[1]~0_combout\);
+
+-- Location: FF_X18_Y1_N13
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[1]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \MADI_CLK~inputclkctrl_outclk\,
+	d => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[1]~0_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(1));
+
+-- Location: FF_X18_Y1_N1
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~_Duplicate_1\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \MADI_CLK~inputclkctrl_outclk\,
+	d => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~1_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~_Duplicate_1_q\);
+
+-- Location: LCCOMB_X18_Y1_N24
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[2]~1\ : fiftyfivenm_lcell_comb
+-- Equation(s):
+-- \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[2]~1_combout\ = \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(2) $ (((\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(1) & \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0101101011110000",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(1),
+	datac => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(2),
+	datad => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0),
+	combout => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[2]~1_combout\);
+
+-- Location: FF_X18_Y1_N25
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[2]\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \MADI_CLK~inputclkctrl_outclk\,
+	d => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN[2]~1_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(2));
+
+-- Location: LCCOMB_X18_Y1_N10
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~0\ : fiftyfivenm_lcell_comb
+-- Equation(s):
+-- \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~0_combout\ = (!\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(2) & !\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0000000000110011",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	datab => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(2),
+	datad => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(0),
+	combout => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~0_combout\);
+
+-- Location: LCCOMB_X18_Y1_N0
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~1\ : fiftyfivenm_lcell_comb
+-- Equation(s):
+-- \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~1_combout\ = \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~_Duplicate_1_q\ $ (((\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit\(1) & ((\MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(1)) # 
+-- (!\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~0_combout\)))))
+
+-- pragma translate_off
+GENERIC MAP (
+	lut_mask => "0111100001011010",
+	sum_lutc_input => "datac")
+-- pragma translate_on
+PORT MAP (
+	dataa => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_DATA_5bit\(1),
+	datab => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|CTN\(1),
+	datac => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~_Duplicate_1_q\,
+	datad => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~0_combout\,
+	combout => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~1_combout\);
+
+-- Location: DDIOOUTCELL_X18_Y0_N25
+\MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT\ : dffeas
+-- pragma translate_off
+GENERIC MAP (
+	is_wysiwyg => "true",
+	power_up => "low")
+-- pragma translate_on
+PORT MAP (
+	clk => \MADI_CLK~inputclkctrl_outclk\,
+	d => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~1_combout\,
+	devclrn => ww_devclrn,
+	devpor => ww_devpor,
+	q => \MADI_DATA_MAPPER|MADI_DATA_ENCODER|MADI_OUT~q\);
+
+-- Location: IOIBUF_X0_Y23_N22
+\ADC_CLK_10~input\ : fiftyfivenm_io_ibuf
+-- pragma translate_off
+GENERIC MAP (
+	bus_hold => "false",
+	listen_to_nsleep_signal => "false",
+	simulate_z_as => "z")
+-- pragma translate_on
+PORT MAP (
+	i => ww_ADC_CLK_10,
+	o => \ADC_CLK_10~input_o\);
 
 -- Location: IOIBUF_X78_Y29_N22
 \MAX10_CLK2_50~input\ : fiftyfivenm_io_ibuf
@@ -2819,7 +3029,7 @@ GENERIC MAP (
 	simulate_z_as => "z")
 -- pragma translate_on
 PORT MAP (
-	i => ARDUINO_RESET_N,
+	i => ww_ARDUINO_RESET_N,
 	o => \ARDUINO_RESET_N~input_o\);
 
 -- Location: IOIBUF_X24_Y0_N29
@@ -3677,7 +3887,7 @@ ARDUINO_IO(14) <= \ARDUINO_IO[14]~output_o\;
 
 ARDUINO_IO(15) <= \ARDUINO_IO[15]~output_o\;
 
-ARDUINO_RESET_N <= \ARDUINO_RESET_N~output_o\;
+ww_ARDUINO_RESET_N <= \ARDUINO_RESET_N~output_o\;
 
 GPIO(0) <= \GPIO[0]~output_o\;
 

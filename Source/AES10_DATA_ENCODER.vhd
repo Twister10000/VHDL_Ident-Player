@@ -25,6 +25,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 
 	-- Declarations (optional)
 	signal MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) := (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
+	signal	CTN							: integer range 0 to 4 := 0;
 
 begin
 
@@ -61,13 +62,22 @@ begin
 	end process bit_encoding;
 	
 	
-		NRZI_encoding : process(all)
+		NRZI_encoding : process(all) -- Prozess für die Implementierung vom NRZI Schema
 	
 	begin
 	
 				if rising_edge(MADI_CLK) then
-				
-				
+					
+					if CTN = 4 then
+						CTN <= 0;
+					end if;
+					
+					case MADI_DATA_5bit(CTN)	is
+						when '1'		=>	MADI_OUT <= not MADI_OUT;
+						when '0'		=>	MADI_OUT <= MADI_OUT;
+						when others	=> null;
+					end case;
+					CTN <= CTN + 1;
 				end if;
 	
 	end process NRZI_encoding;
