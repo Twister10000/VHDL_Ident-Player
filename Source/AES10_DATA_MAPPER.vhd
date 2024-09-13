@@ -17,17 +17,25 @@ entity AES10_DATA_MAPPER is
 		-- Output ports
 		MADI_OUT	: out std_logic	:= '0'
 		
+		
 	);
 end AES10_DATA_MAPPER;
-
--- Library Clause(s) (optional)
--- Use Clause(s) (optional)
 
 architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 
 	-- Declarations (optional)
+	
+	signal	MADI_DATA		:	std_logic_vector (3 downto	0) := (others => '0');
 
 begin
+
+
+		MADI_DATA_ENCODER	:	entity work.AES10_DATA_ENCODER
+		port map(
+		
+			MADI_CLK		=>	MADI_CLK,
+			MADI_DATA		=>	MADI_DATA,
+			MADI_OUT		=>	MADI_OUT);
 
 	-- Process Statement (optional)
 
