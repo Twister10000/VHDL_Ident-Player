@@ -20,7 +20,7 @@
 -- ***************************************************************************
 -- Generated on "09/13/2024 10:49:53"
                                                             
--- Vhdl Test Bench template for design  :  Ident_Player_TOP
+-- Vhdl Test Bench template for design  :  AES10_DATA_ENCODER
 -- 
 -- Simulation tool : Questa Intel FPGA (VHDL)
 -- 

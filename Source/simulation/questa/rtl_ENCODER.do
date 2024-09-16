@@ -1,3 +1,5 @@
+#do file for Encoder Testing
+
 if {[file exists rtl_work]} {
 vdel -lib rtl_work -all
 }
@@ -9,3 +11,4 @@ quit -sim
 vsim -t 1ps -voptargs="+acc" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst
 do wave.do
 run 450ns
+
