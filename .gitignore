@@ -106,3 +106,5 @@ Source/output_files/VGA_DEMO.sof
 *.vho
 *.xml
 *.qws
+/Source/simulation/questa/rtl_work
+Source/simulation/questa/Ident_Player_run_msim_rtl_vhdl.do.bak5

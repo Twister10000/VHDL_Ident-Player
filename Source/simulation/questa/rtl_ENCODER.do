@@ -8,4 +8,4 @@ vcom -reportprogress 300 -work work TB_AES10_DATA_ENCODER.vht
 quit -sim
 vsim -t 1ps -voptargs="+acc" -gui -msgmode both -displaymsgmode both work.AES10_DATA_ENCODER_vhd_tst
 do wave.do
-run 200ns
+run 450ns
