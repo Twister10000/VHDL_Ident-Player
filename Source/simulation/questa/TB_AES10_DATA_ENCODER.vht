@@ -37,7 +37,6 @@ constant clk_period : time := 8 ns;
 
 SIGNAL MADI_CLK 	: STD_LOGIC;
 SIGNAL MADI_OUT 	: STD_LOGIC;
-SIGNAL Send_SYNC 	: STD_LOGIC := '0';
 SIGNAL MADI_DATA	:	std_logic_vector(3 downto	0);
 
 
@@ -47,7 +46,6 @@ BEGIN
 -- list connections between master ports and signals
 	MADI_CLK			=>	MADI_CLK,
 	MADI_OUT			=>	MADI_OUT,
-	SEND_SYNC			=>	SEND_SYNC,
 	MADI_DATA			=>	MADI_DATA
 	);
 init : PROCESS                                               
@@ -73,16 +71,31 @@ BEGIN
         -- code executes for every event on sensitivity list
 			assert (false) report "0000 ist Rengeschrieben" severity note;
 			MADI_DATA	<= "0000";
-			wait for 32ns;
+			wait for 36ns; -- Die Erste Halbwelle wird nicht richtig Simuliert deswegen muss hier 36ns
 			assert (false) report "0011 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0011";
-			wait for 48ns;
-			assert (false) report "Sync Symbol soll geschickt werden" severity note;
-			Send_SYNC <= '1';
-			wait for 80ns;
-			assert (false) report "Sync Symbol soll nicht geschickt werden" severity note;
-			SenD_SYNC	<= '0';
 			wait for 40ns;
+			assert (false) report "0100 ist Rengeschrieben" severity note;
+			MadI_DATA	<= "0100";
+			wait for 40ns;
+			assert (false) report "1101 ist Rengeschrieben" severity note;
+			MadI_DATA	<= "1101";
+			wait for 40ns;
+			assert (false) report "0000 ist Rengeschrieben" severity note;
+			MADI_DATA	<= "0000";
+			wait for 40ns;
+			assert (false) report "0011 ist Rengeschrieben" severity note;
+			MadI_DATA	<= "0011";
+			wait for 40ns;
+			assert (false) report "0100 ist Rengeschrieben" severity note;
+			MadI_DATA	<= "0100";
+			wait for 40ns;
+			assert (false) report "1101 ist Rengeschrieben" severity note;
+			MadI_DATA	<= "1101";
+			wait for 40ns;
+			assert (false) report "Sync Symbol soll ausgegeben werden 10001" severity note;
+			wait for 40ns;
+			assert (false) report "Sync Symbol soll ausgegeben werden 11000" severity note;
 		
 WAIT;                                                        
 END PROCESS always;                                          
