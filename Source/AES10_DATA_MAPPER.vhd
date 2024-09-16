@@ -26,7 +26,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	-- Declarations (optional)
 	
 	signal	MADI_DATA		:	std_logic_vector (3 downto	0) := (others => '0');
-	signal	SEND_SYNC		:	std_logic := '0';
+--	signal	SEND_SYNC		:	std_logic := '0';
 
 begin
 
@@ -36,7 +36,7 @@ begin
 		
 			MADI_CLK		=>	MADI_CLK,
 			MADI_DATA		=>	MADI_DATA,
-			Send_SYNC		=>	Send_SYNC,
+--			Send_SYNC		=>	Send_SYNC,
 			MADI_OUT		=>	MADI_OUT);
 
 	-- Process Statement (optional)

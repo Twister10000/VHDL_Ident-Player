@@ -13,7 +13,7 @@ entity AES10_DATA_ENCODER is
 		-- Input ports
 		MADI_CLK	: in  std_logic;
 		MADI_DATA	: in  std_logic_vector (3 downto 0) := (others => '0'); -- MADI_DATA(3) last send Bit
-		SEND_SYNC	:	in	std_logic;																				-- Signal als zeichen wann ein Sync-Symbol gesendet werden muss
+--		SEND_SYNC	:	in	std_logic;																				-- Signal als zeichen wann ein Sync-Symbol gesendet werden muss
 
 		-- Output ports
 		MADI_OUT	: out std_logic	:= '0'
@@ -28,10 +28,13 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= "1100010001"; -- Symbol J(11000) and Symbol K(10001)
 	
 	--Signal Declarations 
+	signal	Send_SYNC				:	std_logic	:= '0';
+	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) := (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
+	signal	CTN							: integer range 0 to 16 :=	0;
+	signal	Word_CTN				:	integer	range 0 to 16	:=	0;
+	signal	CTN_SYNC				: integer range 0 to 16 :=	0;
 	
-	signal MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) := (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
-	signal	CTN							: integer range 0 to 16 := 0;
-	signal	CTN_SYNC				: integer range 0 to 16 := 0;
+	signal TEST_rd_Ena			:	std_logic	:=	'0';
 
 begin
 
@@ -69,28 +72,44 @@ begin
 	end process bit_encoding;
 	
 	
-		NRZI_encoding : process(all) -- Prozess für die Implementierung vom NRZI Schema
+	NRZI_encoding : process(all) -- Prozess für die Implementierung vom NRZI Schema
 	
 	begin
 	
 				if rising_edge(MADI_CLK) then
-				
+					
+					Test_rd_Ena	<=	'0';
 
 					if SEND_SYNC = '0' then
 						
 						CTN <= CTN + 1;
+						
 						if CTN >= 4 then
 							CTN <= 0;
+							Word_CTN	<=	Word_CTN + 1;
+						elsif CTN =	2	then
+						
+							TEST_rd_Ena <= '1'; --FIFO Read_Enbaled active
+							
 						end if;
 							case MADI_DATA_5bit(CTN)	is
 								when '1'		=>	MADI_OUT <= not MADI_OUT;
 								when '0'		=>	MADI_OUT <= MADI_OUT;
 								when others	=> null;
 							end case;
-					else
+						
+					end if;
+					
+					if	Word_CTN	>= 8 then
+						
+						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
+						
 						if CTN_SYNC >= 9 then
-							CTN_SYNC <= 0;
+							CTN_SYNC 		<= 	0;
+							Word_CTN		<= 	0;
+							CTN 				<= 	0;
+							Send_SYNC 	<=	'0';
 						end if;
 							case Sync_Symbol(CTN_SYNC)	is
 							when '1'		=>	MADI_OUT <= not MADI_OUT;
