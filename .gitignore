@@ -104,3 +104,5 @@ Source/output_files/VGA_DEMO.sof
 *.done
 *.summary
 *.vho
+*.xml
+*.qws
