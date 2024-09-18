@@ -1,18 +1,16 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -expand -group MADI -color {Violet Red} /aes10_data_encoder_vhd_tst/i1/MADI_CLK
-add wave -noupdate -expand -group MADI -color {Violet Red} -radix binary /aes10_data_encoder_vhd_tst/i1/MADI_DATA
-add wave -noupdate -expand -group MADI -color {Violet Red} -radix binary /aes10_data_encoder_vhd_tst/i1/MADI_DATA_5bit
-add wave -noupdate -expand -group Counter -color {Sky Blue} /aes10_data_encoder_vhd_tst/i1/CTN
-add wave -noupdate -expand -group Counter -color {Sky Blue} /aes10_data_encoder_vhd_tst/i1/Word_CTN
-add wave -noupdate -expand -group Counter /aes10_data_encoder_vhd_tst/i1/CTN_SYNC
-add wave -noupdate /aes10_data_encoder_vhd_tst/i1/TEST_rd_Ena
-add wave -noupdate -color {Medium Slate Blue} /aes10_data_encoder_vhd_tst/i1/MADI_OUT
-add wave -noupdate /aes10_data_encoder_vhd_tst/i1/Send_SYNC
+add wave -noupdate -expand -group MADI -label MADI_CLK /aes10_data_mapper_vhd_tst/i1/MADI_CLK
+add wave -noupdate -expand -group MADI -label MADI_DATA_OUT -radix binary /aes10_data_mapper_vhd_tst/i1/MADI_FRAME_OUT
+add wave -noupdate -expand -group MADI -label MADI_SUBFRAME_START /aes10_data_mapper_vhd_tst/i1/MADI_SUBFRAME_Start
+add wave -noupdate -expand -group MADI -label MADI_BLOCK_START /aes10_data_mapper_vhd_tst/i1/MADI_BLock_Start
+add wave -noupdate -expand -group Counter -label MADI_CHANNEL_CTN -radix decimal /aes10_data_mapper_vhd_tst/i1/MADI_Chanel_CTN
+add wave -noupdate -label AUDIO_DATA /aes10_data_mapper_vhd_tst/i1/FIFO_DATA
+add wave -noupdate -label {ACTIVE CHANNELS} /aes10_data_mapper_vhd_tst/i1/MADI_ACTIVE_CH
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {116000 ps} 0}
+WaveRestoreCursors {{Cursor 1} {466064 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 309
+configure wave -namecolwidth 187
 configure wave -valuecolwidth 81
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -26,4 +24,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {44884 ps} {123117 ps}
+WaveRestoreZoom {457478 ps} {491856 ps}
