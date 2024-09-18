@@ -8,6 +8,12 @@ use	ieee.std_logic_unsigned.all;
 
 entity AES10_DATA_MAPPER is
 
+	generic(
+	
+		MADI_Mode	:	integer	range 0 to 64 := 56
+	
+	);
+
 	port
 	(
 		-- Input ports
