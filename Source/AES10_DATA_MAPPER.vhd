@@ -22,7 +22,8 @@ entity AES10_DATA_MAPPER is
 		FIFO_DATA	: in  std_logic_vector (23 downto 0) := (others => '0');
 
 		-- Output ports
-		MADI_OUT	: out std_logic	:= '0'
+		MADI_OUT	: out std_logic	:= '0';
+		MADI_FRAME_OUT	:		out std_logic_vector(31 downto	0)
 		
 		
 	);
@@ -94,6 +95,8 @@ begin
 								MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 								
 								MADI_FRAME(31) <= '1' xor '1' xor '0' xor '0';
+								
+								MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 						
 						end if;	
 						

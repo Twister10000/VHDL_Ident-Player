@@ -85,6 +85,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 
 	-- Declarations (optional)
 	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');
+	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);		
 
 begin
 	
@@ -92,9 +93,10 @@ begin
 	MADI_DATA_MAPPER	:	entity work.AES10_DATA_MAPPER
 		port map(
 		
-			MADI_CLK		=>	MADI_CLK,
-			FIFO_DATA		=>	FIFO_DATA_SEND,
-			MADI_OUT		=>	MADI_OUT);
+			MADI_CLK				=>	MADI_CLK,
+			FIFO_DATA				=>	FIFO_DATA_SEND,
+			MADI_FRAME_OUT	=>	MADI_DATA,
+			MADI_OUT				=>	MADI_OUT);
 	
 	
 	-- Process Statement (optional)
