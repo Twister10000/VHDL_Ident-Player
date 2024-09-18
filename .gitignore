@@ -38,7 +38,7 @@
 
 # software binary files
 
-/Source/simulation/modelsim/*
+/Source/simulation/questa/*
 /Source/db/*
 /Source/greybox_tmp/*
 /Source/incremental_db/*
@@ -51,6 +51,7 @@
 !*.bdf
 !*.vhd
 !*.vht
+!*.do
 !*.v
 !*.ptf
 !*.bsf
@@ -107,8 +108,8 @@ Source/output_files/VGA_DEMO.sof
 *.vho
 *.xml
 *.qws
-/Source/simulation/questa/rtl_work
-Source/simulation/questa/Ident_Player_run_msim_rtl_vhdl.do.bak5
-Source/simulation/questa/msim_transcript
-Source/simulation/questa/wlftx5t6h7
-/Source/simulation/questa
+#/Source/simulation/questa/rtl_work
+#Source/simulation/questa/Ident_Player_run_msim_rtl_vhdl.do.bak5
+#Source/simulation/questa/msim_transcript
+#Source/simulation/questa/wlftx5t6h7
+#/Source/simulation/questa
