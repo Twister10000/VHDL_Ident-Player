@@ -72,9 +72,13 @@ always : PROCESS
 -- variable declarations                                      
 BEGIN                                                         
         -- code executes for every event on sensitivity list
-			assert (false) report "0000 ist Rengeschrieben" severity note;
+			assert (false) report "FFFFFF ist Rengeschrieben" severity note;
 			FIFO_DATA	<= x"FFFFFF";
-			wait for 36ns; -- Die Erste Halbwelle wird nicht richtig Simuliert deswegen muss hier 36ns
+			wait for clk_period;
+			assert (false) report "CAAA6E ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"CAAA6E";
+			wait for clk_period;
+			
 			
 		
 WAIT;                                                        
