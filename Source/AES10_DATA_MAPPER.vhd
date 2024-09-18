@@ -58,6 +58,17 @@ begin
 			MADI_OUT		=>	MADI_OUT);
 
 	-- Process Statement (optional)
+	
+	AES10_DATA_Formatter	: process(all)
+	
+	begin
+	
+				if rising_edge(MADI_CLK)	then
+				
+				end if;
+				
+				
+	end process AES10_DATA_Formatter;
 
 	-- Concurrent Procedure Call (optional)
 
