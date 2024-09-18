@@ -1,14 +1,14 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -expand -group MADI -label MADI_CLK /aes10_data_mapper_vhd_tst/i1/MADI_CLK
-add wave -noupdate -expand -group MADI -label MADI_DATA_OUT -radix binary /aes10_data_mapper_vhd_tst/i1/MADI_FRAME_OUT
-add wave -noupdate -expand -group MADI -label MADI_SUBFRAME_START /aes10_data_mapper_vhd_tst/i1/MADI_SUBFRAME_Start
-add wave -noupdate -expand -group MADI -label MADI_BLOCK_START /aes10_data_mapper_vhd_tst/i1/MADI_BLock_Start
-add wave -noupdate -expand -group Counter -label MADI_CHANNEL_CTN -radix decimal /aes10_data_mapper_vhd_tst/i1/MADI_Chanel_CTN
-add wave -noupdate -label AUDIO_DATA /aes10_data_mapper_vhd_tst/i1/FIFO_DATA
-add wave -noupdate -label {ACTIVE CHANNELS} /aes10_data_mapper_vhd_tst/i1/MADI_ACTIVE_CH
+add wave -noupdate -expand -group CLK -color {Slate Blue} -label MADI_CLK /aes10_data_mapper_vhd_tst/i1/MADI_CLK
+add wave -noupdate -expand -group CONSTANTS -color {Lime Green} -label AUDIO_DATA /aes10_data_mapper_vhd_tst/i1/FIFO_DATA
+add wave -noupdate -expand -group CONSTANTS -color {Lime Green} -label {ACTIVE CHANNELS} /aes10_data_mapper_vhd_tst/i1/MADI_ACTIVE_CH
+add wave -noupdate -expand -group MADI -color Orange -label MADI_DATA_OUT -radix binary /aes10_data_mapper_vhd_tst/i1/MADI_FRAME_OUT
+add wave -noupdate -expand -group MADI -color Orange -label MADI_SUBFRAME_START /aes10_data_mapper_vhd_tst/i1/MADI_SUBFRAME_Start
+add wave -noupdate -expand -group MADI -color Orange -label MADI_BLOCK_START /aes10_data_mapper_vhd_tst/i1/MADI_BLock_Start
+add wave -noupdate -expand -group Counter -color Orchid -label MADI_CHANNEL_CTN -radix decimal /aes10_data_mapper_vhd_tst/i1/MADI_Chanel_CTN
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {466064 ps} 0}
+WaveRestoreCursors {{Cursor 1} {451904 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 187
 configure wave -valuecolwidth 81
@@ -24,4 +24,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {457478 ps} {491856 ps}
+WaveRestoreZoom {439424 ps} {473802 ps}
