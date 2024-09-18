@@ -42,7 +42,7 @@ SIGNAL FIFO_DATA			:	std_logic_vector(23 downto	0);
 
 
 BEGIN
-	i1 : entity work.AES10_DATA_MAPPER
+	i1 : entity work.AES10_DATA_MAPPER  -- Das zu testende Modul wird hier instanziiert
 	GENERIC MAP (SIMUlation => SIMUlation)
 	PORT MAP (
 -- list connections between master ports and signals
