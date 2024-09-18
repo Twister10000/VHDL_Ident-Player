@@ -50,6 +50,7 @@
 !*.qws
 !*.bdf
 !*.vhd
+!*.vht
 !*.v
 !*.ptf
 !*.bsf
