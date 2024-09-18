@@ -56,7 +56,6 @@ begin
 		
 			MADI_CLK		=>	MADI_CLK,
 			MADI_DATA		=>	MADI_DATA,
---			Send_SYNC		=>	Send_SYNC,
 			MADI_OUT		=>	MADI_OUT);
 
 	-- Process Statement (optional)
@@ -70,7 +69,7 @@ begin
 						Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 						MADI_SUBFRAME_Start	<= '0';
 						
-						if MADI_Chanel_CTN > MADI_AcTIVE_CH	then
+						if MADI_Chanel_CTN > MADI_AcTIVE_CH	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
 							
 							MADI_FRAME(31 downto	0) <= (others => '0');
 							
@@ -84,8 +83,8 @@ begin
 								
 								end case;
 		
-								MADI_FRAME(1)		<= '1';
-								MADI_FRAME(28)	<= '0';
+								MADI_FRAME(1)		<= '1';					-- Status Bit Active wird gesetzt
+								MADI_FRAME(2)		<= '0';					-- Status Bit für Subframe Identifikation
 								
 								case MADI_BLock_Start	is				-- Beim Start von den AudioFiles wird der Block gestartet.
 									when '1'					=>	MADI_FRAME(3)	<=	'1';
@@ -93,6 +92,8 @@ begin
 								end case;
 								
 								MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
+								
+								MADI_FRAME(30 downto 28)	<= "000";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid					
 								
 								MADI_FRAME(31) <= '1' xor '1' xor '0' xor '0';
 								
