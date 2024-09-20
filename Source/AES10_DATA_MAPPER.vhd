@@ -100,8 +100,9 @@ begin
 				
 						Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 						MADI_SUBFRAME_Start	<= '0';
+						FIFO_wrrq	<= '1';
 						
-						if	FIFO_FULL	= '0' then	
+						if	FIFO_wrusedw	< x"3D"  then	
 							if MADI_Chanel_CTN >= MADI_AcTIVE_CH	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
 								
 								MADI_FRAME(31 downto	0) <= (others	=>	'0');
@@ -151,6 +152,7 @@ begin
 							end if;	
 						else -- Falls FIFO Voll ist
 							MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
+							FIFO_wrrq	<= '0';
 						end if;
 						
 						if MadI_Chanel_CTN >= MADI_Mode-1 then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden

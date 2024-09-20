@@ -13,6 +13,7 @@ add wave -noupdate -expand -group FIFO -label FIFO_RD_ENA_SIMU /aes10_data_mappe
 add wave -noupdate -expand -group FIFO -label FIFO_WORD_USED /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw
 add wave -noupdate -expand -group FIFO -label FIFO_OUT -radix binary /aes10_data_mapper_vhd_tst/i1/MADI_DATA
 add wave -noupdate -expand -group FIFO -label FIFO_IN /aes10_data_mapper_vhd_tst/i1/MADI_FRAME
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_wrrq
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {107388 ps} 0}
 quietly wave cursor active 1
@@ -30,4 +31,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {78662 ps} {121338 ps}
+WaveRestoreZoom {459458 ps} {502134 ps}
