@@ -100,10 +100,11 @@ begin
 				
 						Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 						MADI_SUBFRAME_Start	<= '0';
+						
 						if	FIFO_FULL	= '0' then	
 							if MADI_Chanel_CTN >= MADI_AcTIVE_CH	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
 								
-								MADI_FRAME(31 downto	0) <= x"FFFFFFFF";
+								MADI_FRAME(31 downto	0) <= (others	=>	'0');
 								MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 								
 							else
@@ -148,7 +149,7 @@ begin
 									MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 							
 							end if;	
-						else
+						else -- Falls FIFO Voll ist
 							MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
 						end if;
 						
@@ -163,17 +164,5 @@ begin
 				
 				
 	end process AES10_DATA_Formatter;
-
-	-- Concurrent Procedure Call (optional)
-
-	-- Concurrent Signal Assignment (optional)
-
-	-- Conditional Signal Assignment (optional)
-
-	-- Selected Signal Assignment (optional)
-
-	-- Component Instantiation Statement (optional)
-
-	-- Generate Statement (optional)
 
 end BEH_AES10_DATA_MAPPER;
