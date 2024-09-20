@@ -73,11 +73,14 @@ always : PROCESS
 -- variable declarations                                      
 BEGIN                                                         
         -- code executes for every event on sensitivity list
-			assert (false) report "FFFFFF ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"FFFFFF";
+			assert (false) report "AFFE12 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"AFFE12";
 			wait for clk_period;
-			assert (false) report "CAAA6E ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"CAAA6E";
+			assert (false) report "AFFE23 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"AFFE23";
+			wait for clk_period;
+			assert (false) report "AFFE12 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"AFFE12";
 			wait for clk_period;
 			
 			
