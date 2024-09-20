@@ -38,10 +38,18 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	signal	MADI_SUBFRAME_Start					:	std_logic	:=	'1';		-- Signal für den Anzeigen wann ein neuer SubFrame Kommt
 	signal	MADI_BLock_Start						:	std_logic	:=	'0';		-- Signal für das Anzeigen wann die Audio Files wieder neu gestartet werden
 	signal	MADI_PARITY									:	std_logic	:=	'0';		-- Signal für das Parity Bit BIT31
+	signal  MADI_FRAME_READY						:	std_logic	:=	'1';
+	signal	FIFO_FULL										:	std_logic	:=	'0';
+	signal	FIFO_EMPTY									:	std_logic	:= 	'0';
+	signal	FIFO_READ_ENA								:	std_logic	:=	'0';
 			
 	-- Vektor Declarations		
 	signal	MADI_DATA										:	std_logic_vector	(3 downto		0)	:=	(others =>	'0');
 	signal	MADI_FRAME									:	std_logic_vector	(31 downto	0)	:=	(others	=>	'0');
+	
+	
+	signal FIFO_rdusedw									:	std_logic_vector	(13	downto	0)	:=	(others	=>	'0');
+	signal FIFO_wrusedw									:	std_logic_vector	(10 downto	0)	:=	(others	=>	'0');
 
 
 	-- integer Declaratio
@@ -59,6 +67,26 @@ begin
 				MADI_DATA		=>	MADI_DATA,
 				MADI_OUT		=>	MADI_OUT);
 		end generate MADI_ENCDOER;
+		
+		FIFO_MAP_ENC	: entity	work.FIFO_MAP_ENC
+		port map(
+		
+				data				=>	MADI_FRAME,
+				rdclk				=>	MADI_CLK,
+				rdreq				=>	FIFO_READ_ENA,
+				wrclk				=>	MADI_CLK,
+				wrreq				=>	MADI_FRAME_READY,
+				q						=>	MADI_DATA,
+				rdempty			=>	FIFO_EMPTY,
+				rdusedw			=>	FIFO_rdusedw,
+				wrfull			=>	FIFO_FULL,
+				wrusedw			=>	FIFO_wrusedw
+		
+		);
+		
+		
+		
+		
 	-- Process Statement (optional)
 	
 	AES10_DATA_Formatter	: process(all)
