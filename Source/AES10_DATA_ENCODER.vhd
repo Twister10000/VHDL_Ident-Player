@@ -47,7 +47,7 @@ begin
 	
 				if rising_edge(MADI_CLK) then
 					/*4B5B Encoding*/
-					if SEND_SYNC	= '0' then
+					if SEND_SYNC	= '0' and FIFO_READ_ENA	= '1' then
 						case MADI_DATA(3 downto	0) is
 							when "0000"		=>	MADI_DATA_5bit	<= "11110";
 							when "0001"		=>	MADI_DATA_5bit	<= "01001";
@@ -88,7 +88,7 @@ begin
 						if CTN >= 4 then
 							CTN <= 0;
 							Word_CTN	<=	Word_CTN + 1;
-						elsif CTN =	2	then
+						elsif CTN =	3	then
 						
 							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
 							
