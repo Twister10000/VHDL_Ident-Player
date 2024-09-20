@@ -97,7 +97,7 @@ begin
 	-- Process Statement (optional)
 	
 	AES10_DATA_Formatter	: process(all)
-	
+	variable	temp		: std_logic;
 	begin
 	
 				if rising_edge(MADI_CLK)	then
@@ -140,22 +140,35 @@ begin
 									MADI_FRAME_PARITY	<= '1';
 								end if;
 								if MADI_FRAME_PARITY = '1' and FIFO_wrusedw	< x"3D" then
-									if MADI_SUBFRAME_Start = '1' and MADI_BLock_Start = '1' then  -- Parity Bit möglichkeiten werden hier abgebildet
-										
-										MADI_FRAME(31) <=		'1' xor '1' xor '0' xor '1'; 
-										
-									elsif	MADI_SUBFRAME_Start = '1' and MADI_BLock_Start = '0' then
-										
-										MADI_FRAME(31) <=		'1' xor '1' xor '0' xor '0'; 
-										
-									elsif	MADI_SUBFRAME_Start = '0' and MADI_BLock_Start = '1' then
-										
-										MADI_FRAME(31) <=		'0' xor '1' xor '0' xor '1'; 
 									
-									elsif	MADI_SUBFRAME_Start = '0' and MADI_BLock_Start = '0' then
-										
-										MADI_FRAME(31) <=		'0' xor '1' xor '0' xor '0'; 
-									end if;
+									temp	:= MADI_FRAME(4) xor MADI_FRAME(5);
+									temp	:= MADI_FRAME(6) xor temp;
+									temp	:= MADI_FRAME(7) xor temp;
+									temp	:= MADI_FRAME(8) xor temp;
+									temp	:= MADI_FRAME(9) xor temp;
+									temp	:= MADI_FRAME(10) xor temp;
+									temp	:= MADI_FRAME(11) xor temp;
+									temp	:= MADI_FRAME(12) xor temp;
+									temp	:= MADI_FRAME(13) xor temp;
+									temp	:= MADI_FRAME(14) xor temp;
+									temp	:= MADI_FRAME(15) xor temp;
+									temp	:= MADI_FRAME(16) xor temp;
+									temp	:= MADI_FRAME(17) xor temp;
+									temp	:= MADI_FRAME(18) xor temp;
+									temp	:= MADI_FRAME(19) xor temp;
+									temp	:= MADI_FRAME(20) xor temp;
+									temp	:= MADI_FRAME(21) xor temp;
+									temp	:= MADI_FRAME(22) xor temp;
+									temp	:= MADI_FRAME(23) xor temp;
+									temp	:= MADI_FRAME(24) xor temp;
+									temp	:= MADI_FRAME(25) xor temp;
+									temp	:= MADI_FRAME(26) xor temp;
+									temp	:= MADI_FRAME(27) xor temp;
+									temp	:= MADI_FRAME(28) xor temp;
+									temp	:= MADI_FRAME(29) xor temp;
+									temp	:= MADI_FRAME(30) xor temp;
+									MADI_FRAME(31)	<= not temp;
+									
 									
 									MADI_FRAME_READY	<= '1';
 									FIFO_wrrq					<= '1';
