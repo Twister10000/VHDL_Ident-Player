@@ -42,7 +42,11 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	signal	FIFO_FULL										:	std_logic	:=	'0';
 	signal	FIFO_EMPTY									:	std_logic	:= 	'0';
 	signal	FIFO_READ_ENA								:	std_logic	:=	'0';
-	signal	FIFO_READ_ENA_SIMU								:	std_logic	:=	'1';
+	signal	FIFO_READ_ENA_SIMU					:	std_logic	:=	'1';
+	
+	
+	signal	MADI_FRAME_READY						:	std_logic	:=	'0';
+	signal	MADI_FRAME_PARITY						:	std_logic	:=	'0';
 			
 	-- Vektor Declarations		
 	signal	MADI_DATA										:	std_logic_vector	(3 downto		0)	:=	(others =>	'0');
@@ -100,13 +104,17 @@ begin
 				
 						Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 						MADI_SUBFRAME_Start	<= '0';
-						FIFO_wrrq	<= '1';
+						FIFO_wrrq	<= '0';
+						
+						MADI_FRAME_READY	<= '0';
+						MADI_FRAME_PARITY	<= '0';
 						
 						if	FIFO_wrusedw	< x"3D"  then	
 							if MADI_Chanel_CTN >= MADI_AcTIVE_CH	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
 								
 								MADI_FRAME(31 downto	0) <= (others	=>	'0');
 								MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
+								FIFO_wrrq	<= '1';
 								
 							else
 								
@@ -127,8 +135,11 @@ begin
 									
 									MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 									
-									MADI_FRAME(30 downto 28)	<= "000";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid					
-									
+									MADI_FRAME(30 downto 28)	<= "000";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
+				
+									MADI_FRAME_PARITY	<= '1';
+								end if;
+								if MADI_FRAME_PARITY = '1' and FIFO_wrusedw	< x"3D" then
 									if MADI_SUBFRAME_Start = '1' and MADI_BLock_Start = '1' then  -- Parity Bit möglichkeiten werden hier abgebildet
 										
 										MADI_FRAME(31) <=		'1' xor '1' xor '0' xor '1'; 
@@ -146,6 +157,11 @@ begin
 										MADI_FRAME(31) <=		'0' xor '1' xor '0' xor '0'; 
 									end if;
 									
+									MADI_FRAME_READY	<= '1';
+									FIFO_wrrq					<= '1';
+									
+								end if;
+								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" then
 									
 									MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 							

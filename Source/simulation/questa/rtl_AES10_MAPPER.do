@@ -12,5 +12,5 @@ vcom -reportprogress 300 -work work TB_AES10_DATA_MAPPER.vht
 quit -sim
 vsim -t 1ps -voptargs="+acc" -gui -msgmode both -displaymsgmode both work.AES10_DATA_MAPPER_vhd_tst
 do wave_MAPPER.do
-run 500ns
+run 600ns
 
