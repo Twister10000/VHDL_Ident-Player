@@ -51,6 +51,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	-- Vektor Declarations		
 	signal	MADI_DATA										:	std_logic_vector	(3 downto		0)	:=	(others =>	'0');
 	signal	MADI_FRAME									:	std_logic_vector	(31 downto	0)	:=	(others	=>	'0');
+	signal	MADI_FRAME_FIFO							:	std_logic_vector	(31 downto	0) 	:=	(others	=>	'0');
 	
 	
 	signal FIFO_rdusedw									:	std_logic_vector	(8	downto	0)	:=	(others	=>	'0');
@@ -79,7 +80,7 @@ begin
 			FIFO_MAP_ENC	: entity	work.FIFO_MAP_ENC
 			port map(
 			
-					data				=>	MADI_FRAME,
+					data				=>	MADI_FRAME_FIFO,
 					rdclk				=>	MADI_CLK,
 					rdreq				=>	FIFO_READ_ENA_SIMU,
 					wrclk				=>	MADI_CLK,
@@ -174,9 +175,9 @@ begin
 									FIFO_wrrq					<= '1';
 									
 								end if;
-								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" then
+								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" and FIFO_wrrq	= '1' then
 									
-									MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
+									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 							
 							end if;	
 						else -- Falls FIFO Voll ist
