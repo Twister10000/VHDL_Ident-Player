@@ -82,7 +82,7 @@ begin
 					wrreq				=>	FIFO_wrrq,
 					q						=>	MADI_DATA,
 					rdempty			=>	FIFO_EMPTY,
-					rdusedw			=>	FIFO_rdusedw,
+					--rdusedw			=>	FIFO_rdusedw,
 					wrfull			=>	FIFO_FULL,
 					wrusedw			=>	FIFO_wrusedw);
 		--end generate FIFO_MAP_ENCO;
@@ -152,7 +152,7 @@ begin
 							MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
 						end if;
 						
-						if MadI_Chanel_CTN >= MADI_Mode then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
+						if MadI_Chanel_CTN >= MADI_Mode-1 then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
 						
 							Madi_Chanel_CTN		<= 0;
 							MADI_SUBFRAME_Start	<= '1';
