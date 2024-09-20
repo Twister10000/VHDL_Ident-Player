@@ -6,6 +6,7 @@ vdel -lib rtl_work -all
 vlib rtl_work
 vmap work rtl_work
 vcom -reportprogress 300 -work work ../../AES10_DATA_ENCODER.vhd
+vcom -reportprogress 300 -work work ../../FIFO_MAP_ENC.vhd
 vcom -reportprogress 300 -work work ../../AES10_DATA_MAPPER.vhd
 vcom -reportprogress 300 -work work TB_AES10_DATA_MAPPER.vht
 quit -sim

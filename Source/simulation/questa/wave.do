@@ -7,11 +7,21 @@ add wave -noupdate -expand -group MADI -color Orange -label MADI_DATA_OUT -radix
 add wave -noupdate -expand -group MADI -color Orange -label MADI_SUBFRAME_START /aes10_data_mapper_vhd_tst/i1/MADI_SUBFRAME_Start
 add wave -noupdate -expand -group MADI -color Orange -label MADI_BLOCK_START /aes10_data_mapper_vhd_tst/i1/MADI_BLock_Start
 add wave -noupdate -expand -group Counter -color Orchid -label MADI_CHANNEL_CTN -radix decimal /aes10_data_mapper_vhd_tst/i1/MADI_Chanel_CTN
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_FULL
+add wave -noupdate -radix binary /aes10_data_mapper_vhd_tst/i1/MADI_DATA
+add wave -noupdate /aes10_data_mapper_vhd_tst/MADI_FRAME_OUT
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_wrrq
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/MADI_FRAME
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_READ_ENA
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_rdusedw
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_READ_ENA_SIMU
+add wave -noupdate /aes10_data_mapper_vhd_tst/i1/FIFO_EMPTY
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {451904 ps} 0}
+WaveRestoreCursors {{Cursor 1} {356000 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 187
-configure wave -valuecolwidth 81
+configure wave -namecolwidth 304
+configure wave -valuecolwidth 132
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10
@@ -24,4 +34,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {439424 ps} {473802 ps}
+WaveRestoreZoom {352809 ps} {359191 ps}

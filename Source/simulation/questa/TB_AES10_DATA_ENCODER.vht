@@ -35,9 +35,13 @@ ARCHITECTURE BEH_AES10_DATA_ENCODER_vhd_tst OF AES10_DATA_ENCODER_vhd_tst IS
 constant clk_period : time := 8 ns;                                                
 -- signals                                                   
 
-SIGNAL MADI_CLK 	: STD_LOGIC;
-SIGNAL MADI_OUT 	: STD_LOGIC;
-SIGNAL MADI_DATA	:	std_logic_vector(3 downto	0);
+SIGNAL MADI_CLK 			: STD_LOGIC;
+SIGNAL MADI_OUT 			: STD_LOGIC;
+
+SIGNAL FIFO_READ_ENA	:	STD_LOGIC;
+SIGNAL FIFO_empty			:	STD_LOGIC;
+
+SIGNAL MADI_DATA			:	std_logic_vector(3 downto	0);
 
 
 BEGIN
@@ -46,6 +50,8 @@ BEGIN
 -- list connections between master ports and signals
 	MADI_CLK			=>	MADI_CLK,
 	MADI_OUT			=>	MADI_OUT,
+	FIFO_READ_ENA	=>	FIFO_READ_ENA,
+	FIFO_empty		=>	FIFO_empty,
 	MADI_DATA			=>	MADI_DATA
 	);
 init : PROCESS                                               
