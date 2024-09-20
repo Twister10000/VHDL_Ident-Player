@@ -63,10 +63,13 @@ begin
 			MADI_DATA_ENCODER	:	entity work.AES10_DATA_ENCODER
 			port map(
 			
-				MADI_CLK		=>	MADI_CLK,
-				MADI_DATA		=>	MADI_DATA,
-				MADI_OUT		=>	MADI_OUT);
+				MADI_CLK			=>	MADI_CLK,
+				MADI_DATA			=>	MADI_DATA,
+				FIFO_READ_ENA	=>	FIFO_READ_ENA,
+				FIFO_EMPTY		=>	FIFO_EMPTY,
+				MADI_OUT			=>	MADI_OUT);
 		end generate MADI_ENCDOER;
+		
 		
 		FIFO_MAP_ENC	: entity	work.FIFO_MAP_ENC
 		port map(

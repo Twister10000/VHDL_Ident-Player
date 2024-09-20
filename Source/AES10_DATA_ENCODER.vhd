@@ -11,12 +11,14 @@ entity AES10_DATA_ENCODER is
 	port
 	(
 		-- Input ports
-		MADI_CLK	: in  std_logic;
-		MADI_DATA	: in  std_logic_vector (3 downto 0) := (others => '0'); -- MADI_DATA(3) last send Bit
+		MADI_CLK		: in  std_logic;
+		FIFO_empty	:	in	std_logic;
+		MADI_DATA		: in  std_logic_vector (3 downto 0) := (others => '0'); -- MADI_DATA(3) last send Bit
 --		SEND_SYNC	:	in	std_logic;																				-- Signal als zeichen wann ein Sync-Symbol gesendet werden muss
 
 		-- Output ports
-		MADI_OUT	: out std_logic	:= '0'
+		MADI_OUT					: out std_logic	:=	'0';
+		FIFO_READ_ENA			:	out	std_logic	:=	'0'
 		
 	);
 end AES10_DATA_ENCODER;
@@ -33,8 +35,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	signal	CTN							: integer range 0 to 16 :=	0;
 	signal	Word_CTN				:	integer	range 0 to 16	:=	0;
 	signal	CTN_SYNC				: integer range 0 to 16 :=	0;
-	
-	signal TEST_rd_Ena			:	std_logic	:=	'0';
+
 
 begin
 
@@ -78,7 +79,7 @@ begin
 	
 				if rising_edge(MADI_CLK) then
 					
-					Test_rd_Ena	<=	'0';
+					FIFO_READ_ENA	<=	'0';
 
 					if SEND_SYNC = '0' then
 						
@@ -89,7 +90,7 @@ begin
 							Word_CTN	<=	Word_CTN + 1;
 						elsif CTN =	2	then
 						
-							TEST_rd_Ena <= '1'; --FIFO Read_Enbaled active
+							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
 							
 						end if;
 							case MADI_DATA_5bit(CTN)	is
