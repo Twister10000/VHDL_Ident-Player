@@ -49,8 +49,8 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	signal	MADI_FRAME									:	std_logic_vector	(31 downto	0)	:=	(others	=>	'0');
 	
 	
-	signal FIFO_rdusedw									:	std_logic_vector	(13	downto	0)	:=	(others	=>	'0');
-	signal FIFO_wrusedw									:	std_logic_vector	(10 downto	0)	:=	(others	=>	'0');
+	signal FIFO_rdusedw									:	std_logic_vector	(8	downto	0)	:=	(others	=>	'0');
+	signal FIFO_wrusedw									:	std_logic_vector	(5 downto	0)	:=	(others	=>	'0');
 
 
 	-- integer Declaratio

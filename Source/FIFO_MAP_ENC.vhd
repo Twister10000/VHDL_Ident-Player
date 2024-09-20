@@ -50,9 +50,9 @@ ENTITY FIFO_MAP_ENC IS
 		wrreq		: IN STD_LOGIC ;
 		q		: OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
 		rdempty		: OUT STD_LOGIC ;
-		rdusedw		: OUT STD_LOGIC_VECTOR (13 DOWNTO 0);
+		rdusedw		: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
 		wrfull		: OUT STD_LOGIC ;
-		wrusedw		: OUT STD_LOGIC_VECTOR (10 DOWNTO 0)
+		wrusedw		: OUT STD_LOGIC_VECTOR (5 DOWNTO 0)
 	);
 END FIFO_MAP_ENC;
 
@@ -61,9 +61,9 @@ ARCHITECTURE SYN OF fifo_map_enc IS
 
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	SIGNAL sub_wire1	: STD_LOGIC ;
-	SIGNAL sub_wire2	: STD_LOGIC_VECTOR (13 DOWNTO 0);
+	SIGNAL sub_wire2	: STD_LOGIC_VECTOR (8 DOWNTO 0);
 	SIGNAL sub_wire3	: STD_LOGIC ;
-	SIGNAL sub_wire4	: STD_LOGIC_VECTOR (10 DOWNTO 0);
+	SIGNAL sub_wire4	: STD_LOGIC_VECTOR (5 DOWNTO 0);
 
 
 
@@ -91,28 +91,28 @@ ARCHITECTURE SYN OF fifo_map_enc IS
 			wrreq	: IN STD_LOGIC ;
 			q	: OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
 			rdempty	: OUT STD_LOGIC ;
-			rdusedw	: OUT STD_LOGIC_VECTOR (13 DOWNTO 0);
+			rdusedw	: OUT STD_LOGIC_VECTOR (8 DOWNTO 0);
 			wrfull	: OUT STD_LOGIC ;
-			wrusedw	: OUT STD_LOGIC_VECTOR (10 DOWNTO 0)
+			wrusedw	: OUT STD_LOGIC_VECTOR (5 DOWNTO 0)
 	);
 	END COMPONENT;
 
 BEGIN
 	q    <= sub_wire0(3 DOWNTO 0);
 	rdempty    <= sub_wire1;
-	rdusedw    <= sub_wire2(13 DOWNTO 0);
+	rdusedw    <= sub_wire2(8 DOWNTO 0);
 	wrfull    <= sub_wire3;
-	wrusedw    <= sub_wire4(10 DOWNTO 0);
+	wrusedw    <= sub_wire4(5 DOWNTO 0);
 
 	dcfifo_mixed_widths_component : dcfifo_mixed_widths
 	GENERIC MAP (
 		intended_device_family => "MAX 10",
-		lpm_numwords => 2048,
+		lpm_numwords => 64,
 		lpm_showahead => "ON",
 		lpm_type => "dcfifo_mixed_widths",
 		lpm_width => 32,
-		lpm_widthu => 11,
-		lpm_widthu_r => 14,
+		lpm_widthu => 6,
+		lpm_widthu_r => 9,
 		lpm_width_r => 4,
 		overflow_checking => "ON",
 		rdsync_delaypipe => 6,
@@ -146,7 +146,7 @@ END SYN;
 -- Retrieval info: PRIVATE: AlmostFullThr NUMERIC "-1"
 -- Retrieval info: PRIVATE: CLOCKS_ARE_SYNCHRONIZED NUMERIC "0"
 -- Retrieval info: PRIVATE: Clock NUMERIC "4"
--- Retrieval info: PRIVATE: Depth NUMERIC "2048"
+-- Retrieval info: PRIVATE: Depth NUMERIC "64"
 -- Retrieval info: PRIVATE: Empty NUMERIC "1"
 -- Retrieval info: PRIVATE: Full NUMERIC "1"
 -- Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "MAX 10"
@@ -174,12 +174,12 @@ END SYN;
 -- Retrieval info: PRIVATE: wsUsedW NUMERIC "1"
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "MAX 10"
--- Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "2048"
+-- Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "64"
 -- Retrieval info: CONSTANT: LPM_SHOWAHEAD STRING "ON"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "dcfifo_mixed_widths"
 -- Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "32"
--- Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "11"
--- Retrieval info: CONSTANT: LPM_WIDTHU_R NUMERIC "14"
+-- Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "6"
+-- Retrieval info: CONSTANT: LPM_WIDTHU_R NUMERIC "9"
 -- Retrieval info: CONSTANT: LPM_WIDTH_R NUMERIC "4"
 -- Retrieval info: CONSTANT: OVERFLOW_CHECKING STRING "ON"
 -- Retrieval info: CONSTANT: RDSYNC_DELAYPIPE NUMERIC "6"
@@ -191,11 +191,11 @@ END SYN;
 -- Retrieval info: USED_PORT: rdclk 0 0 0 0 INPUT NODEFVAL "rdclk"
 -- Retrieval info: USED_PORT: rdempty 0 0 0 0 OUTPUT NODEFVAL "rdempty"
 -- Retrieval info: USED_PORT: rdreq 0 0 0 0 INPUT NODEFVAL "rdreq"
--- Retrieval info: USED_PORT: rdusedw 0 0 14 0 OUTPUT NODEFVAL "rdusedw[13..0]"
+-- Retrieval info: USED_PORT: rdusedw 0 0 9 0 OUTPUT NODEFVAL "rdusedw[8..0]"
 -- Retrieval info: USED_PORT: wrclk 0 0 0 0 INPUT NODEFVAL "wrclk"
 -- Retrieval info: USED_PORT: wrfull 0 0 0 0 OUTPUT NODEFVAL "wrfull"
 -- Retrieval info: USED_PORT: wrreq 0 0 0 0 INPUT NODEFVAL "wrreq"
--- Retrieval info: USED_PORT: wrusedw 0 0 11 0 OUTPUT NODEFVAL "wrusedw[10..0]"
+-- Retrieval info: USED_PORT: wrusedw 0 0 6 0 OUTPUT NODEFVAL "wrusedw[5..0]"
 -- Retrieval info: CONNECT: @data 0 0 32 0 data 0 0 32 0
 -- Retrieval info: CONNECT: @rdclk 0 0 0 0 rdclk 0 0 0 0
 -- Retrieval info: CONNECT: @rdreq 0 0 0 0 rdreq 0 0 0 0
@@ -203,9 +203,9 @@ END SYN;
 -- Retrieval info: CONNECT: @wrreq 0 0 0 0 wrreq 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 4 0 @q 0 0 4 0
 -- Retrieval info: CONNECT: rdempty 0 0 0 0 @rdempty 0 0 0 0
--- Retrieval info: CONNECT: rdusedw 0 0 14 0 @rdusedw 0 0 14 0
+-- Retrieval info: CONNECT: rdusedw 0 0 9 0 @rdusedw 0 0 9 0
 -- Retrieval info: CONNECT: wrfull 0 0 0 0 @wrfull 0 0 0 0
--- Retrieval info: CONNECT: wrusedw 0 0 11 0 @wrusedw 0 0 11 0
+-- Retrieval info: CONNECT: wrusedw 0 0 6 0 @wrusedw 0 0 6 0
 -- Retrieval info: GEN_FILE: TYPE_NORMAL FIFO_MAP_ENC.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL FIFO_MAP_ENC.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL FIFO_MAP_ENC.cmp TRUE
