@@ -93,13 +93,14 @@ begin
 	MADI_DATA_MAPPER	:	entity work.AES10_DATA_MAPPER
 		port map(
 		
-			MADI_CLK		=>	MADI_CLK,
-			FIFO_DATA		=>	FIFO_DATA_SEND,
-			MADI_OUT		=>	MADI_OUT);
+			MADI_CLK				=>	MADI_CLK,
+			FIFO_DATA				=>	FIFO_DATA_SEND,
+			MADI_FRAME_OUT	=>	MADI_DATA,
+			MADI_OUT				=>	MADI_OUT);
 	
 	
 	-- Process Statement (optional)
-	
+
 	main	:	process	(all)
 	
 	begin
