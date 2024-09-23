@@ -12,7 +12,7 @@ entity AES10_DATA_MAPPER is
 	
 		MADI_Mode				:	integer	range 0 to 	64 	:= 56;
 		SIMULATION			: boolean	:= false;								
-		MADI_ACTIVE_CH	: integer	range 0	to	64	:= 4
+		MADI_ACTIVE_CH	: integer	range 0	to	64	:= 56
 	
 	);
 
@@ -47,6 +47,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	
 	signal	MADI_FRAME_READY						:	std_logic	:=	'0';
 	signal	MADI_FRAME_PARITY						:	std_logic	:=	'0';
+	signal	MADI_OUT_BUFFER							:	std_logic	:=	'0';
 			
 	-- Vektor Declarations		
 	signal	MADI_DATA										:	std_logic_vector	(3 downto		0)	:=	(others =>	'0');
@@ -73,7 +74,7 @@ begin
 				MADI_DATA			=>	MADI_DATA,
 				FIFO_READ_ENA	=>	FIFO_READ_ENA,
 				FIFO_EMPTY		=>	FIFO_EMPTY,
-				MADI_OUT			=>	MADI_OUT);
+				MADI_OUT			=>	MADI_OUT_BUFFER);
 		end generate MADI_ENCDOER;
 		
 		--FIFO_MAP_ENCO	:	if SIMULATION	= false	generate
@@ -106,6 +107,7 @@ begin
 						Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 						MADI_SUBFRAME_Start	<= '0';
 						FIFO_wrrq	<= '0';
+						MADI_OUT		<= MADI_OUT_BUFFER;
 						
 						MADI_FRAME_READY	<= '0';
 						MADI_FRAME_PARITY	<= '0';
