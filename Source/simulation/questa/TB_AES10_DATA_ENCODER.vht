@@ -96,8 +96,8 @@ BEGIN
 			assert (false) report "0100 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0100";
 			wait for 40ns;
-			assert (false) report "1101 ist Rengeschrieben" severity note;
-			MadI_DATA	<= "1101";
+			assert (false) report "1000 ist Rengeschrieben" severity note;
+			MadI_DATA	<= "1000";
 			wait for 40ns;
 			assert (false) report "Sync Symbol soll ausgegeben werden 10001" severity note;
 			wait for 40ns;
