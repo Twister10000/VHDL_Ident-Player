@@ -85,15 +85,29 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 
 	-- Declarations (optional)
 	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');
-	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);		
+	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);
+	signal			MADI_CLK_PLL		: std_logic;
+	signal			MADI_Locked		: std_logic;
 
 begin
+	
+	-- MADI_PLL Instantiation
+	
+	MADI_PLL					:	entity	work.MADI_PLL
+		port map(
+				inclk0				=>	CLK,
+				c0						=>	MADI_CLK_PLL,
+				locked				=>	MADI_Locked
+		
+		
+		);
+	
 	
 	-- MADI_DATA_MAPPER Instantiation
 	MADI_DATA_MAPPER	:	entity work.AES10_DATA_MAPPER
 		port map(
 		
-			MADI_CLK				=>	MADI_CLK,
+			MADI_CLK				=>	MADI_CLK_PLL,
 			FIFO_DATA				=>	FIFO_DATA_SEND,
 			MADI_FRAME_OUT	=>	MADI_DATA,
 			MADI_OUT				=>	MADI_OUT);
