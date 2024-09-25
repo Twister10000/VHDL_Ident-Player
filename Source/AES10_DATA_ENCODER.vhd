@@ -102,10 +102,13 @@ begin
 					end if;
 					
 					if	Word_CTN	>= 8 then
-						
+						FIFO_READ_ENA	<=	'0';
 						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
-						
+						if CTN_SYNC	= 8 then
+							FIFO_READ_ENA	<= '1';
+							Send_SYNC 	<=	'0';
+						end if;
 						if CTN_SYNC >= 9 then
 							CTN_SYNC 		<= 	0;
 							Word_CTN		<= 	0;
