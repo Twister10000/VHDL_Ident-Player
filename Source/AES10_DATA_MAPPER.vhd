@@ -190,12 +190,13 @@ begin
 						
 						if MadI_Chanel_CTN >= MADI_Mode-1 then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
 						
-							Madi_Chanel_CTN		<= 0;
+							Madi_Chanel_CTN		<= 	0;
+							MADI_BLOCk_Start	<=	'0';
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
 							MADI_SUBFRAME_Start	<= '1';
 							
 							if MADI_BLock_CTN	>= 192 then
-						
+							MADI_BLOCK_Start	<=	'1';
 							MADI_BLock_CTN <= 0;
 						
 							end if;
