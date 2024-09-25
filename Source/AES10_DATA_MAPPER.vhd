@@ -61,6 +61,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 
 	-- integer Declaratio
 	signal	MADI_Chanel_CTN							:	integer	range	0 to 64 := 0;
+	signal	MADI_Block_CTN							:	integer	range	0 to 256 := 0; -- Counter für die AES3 Status Bits. 
 
 
 
@@ -190,10 +191,17 @@ begin
 						if MadI_Chanel_CTN >= MADI_Mode-1 then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
 						
 							Madi_Chanel_CTN		<= 0;
+							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
 							MADI_SUBFRAME_Start	<= '1';
+							
+							if MADI_BLock_CTN	>= 192 then
+						
+							MADI_BLock_CTN <= 0;
+						
+							end if;
 						
 						end if;
-				
+						
 				end if;
 				
 				
