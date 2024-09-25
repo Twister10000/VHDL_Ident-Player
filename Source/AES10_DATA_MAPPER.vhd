@@ -34,6 +34,13 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 
 	-- Declarations (optional)
 	
+	--constants Declarations
+	constant BYTE0											:	std_logic_vector	(7 downto 0)	:=	"10000101";
+	constant BYTE1											:	std_logic_vector	(7 downto 0)	:=	"00000000";
+	constant BYTE2											:	std_logic_vector	(7 downto 0)	:=	"00101100";
+	constant BYTEZ											:	std_logic_vector	(7 downto 0)	:=	"00000000";
+	
+	
 	--std_logic Declarations
 	signal	MADI_SUBFRAME_Start					:	std_logic	:=	'1';		-- Signal für den Anzeigen wann ein neuer SubFrame Kommt
 	signal	MADI_BLock_Start						:	std_logic	:=	'0';		-- Signal für das Anzeigen wann die Audio Files wieder neu gestartet werden
