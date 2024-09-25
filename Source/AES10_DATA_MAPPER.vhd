@@ -35,10 +35,10 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	-- Declarations (optional)
 	
 	--constants Declarations
-	constant BYTE0											:	std_logic_vector	(7 downto 0)	:=	"10000101";
-	constant BYTE1											:	std_logic_vector	(7 downto 0)	:=	"00000000";
-	constant BYTE2											:	std_logic_vector	(7 downto 0)	:=	"00101100";
-	constant BYTEZ											:	std_logic_vector	(7 downto 0)	:=	"00000000";
+	constant BYTE0											:	std_logic_vector	(7 downto 0)	:=	"10000101"; -- Basic audio parameters
+	constant BYTE1											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Channel modes, user bits management
+	constant BYTE2											:	std_logic_vector	(7 downto 0)	:=	"00101100"; -- Auxiliary bits, word length and alignment level
+	constant BYTEZ											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Constant for zero filling
 	
 	
 	--std_logic Declarations
