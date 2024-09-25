@@ -146,7 +146,15 @@ begin
 									
 									MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 									
-									MADI_FRAME(30 downto 28)	<= "000";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
+									--MADI_FRAME(30 downto 28)	<= "000";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
+									
+									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
+									
+									case	MADI_BLOck_CTN	is
+										when 0 to 7			=>	MADI_FRAME(30) <= BytE0(MADI_BLOck_CTN);
+										
+										when others				=>	MADI_FRAME(30)	<= '0';
+									end case;
 				
 									MADI_FRAME_PARITY	<= '1';
 								end if;
