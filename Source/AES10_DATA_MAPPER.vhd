@@ -20,7 +20,7 @@ entity AES10_DATA_MAPPER is
 	(
 		-- Input ports
 		MADI_CLK	: in  std_logic;
-		FIFO_DATA	: in  std_logic_vector (23 downto 0) 					:= (others => '0');
+		FIFO_DATA	: in  std_logic_vector (23 downto 0) 					:= (others => '1');
 
 		-- Output ports
 		MADI_OUT	: out std_logic	:= '0';
@@ -35,9 +35,11 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	-- Declarations (optional)
 	
 	--constants Declarations
-	constant BYTE0											:	std_logic_vector	(7 downto 0)	:=	"10000101"; -- Basic audio parameters
+	constant BYTE0											:	std_logic_vector	(7 downto 0)	:=	"10000100"; -- Basic audio parameters
 	constant BYTE1											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Channel modes, user bits management
 	constant BYTE2											:	std_logic_vector	(7 downto 0)	:=	"00101100"; -- Auxiliary bits, word length and alignment level
+	constant BYTE3											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Auxiliary bits, word length and alignment level
+	constant BYTE4											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Auxiliary bits, word length and alignment level
 	constant BYTEZ											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Constant for zero filling
 	
 	
@@ -151,7 +153,11 @@ begin
 									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
 									
 									case	MADI_BLOck_CTN	is
-										when 0 to 7			=>	MADI_FRAME(30) <= BytE0(MADI_BLOck_CTN);
+										--when 0 to 7			=>	MADI_FRAME(30)	<=	BytE0(MADI_BLOck_CTN);
+										--when 8 to 15		=>	MADI_FRAME(30)	<=	BYTE1(MADI_BLOck_CTN-8);
+										--when 16 to 23		=>	MADI_FRAME(30)	<=	BYTE2(MADI_BLOck_CTN-16);
+										--when 24 to 31		=>	MADI_FRAME(30)	<=	BYTE3(MADI_BLOCK_CTN-24);
+										--when 32 to 40		=>	MADI_FRAME(30)	<=	BYTE4(MADI_BLOCK_CTN-32); 
 										
 										when others				=>	MADI_FRAME(30)	<= '0';
 									end case;
@@ -195,6 +201,12 @@ begin
 								end if;
 								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" and FIFO_wrrq	= '1' then
 									
+									--for i in 0 to 31 loop
+									--
+									--MADI_FRAME_FIFO(31-i) <= MADI_FRAME(i);
+									--
+									--end loop;
+									
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 							
 							end if;	
@@ -210,13 +222,13 @@ begin
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
 							MADI_SUBFRAME_Start	<= '1';
 							
-							if MADI_BLock_CTN	>= 192 then
-							MADI_BLOCK_Start	<=	'1';
-							MADI_BLock_CTN <= 0;
-						
-							end if;
+
 						
 						end if;
+							if MADI_BLock_CTN	>= 191 then
+								MADI_BLOCK_Start	<=	'1';
+								MADI_BLock_CTN <= 0;
+							end if;
 						
 				end if;
 				
