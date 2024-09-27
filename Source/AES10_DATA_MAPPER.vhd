@@ -10,9 +10,9 @@ entity AES10_DATA_MAPPER is
 
 	generic(
 	
-		MADI_Mode				:	integer	range 0 to 	64 	:= 56;
+		MADI_Mode				:	integer	range 0 to 	64 	:= 64;
 		SIMULATION			: boolean	:= false;								
-		MADI_ACTIVE_CH	: integer	range 0	to	64	:= 56
+		MADI_ACTIVE_CH	: integer	range 0	to	64	:= 64
 	
 	);
 

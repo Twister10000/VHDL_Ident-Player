@@ -33,7 +33,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	signal	Send_SYNC				:	std_logic	:= '0';
 	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) := (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
 	signal	CTN							: integer range 0 to 16 :=	0;
-	signal	Word_CTN				:	integer	range 0 to 16	:=	0;
+	signal	Word_CTN				:	integer	range 0 to 1024	:=	0;
 	signal	CTN_SYNC				: integer range 0 to 16 :=	0;
 
 
@@ -88,6 +88,9 @@ begin
 						if CTN >= 4 then
 							CTN <= 0;
 							Word_CTN	<=	Word_CTN + 1;
+							if Word_CTN	>= 512 then
+								Send_SYNC	<= '1';
+							end if;
 						elsif CTN =	3	then
 						
 							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
@@ -101,7 +104,7 @@ begin
 						
 					end if;
 					
-					if	Word_CTN	>= 8 then
+					if	Word_CTN	>= 512 then
 						FIFO_READ_ENA	<=	'0';
 						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
