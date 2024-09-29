@@ -84,7 +84,7 @@ end Ident_Player_TOP;
 architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 
 	-- Declarations (optional)
-	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');
+	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := /*x"DC5E19";*/ (others	=> '1'); 
 	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);
 	signal			MADI_CLK_PLL		: std_logic;
 	signal			MADI_Locked		: std_logic;
