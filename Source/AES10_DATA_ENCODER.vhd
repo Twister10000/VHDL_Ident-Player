@@ -104,7 +104,7 @@ begin
 						
 					end if;
 					
-					if	Word_CTN	>= 512 then
+					if	Word_CTN	>= 512 then --448 for 56 CH 512 64CH
 						FIFO_READ_ENA	<=	'0';
 						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
