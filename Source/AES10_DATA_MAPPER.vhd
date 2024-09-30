@@ -117,6 +117,7 @@ begin
 						Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 						MADI_SUBFRAME_Start	<= '0';
 						FIFO_wrrq	<= '0';
+						FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;
 						MADI_OUT		<= MADI_OUT_BUFFER;
 						
 						MADI_FRAME_READY	<= '0';
