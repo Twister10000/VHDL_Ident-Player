@@ -106,7 +106,8 @@ begin
 						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
 						if CTN_SYNC	= 8 then
-							FIFO_READ_ENA	<= '1';
+							FIFO_READ_ENA	<= '1'; -- ISt das Sinnvoll? verliert mann so nicht ein Datenpaket weil auf Linie 93 wird ja bereits ein neues Paket in den Prozess geschoben
+																		-- Bitte Zeitnahe Überprüfen. Merci :)
 							Send_SYNC 	<=	'0';
 						end if;
 						if CTN_SYNC >= 9 then
