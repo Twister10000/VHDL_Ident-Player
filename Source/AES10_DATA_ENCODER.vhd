@@ -101,12 +101,12 @@ begin
 						
 					end if;
 					
-					if	Word_CTN	>= 512 then --448 for 56 CH 512 64CH
+					if	Word_CTN	>= 3 then --448 for 56 CH 512 64CH
 						FIFO_READ_ENA	<=	'0';
 						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
 						if CTN_SYNC	= 8 then
-							FIFO_READ_ENA	<= '1'; -- ISt das Sinnvoll? verliert mann so nicht ein Datenpaket weil auf Linie 93 wird ja bereits ein neues Paket in den Prozess geschoben
+							--FIFO_READ_ENA	<= '1'; -- ISt das Sinnvoll? verliert mann so nicht ein Datenpaket weil auf Linie 93 wird ja bereits ein neues Paket in den Prozess geschoben
 																		-- Bitte Zeitnahe Überprüfen. Merci :)
 							Send_SYNC 	<=	'0';
 						end if;

@@ -83,7 +83,7 @@ BEGIN
 			wait for 40ns;
 			assert (false) report "0100 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0100";
-			wait for 40ns;
+			wait for 8ns;
 			assert (false) report "1101 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "1101";
 			wait for 40ns;
