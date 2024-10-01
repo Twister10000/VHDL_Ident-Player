@@ -10,9 +10,9 @@ entity AES10_DATA_MAPPER is
 
 	generic(
 	
-		MADI_Mode				:	integer	range 0 to 	64 	:= 64;
+		MADI_Mode				:	integer	range 0 to 	64 	:= 56;
 		SIMULATION			: boolean	:= false;								
-		MADI_ACTIVE_CH	: integer	range 0	to	64	:= 64
+		MADI_ACTIVE_CH	: integer	range 0	to	64	:= 56
 	
 	);
 
@@ -154,11 +154,11 @@ begin
 									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
 									
 									case	MADI_BLOck_CTN	is
-										--when 0 to 7			=>	MADI_FRAME(30)	<=	BytE0(MADI_BLOck_CTN);
-										--when 8 to 15		=>	MADI_FRAME(30)	<=	BYTE1(MADI_BLOck_CTN-8);
-										--when 16 to 23		=>	MADI_FRAME(30)	<=	BYTE2(MADI_BLOck_CTN-16);
-										--when 24 to 31		=>	MADI_FRAME(30)	<=	BYTE3(MADI_BLOCK_CTN-24);
-										--when 32 to 40		=>	MADI_FRAME(30)	<=	BYTE4(MADI_BLOCK_CTN-32); 
+										when 0 to 7			=>	MADI_FRAME(30)	<=	BytE0(MADI_BLOck_CTN);
+										when 8 to 15		=>	MADI_FRAME(30)	<=	BYTE1(MADI_BLOck_CTN-8);
+										when 16 to 23		=>	MADI_FRAME(30)	<=	BYTE2(MADI_BLOck_CTN-16);
+										when 24 to 31		=>	MADI_FRAME(30)	<=	BYTE3(MADI_BLOCK_CTN-24);
+										when 32 to 40		=>	MADI_FRAME(30)	<=	BYTE4(MADI_BLOCK_CTN-32); 
 										
 										when others				=>	MADI_FRAME(30)	<= '0';
 									end case;
