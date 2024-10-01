@@ -35,6 +35,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	signal	CTN							: integer range 0 to 16 					:=	0;
 	signal	Word_CTN				:	integer	range 0 to 1024					:=	0;
 	signal	CTN_SYNC				: integer range 0 to 16 					:=	0;
+	signal	CTN_S_SYMBOL		: integer range 0 to 64 					:=	0;
 
 
 begin
@@ -101,20 +102,28 @@ begin
 						
 					end if;
 					
-					if	Word_CTN	>= 3 then --448 for 56 CH 512 64CH
+					if	Word_CTN	>= 448 then --448 for 56 CH 512 64CH
 						FIFO_READ_ENA	<=	'0';
 						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
 						if CTN_SYNC	= 8 then
 							--FIFO_READ_ENA	<= '1'; -- ISt das Sinnvoll? verliert mann so nicht ein Datenpaket weil auf Linie 93 wird ja bereits ein neues Paket in den Prozess geschoben
 																		-- Bitte Zeitnahe Überprüfen. Merci :)
-							Send_SYNC 	<=	'0';
+							--Send_SYNC 	<=	'0';
 						end if;
 						if CTN_SYNC >= 9 then
+							CTN_S_SYMBOL	<=	CTN_S_SYMBOL	+	1;
+							if CTN_S_SYMBOL	= 36 then 					-- Ziel sind 
+								Send_SYNC			<= '0';
+								CTN_SYNC			<= 0;
+								Word_CTN			<= 0;
+								CTN						<= 0;
+								CTN_S_SYMBOL	<= 0;
+							end if;
 							CTN_SYNC 		<= 	0;
-							Word_CTN		<= 	0;
-							CTN 				<= 	0;
-							Send_SYNC 	<=	'0';
+							--Word_CTN		<= 	0;
+							--CTN 				<= 	0;
+							--Send_SYNC 	<=	'0';
 						end if;
 							case Sync_Symbol(CTN_SYNC)	is
 							when '1'		=>	MADI_OUT <= not MADI_OUT;
