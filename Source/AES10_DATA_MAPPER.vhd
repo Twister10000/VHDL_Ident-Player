@@ -113,11 +113,9 @@ begin
 	begin
 	
 				if rising_edge(MADI_CLK)	then
-				
+					/*Für die Simulation möchte ich das FIFO_READ_ENA immer aktiv haben*/
 					if SimULATION	= false then
-						FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;
-					else
-						
+						FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;	
 					end if;
 						
 						
