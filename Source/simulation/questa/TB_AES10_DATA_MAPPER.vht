@@ -44,7 +44,10 @@ SIGNAL FIFO_DATA			:	std_logic_vector(23 downto	0);
 
 BEGIN
 	i1 : entity work.AES10_DATA_MAPPER  -- Das zu testende Modul wird hier instanziiert
-	GENERIC MAP (SIMUlation => SIMUlation)
+	GENERIC MAP (
+	MADI_MODE				=>	6,
+	MADI_ACTIVE_CH	=>	6,
+	SIMUlation 			=> SIMUlation)
 	PORT MAP (
 -- list connections between master ports and signals
 	MADI_CLK				=>	MADI_CLK,
@@ -76,8 +79,10 @@ BEGIN
 			assert (false) report "D0000002 ist Rengeschrieben" severity note;
 			FIFO_DATA	<= x"000000";
 			wait for clk_period;
---			assert (false) report "85002C ist Rengeschrieben" severity note;
---			FIFO_DATA	<= x"2C0085";
+			wait for CLK_period*10;
+			
+			assert (false) report "DC5E19 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"DC5E19";
 --			wait for clk_period;
 --			assert (false) report "AFFE12 ist Rengeschrieben" severity note;
 --			FIFO_DATA	<= x"AFFE12";
