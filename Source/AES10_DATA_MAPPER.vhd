@@ -125,7 +125,7 @@ begin
 						
 						MADI_OUT		<= MADI_OUT_BUFFER;
 						--FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;
-						MADI_SUBFRAME_Start	<= '0';						
+						--MADI_SUBFRAME_Start	<= '0';						
 						MADI_FRAME_READY		<= '0';
 						MADI_FRAME_PARITY		<= '0';
 						
@@ -141,6 +141,7 @@ begin
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
 										
 										when '1'			=>	MADI_FRAME(0) <= '1';
+																			MADI_SUBFRAME_Start	<= '0';
 										when '0'			=>	MADI_FRAME(0) <= '0';
 										when others 	=>	null;
 									
@@ -225,7 +226,7 @@ begin
 							FIFO_wrrq	<= '0';
 						end if;
 						
-						if MadI_Chanel_CTN >= MADI_Mode-1 then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
+						if MadI_Chanel_CTN >= MADI_Mode then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
 						
 							Madi_Chanel_CTN		<= 	0;
 							MADI_BLOCk_Start	<=	'0';
