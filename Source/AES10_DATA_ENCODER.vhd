@@ -89,7 +89,7 @@ begin
 						if CTN >= 4 then
 							CTN <= 0;
 							Word_CTN	<=	Word_CTN + 1;
-						elsif CTN =	3	then
+						elsif CTN =	3	then									-- VLt muss hier auch zwei stehen, da im Mapper ein Taktzyklus vergeht bis das SIgnal am FIFO anliegt.
 						
 							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
 							
