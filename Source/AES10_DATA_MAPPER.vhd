@@ -114,14 +114,20 @@ begin
 	
 				if rising_edge(MADI_CLK)	then
 				
-
-						MADI_SUBFRAME_Start	<= '0';
-						FIFO_wrrq	<= '0';
+					if SimULATION	= false then
 						FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;
-						MADI_OUT		<= MADI_OUT_BUFFER;
+					else
 						
-						MADI_FRAME_READY	<= '0';
-						MADI_FRAME_PARITY	<= '0';
+					end if;
+						
+						
+						FIFO_wrrq	<= '0';
+						
+						MADI_OUT		<= MADI_OUT_BUFFER;
+						--FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;
+						MADI_SUBFRAME_Start	<= '0';						
+						MADI_FRAME_READY		<= '0';
+						MADI_FRAME_PARITY		<= '0';
 						
 						if	FIFO_wrusedw	< x"3D"  then	
 							if MADI_Chanel_CTN >= MADI_AcTIVE_CH	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
@@ -131,7 +137,7 @@ begin
 								FIFO_wrrq	<= '1';
 								
 							else
-								
+								if MADI_FRAME_READY = '0' and MADI_FRAME_PARITY = '0' then
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
 										
 										when '1'			=>	MADI_FRAME(0) <= '1';
@@ -139,7 +145,7 @@ begin
 										when others 	=>	null;
 									
 									end case;
-			
+
 									MADI_FRAME(2 downto 1)		<= "01";					-- Status Bit Active & Status Bit für Subframe Identifikation wird gesetzt
 									
 									case MADI_BLock_Start	is				-- Beim Start von den AudioFiles wird der Block gestartet.
@@ -207,10 +213,12 @@ begin
 									--MADI_FRAME_FIFO(31-i) <= MADI_FRAME(i);
 									--
 									--end loop;
-									
-									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 									Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
-							
+									MADI_FRAME_READY	<=	'0';
+									MADI_FRAME_PARITY	<=	'0';
+									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
+
+								end if;
 							end if;	
 						else -- Falls FIFO Voll ist
 							MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
