@@ -114,7 +114,7 @@ begin
 	
 				if rising_edge(MADI_CLK)	then
 				
-						Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
+
 						MADI_SUBFRAME_Start	<= '0';
 						FIFO_wrrq	<= '0';
 						FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;
@@ -209,6 +209,7 @@ begin
 									--end loop;
 									
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
+									Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 							
 							end if;	
 						else -- Falls FIFO Voll ist
