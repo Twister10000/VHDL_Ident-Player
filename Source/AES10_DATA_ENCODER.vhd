@@ -94,7 +94,7 @@ begin
 							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
 							
 						end if;
-							case MADI_DATA_5bit(CTN)	is
+							case MADI_DATA_5bit(/*4 -*/ CTN)	is							-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
 								when '1'		=>	MADI_OUT <= not MADI_OUT;
 								when '0'		=>	MADI_OUT <= MADI_OUT;
 								when others	=> null;
