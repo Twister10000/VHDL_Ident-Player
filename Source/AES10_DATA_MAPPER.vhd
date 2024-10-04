@@ -52,6 +52,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	signal	FIFO_EMPTY									:	std_logic	:= 	'0';
 	signal	FIFO_READ_ENA								:	std_logic	:=	'0';
 	signal	FIFO_READ_ENA_SIMU					:	std_logic	:=	'1';
+	signal	ENCODER_ENABLE							:	std_logic	:=	'0';
 	
 	
 	signal	MADI_FRAME_READY						:	std_logic	:=	'0';
@@ -82,6 +83,7 @@ begin
 			
 				MADI_CLK			=>	MADI_CLK,
 				MADI_DATA			=>	MADI_DATA,
+				Encoder_ENA		=>	EncODER_ENABLE,
 				FIFO_READ_ENA	=>	FIFO_READ_ENA,
 				FIFO_EMPTY		=>	FIFO_EMPTY,
 				MADI_OUT			=>	MADI_OUT_BUFFER);
@@ -117,7 +119,12 @@ begin
 					if SimULATION	= false then
 						FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;	
 					end if;
-						
+					
+						ENCODER_ENABLE	<= '0';
+				
+					if FIFO_wrusedw	> x"05" and FIFO_EMPTY	= '0' then
+						ENCODER_ENABLE	<= '1';
+					end if;
 						
 						FIFO_wrrq	<= '0';
 						

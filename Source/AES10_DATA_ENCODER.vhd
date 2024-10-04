@@ -13,6 +13,7 @@ entity AES10_DATA_ENCODER is
 		-- Input ports
 		MADI_CLK		: in  std_logic;
 		FIFO_empty	:	in	std_logic;
+		Encoder_ENA	:	in	std_logic;
 		MADI_DATA		: in  std_logic_vector (3 downto 0) := (others => '0'); -- MADI_DATA(3) last send Bit
 --		SEND_SYNC	:	in	std_logic;																				-- Signal als zeichen wann ein Sync-Symbol gesendet werden muss
 
@@ -48,7 +49,7 @@ begin
 	
 				if rising_edge(MADI_CLK) then
 					/*4B5B Encoding*/
-					if SEND_SYNC	= '0' and FIFO_READ_ENA	= '1' then
+					if SEND_SYNC	= '0' and FIFO_READ_ENA	= '1' and Encoder_ENA	= '1' then
 						case MADI_DATA(3 downto	0) is
 							when "0000"		=>	MADI_DATA_5bit	<= "11110";
 							when "0001"		=>	MADI_DATA_5bit	<= "01001";
@@ -82,7 +83,7 @@ begin
 					
 					FIFO_READ_ENA	<=	'0';
 
-					if SEND_SYNC = '0' then
+					if SEND_SYNC = '0' and Encoder_ENA	= '1' then
 						
 						CTN <= CTN + 1;
 						
@@ -102,7 +103,7 @@ begin
 						
 					end if;
 					
-					if	Word_CTN	>= 448 then --448 for 56 CH 512 64CH
+					if	Word_CTN	>= 448 and ENcoder_ENA	= '1' then --448 for 56 CH 512 64CH
 						FIFO_READ_ENA	<=	'0';
 						SenD_SYNC	<= '1';
 						CTN_SYNC	<=	CTN_SYNC + 1;
