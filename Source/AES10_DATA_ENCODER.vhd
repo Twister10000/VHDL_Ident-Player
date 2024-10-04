@@ -67,7 +67,7 @@ begin
 							when "1101"		=>	MADI_DATA_5bit	<= "11011";
 							when "1110"		=>	MADI_DATA_5bit	<= "11100";
 							when "1111"		=>	MADI_DATA_5bit	<= "11101";
-							when others		=> MADI_DATA_5bit <= (others => '0');
+							when others		=> MADI_DATA_5bit 	<= (others => '0');
 						end case;
 					end if;
 				end if;
