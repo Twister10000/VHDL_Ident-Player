@@ -23,8 +23,9 @@ entity AES10_DATA_MAPPER is
 		FIFO_DATA	: in  std_logic_vector (23 downto 0) 					:= (others => '1');
 
 		-- Output ports
-		MADI_OUT	: out std_logic	:= '0';
-		MADI_FRAME_OUT	:		out std_logic_vector(31 downto	0)	:= (others => '0')
+		MADI_OUT						: out std_logic	:=	'0';
+		NEW_AUDIO_DATA_RQ		:	out	std_logic	:=	'0';
+		MADI_FRAME_OUT			:	out std_logic_vector(31 downto	0)	:= (others => '0')
 		
 		
 	);
@@ -45,7 +46,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	
 	--std_logic Declarations
 	signal	MADI_SUBFRAME_Start					:	std_logic	:=	'1';		-- Signal für den Anzeigen wann ein neuer SubFrame Kommt
-	signal	MADI_BLock_Start						:	std_logic	:=	'0';		-- Signal für das Anzeigen wann die Audio Files wieder neu gestartet werden
+	signal	MADI_BLock_Start						:	std_logic	:=	'1';		-- Signal für das Anzeigen wann die Audio Files wieder neu gestartet werden
 	signal	MADI_PARITY									:	std_logic	:=	'0';		-- Signal für das Parity Bit BIT31
 	signal  FIFO_wrrq										:	std_logic	:=	'0';
 	signal	FIFO_FULL										:	std_logic	:=	'0';
