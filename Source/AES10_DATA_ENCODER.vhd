@@ -126,7 +126,7 @@ begin
 							--CTN 				<= 	0;
 							--Send_SYNC 	<=	'0';
 						end if;
-							case Sync_Symbol(CTN_SYNC)	is
+							case Sync_Symbol(/*9 - */CTN_SYNC)	is						-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
 							when '1'		=>	MADI_OUT <= not MADI_OUT;
 							when '0'		=>	MADI_OUT <= MADI_OUT;
 							when others	=> null;
