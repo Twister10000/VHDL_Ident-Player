@@ -47,11 +47,11 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	signal	MADI_SUBFRAME_Start					:	std_logic	:=	'1';		-- Signal für den Anzeigen wann ein neuer SubFrame Kommt
 	signal	MADI_BLock_Start						:	std_logic	:=	'0';		-- Signal für das Anzeigen wann die Audio Files wieder neu gestartet werden
 	signal	MADI_PARITY									:	std_logic	:=	'0';		-- Signal für das Parity Bit BIT31
-	signal  FIFO_wrrq										:	std_logic	:=	'1';
+	signal  FIFO_wrrq										:	std_logic	:=	'0';
 	signal	FIFO_FULL										:	std_logic	:=	'0';
 	signal	FIFO_EMPTY									:	std_logic	:= 	'0';
 	signal	FIFO_READ_ENA								:	std_logic	:=	'0';
-	signal	FIFO_READ_ENA_SIMU					:	std_logic	:=	'1';
+	signal	FIFO_READ_ENA_SIMU					:	std_logic	:=	'0';
 	signal	ENCODER_ENABLE							:	std_logic	:=	'0';
 	
 	
@@ -128,9 +128,7 @@ begin
 						
 						FIFO_wrrq	<= '0';
 						
-						MADI_OUT		<= MADI_OUT_BUFFER;
-						--FIFO_READ_ENA_SIMU	<= FIFO_READ_ENA;
-						--MADI_SUBFRAME_Start	<= '0';						
+						MADI_OUT		<= MADI_OUT_BUFFER;				
 						MADI_FRAME_READY		<= '0';
 						MADI_FRAME_PARITY		<= '0';
 						
@@ -160,8 +158,6 @@ begin
 									end case;
 									
 									MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
-									
-									--MADI_FRAME(30 downto 28)	<= "000";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
 									
 									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
 									
@@ -209,16 +205,17 @@ begin
 									
 									
 									MADI_FRAME_READY	<= '1';
-									FIFO_wrrq					<= '1';
+									
 									
 								end if;
-								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" and FIFO_wrrq	= '1' then
+								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" then
 									
 									--for i in 0 to 31 loop
 									--
 									--MADI_FRAME_FIFO(31-i) <= MADI_FRAME(i);
 									--
 									--end loop;
+									FIFO_wrrq					<= '1';
 									Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 									MADI_FRAME_READY	<=	'0';
 									MADI_FRAME_PARITY	<=	'0';
@@ -237,9 +234,7 @@ begin
 							MADI_BLOCk_Start	<=	'0';
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
 							MADI_SUBFRAME_Start	<= '1';
-							
 
-						
 						end if;
 							if MADI_BLock_CTN	>= 191 then
 								MADI_BLOCK_Start	<=	'1';
