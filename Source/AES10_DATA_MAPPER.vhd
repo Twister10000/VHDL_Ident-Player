@@ -24,7 +24,7 @@ entity AES10_DATA_MAPPER is
 
 		-- Output ports
 		MADI_OUT						: out std_logic	:=	'0';
-		NEW_AUDIO_DATA_RQ		:	out	std_logic	:=	'0';
+		NEW_AUDIO_DATA_RQ		:	out	std_logic	:=	'1';
 		MADI_FRAME_OUT			:	out std_logic_vector(31 downto	0)	:= (others => '0')
 		
 		
@@ -130,8 +130,9 @@ begin
 						FIFO_wrrq	<= '0';
 						
 						MADI_OUT		<= MADI_OUT_BUFFER;				
-						MADI_FRAME_READY		<= '0';
-						MADI_FRAME_PARITY		<= '0';
+						MADI_FRAME_READY		<= 	'0';
+						MADI_FRAME_PARITY		<= 	'0';
+						NEW_AUDIO_DATA_RQ		<=	'0';
 						
 						if	FIFO_wrusedw	< x"3D"  then	
 							if MADI_Chanel_CTN >= MADI_AcTIVE_CH	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
@@ -141,7 +142,7 @@ begin
 								FIFO_wrrq	<= '1';
 								
 							else
-								if MADI_FRAME_READY = '0' and MADI_FRAME_PARITY = '0' then
+								if NEW_AUDIO_DATA_RQ = '1' then
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
 										
 										when '1'			=>	MADI_FRAME(0) <= '1';
@@ -220,6 +221,7 @@ begin
 									Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 									MADI_FRAME_READY	<=	'0';
 									MADI_FRAME_PARITY	<=	'0';
+									NEW_AUDIO_DATA_RQ	<=	'1';
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 
 								end if;
@@ -237,7 +239,7 @@ begin
 							MADI_SUBFRAME_Start	<= '1';
 
 						end if;
-							if MADI_BLock_CTN	>= 191 then
+							if MADI_BLock_CTN	>= 3 then
 								MADI_BLOCK_Start	<=	'1';
 								MADI_BLock_CTN <= 0;
 							end if;
