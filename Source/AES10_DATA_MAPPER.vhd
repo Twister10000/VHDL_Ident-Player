@@ -212,16 +212,20 @@ begin
 								end if;
 								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" then
 									
-									--for i in 0 to 31 loop
-									--
-									--MADI_FRAME_FIFO(31-i) <= MADI_FRAME(i);
-									--
-									--end loop;
 									FIFO_wrrq					<= '1';
 									Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 									MADI_FRAME_READY	<=	'0';
 									MADI_FRAME_PARITY	<=	'0';
 									NEW_AUDIO_DATA_RQ	<=	'1';
+									--MADI_FRAME_FIFO(3 downto	0)					<= MADI_FRAME(31 downto 28);
+									--MADI_FRAME_FIFO(7 downto	4)					<= MADI_FRAME(27 downto 24);
+									--MADI_FRAME_FIFO(11 downto	8)					<= MADI_FRAME(23 downto 20);
+									--MADI_FRAME_FIFO(15 downto	12)					<= MADI_FRAME(19 downto 16);
+									--MADI_FRAME_FIFO(19 downto	16)					<= MADI_FRAME(15 downto 12);
+									--MADI_FRAME_FIFO(23 downto	20)					<= MADI_FRAME(11 downto 8);
+									--MADI_FRAME_FIFO(27 downto	24)					<= MADI_FRAME(7 downto 4);
+									--MADI_FRAME_FIFO(31 downto	28)					<= MADI_FRAME(3 downto 0);
+									
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 
 								end if;
