@@ -34,11 +34,12 @@ ARCHITECTURE BEH_AES10_DATA_MAPPER_vhd_tst OF AES10_DATA_MAPPER_vhd_tst IS
 -- constants 
 constant clk_period : time := 8 ns;                                                
 -- signals                                                   
-SIGNAL SIMulation			: boolean := true;
-SIGNAL MADI_CLK 			: STD_LOGIC;
-SIGNAL MADI_OUT 			: STD_LOGIC;
-SIGNAL MADI_FRAME_OUT	:	std_logic_vector(31 downto	0);
-SIGNAL FIFO_DATA			:	std_logic_vector(23 downto	0);
+SIGNAL SIMulation						: boolean := true;
+SIGNAL MADI_CLK 						: STD_LOGIC;
+SIGNAL MADI_OUT 						: STD_LOGIC;
+SIGNAL NEW_AUDIO_DATA_REQ		:	STD_LOGIC := '1';
+SIGNAL MADI_FRAME_OUT				:	std_logic_vector(31 downto	0);
+SIGNAL FIFO_DATA						:	std_logic_vector(23 downto	0);
 
 
 
@@ -50,10 +51,11 @@ BEGIN
 	SIMUlation 			=> SIMUlation)
 	PORT MAP (
 -- list connections between master ports and signals
-	MADI_CLK				=>	MADI_CLK,
-	MADI_OUT				=>	MADI_OUT,
-	MADI_FRAME_OUT	=>	MADI_FRAME_OUT,
-	FIFO_DATA				=>	FIFO_DATA
+	MADI_CLK						=>	MADI_CLK,
+	MADI_OUT						=>	MADI_OUT,
+	NEW_AUDIO_DATA_RQ		=> NEW_AUDIO_DATA_REQ,
+	MADI_FRAME_OUT			=>	MADI_FRAME_OUT,
+	FIFO_DATA						=>	FIFO_DATA
 	);
 init : PROCESS                                               
 -- variable declarations                                     
@@ -76,19 +78,42 @@ always : PROCESS
 -- variable declarations                                      
 BEGIN                                                         
         -- code executes for every event on sensitivity list
-			assert (false) report "D0000002 ist Rengeschrieben" severity note;
+			assert (false) report "000000 ist Rengeschrieben" severity note;
 			FIFO_DATA	<= x"000000";
-			wait for clk_period;
-			wait for CLK_period*10;
+			wait until	NEW_AUDIO_DATA_REQ = '1';
 			
-			assert (false) report "DC5E19 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"DC5E19";
---			wait for clk_period;
---			assert (false) report "AFFE12 ist Rengeschrieben" severity note;
---			FIFO_DATA	<= x"AFFE12";
---			wait for clk_period;
+			assert (false) report "000001 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000001";
+			wait until	NEW_AUDIO_DATA_REQ = '1';
 			
+			assert (false) report "000002 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000002";
+			wait until	NEW_AUDIO_DATA_REQ = '1';
 			
+			assert (false) report "000003 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000003";
+			wait until	NEW_AUDIO_DATA_REQ = '1';
+			
+			assert (false) report "000004 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000004";
+			wait until	NEW_AUDIO_DATA_REQ = '1';
+
+			assert (false) report "000005 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000005";
+			wait until	NEW_AUDIO_DATA_REQ = '1';
+
+			assert (false) report "000006 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000006";
+			wait until	NEW_AUDIO_DATA_REQ = '1';
+
+			assert (false) report "000007 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000007";
+			wait until	NEW_AUDIO_DATA_REQ = '1';
+
+			assert (false) report "000008 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"000008";
+			wait until	NEW_AUDIO_DATA_REQ = '1';			
+	
 		
 WAIT;                                                        
 END PROCESS always;                                          

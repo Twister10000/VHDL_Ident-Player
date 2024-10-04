@@ -23,8 +23,7 @@ add wave -noupdate -expand -group FIFO -color {Cornflower Blue} -label FIFO_IN /
 add wave -noupdate -color {Cornflower Blue} -label FIFO_WORD_USED -radix unsigned -childformat {{/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(5) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(4) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(3) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(2) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(1) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(0) -radix unsigned}} -subitemconfig {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(5) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(4) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(3) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(2) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(1) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(0) {-color {Cornflower Blue} -height 15 -radix unsigned}} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw
 add wave -noupdate -color {Cornflower Blue} -format Analog-Step -height 74 -label FIFO_WORD_USED -max 63.0 -radix unsigned -childformat {{/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(5) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(4) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(3) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(2) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(1) -radix unsigned} {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(0) -radix unsigned}} -subitemconfig {/aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(5) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(4) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(3) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(2) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(1) {-color {Cornflower Blue} -height 15 -radix unsigned} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw(0) {-color {Cornflower Blue} -height 15 -radix unsigned}} /aes10_data_mapper_vhd_tst/i1/FIFO_wrusedw
 add wave -noupdate /aes10_data_mapper_vhd_tst/i1/ENCODER_ENABLE
-add wave -noupdate /aes10_data_mapper_vhd_tst/i1/MADI_ENCDOER/MADI_DATA_ENCODER/MADI_DATA_5bit
-add wave -noupdate /aes10_data_mapper_vhd_tst/i1/MADI_ENCDOER/MADI_DATA_ENCODER/MADI_OUT
+add wave -noupdate /aes10_data_mapper_vhd_tst/NEW_AUDIO_DATA_REQ
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {164467 ps} 0}
 quietly wave cursor active 1
@@ -42,4 +41,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {73050 ps} {329012 ps}
+WaveRestoreZoom {356837 ps} {612799 ps}
