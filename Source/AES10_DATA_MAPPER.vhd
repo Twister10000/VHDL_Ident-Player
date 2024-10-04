@@ -238,12 +238,13 @@ begin
 							FIFO_wrrq					<= 	'0';
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
 							MADI_SUBFRAME_Start	<= '1';
-
-						end if;
-							if MADI_BLock_CTN	>= 3 then
+							
+							if MADI_BLock_CTN	>= 191 then
 								MADI_BLOCK_Start	<=	'1';
 								MADI_BLock_CTN <= 0;
 							end if;
+						end if;
+
 						
 				end if;
 				
