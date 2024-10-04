@@ -34,13 +34,14 @@ end AES10_DATA_MAPPER;
 architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 
 	-- Declarations (optional)
-	
+																																							
 	--constants Declarations
-	constant BYTE0											:	std_logic_vector	(7 downto 0)	:=	"10000100"; -- Basic audio parameters
+	constant BYTE0											:	std_logic_vector	(7 downto 0)	:=	"10000101"; -- Basic audio parameters
 	constant BYTE1											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Channel modes, user bits management
 	constant BYTE2											:	std_logic_vector	(7 downto 0)	:=	"00101100"; -- Auxiliary bits, word length and alignment level
 	constant BYTE3											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Auxiliary bits, word length and alignment level
-	constant BYTE4											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Auxiliary bits, word length and alignment level
+	constant BYTE4											:	std_logic_vector	(7 downto 0)	:=	"00000001"; -- Auxiliary bits, word length and alignment level
+	constant BYTECRC										:	std_logic_vector	(7 downto	0)	:=	"11100101";
 	constant BYTEZ											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Constant for zero filling
 	
 	
@@ -164,12 +165,12 @@ begin
 									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
 									
 									case	MADI_BLOck_CTN	is
-										--when 0 to 7			=>	MADI_FRAME(30)	<=	BytE0(MADI_BLOck_CTN);
-										--when 8 to 15		=>	MADI_FRAME(30)	<=	BYTE1(MADI_BLOck_CTN-8);
-										--when 16 to 23		=>	MADI_FRAME(30)	<=	BYTE2(MADI_BLOck_CTN-16);
-										--when 24 to 31		=>	MADI_FRAME(30)	<=	BYTE3(MADI_BLOCK_CTN-24);
-										--when 32 to 40		=>	MADI_FRAME(30)	<=	BYTE4(MADI_BLOCK_CTN-32); 
-										
+										when 0 to 7			=>	MADI_FRAME(30)	<=	BytE0(MADI_BLOck_CTN);
+										when 8 to 15		=>	MADI_FRAME(30)	<=	BYTE1(MADI_BLOck_CTN-8);
+										when 16 to 23		=>	MADI_FRAME(30)	<=	BYTE2(MADI_BLOck_CTN-16);
+										when 24 to 31		=>	MADI_FRAME(30)	<=	BYTE3(MADI_BLOCK_CTN-24);
+										when 32 to 40		=>	MADI_FRAME(30)	<=	BYTE4(MADI_BLOCK_CTN-32); 
+										when 183   to 191	=>	MADI_FRAME(30)	<= BYTECRC(MADI_BLOCk_CTN-183);
 										when others				=>	MADI_FRAME(30)	<= '0';
 									end case;
 				
@@ -177,6 +178,8 @@ begin
 								end if;
 								if MADI_FRAME_PARITY = '1' and FIFO_wrusedw	< x"3D" then
 									
+									
+								
 									temp	:= MADI_FRAME(4) xor MADI_FRAME(5);
 									temp	:= MADI_FRAME(6) xor temp;
 									temp	:= MADI_FRAME(7) xor temp;
@@ -203,7 +206,7 @@ begin
 									temp	:= MADI_FRAME(28) xor temp;
 									temp	:= MADI_FRAME(29) xor temp;
 									temp	:= MADI_FRAME(30) xor temp;
-									MADI_FRAME(31)	<= not temp;
+									MADI_FRAME(31)	<=   temp;
 									
 									
 									MADI_FRAME_READY	<= '1';
@@ -217,21 +220,21 @@ begin
 									MADI_FRAME_READY	<=	'0';
 									MADI_FRAME_PARITY	<=	'0';
 									NEW_AUDIO_DATA_RQ	<=	'1';
-									--MADI_FRAME_FIFO(3 downto	0)					<= MADI_FRAME(31 downto 28);
-									--MADI_FRAME_FIFO(7 downto	4)					<= MADI_FRAME(27 downto 24);
-									--MADI_FRAME_FIFO(11 downto	8)					<= MADI_FRAME(23 downto 20);
-									--MADI_FRAME_FIFO(15 downto	12)					<= MADI_FRAME(19 downto 16);
-									--MADI_FRAME_FIFO(19 downto	16)					<= MADI_FRAME(15 downto 12);
-									--MADI_FRAME_FIFO(23 downto	20)					<= MADI_FRAME(11 downto 8);
-									--MADI_FRAME_FIFO(27 downto	24)					<= MADI_FRAME(7 downto 4);
-									--MADI_FRAME_FIFO(31 downto	28)					<= MADI_FRAME(3 downto 0);
+									MADI_FRAME_FIFO(3 downto	0)					<= MADI_FRAME(31 downto 28);
+									MADI_FRAME_FIFO(7 downto	4)					<= MADI_FRAME(27 downto 24);
+									MADI_FRAME_FIFO(11 downto	8)					<= MADI_FRAME(23 downto 20);
+									MADI_FRAME_FIFO(15 downto	12)					<= MADI_FRAME(19 downto 16);
+									MADI_FRAME_FIFO(19 downto	16)					<= MADI_FRAME(15 downto 12);
+									MADI_FRAME_FIFO(23 downto	20)					<= MADI_FRAME(11 downto 8);
+									MADI_FRAME_FIFO(27 downto	24)					<= MADI_FRAME(7 downto 4);
+									MADI_FRAME_FIFO(31 downto	28)					<= MADI_FRAME(3 downto 0);
 									
-									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
-
+									--MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
+									
 								end if;
 							end if;	
 						else -- Falls FIFO Voll ist
-							MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
+							--MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
 							FIFO_wrrq	<= '0';
 						end if;
 						
