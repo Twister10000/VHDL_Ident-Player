@@ -114,7 +114,7 @@ begin
 						end if;
 						if CTN_SYNC >= 9 then
 							CTN_S_SYMBOL	<=	CTN_S_SYMBOL	+	1;
-							if CTN_S_SYMBOL	= 36 then 					-- Ziel sind 
+							if CTN_S_SYMBOL	= 35 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
 								Send_SYNC			<= '0';
 								CTN_SYNC			<= 0;
 								Word_CTN			<= 0;
