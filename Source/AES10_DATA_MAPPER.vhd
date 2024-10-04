@@ -142,7 +142,7 @@ begin
 								FIFO_wrrq	<= '1';
 								
 							else
-								if NEW_AUDIO_DATA_RQ = '1' or MADI_SUBFRAME_Start	= '1' then
+								if MADI_FRAME_READY = '0' and MADI_FRAME_PARITY = '0' then
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
 										
 										when '1'			=>	MADI_FRAME(0) <= '1';
