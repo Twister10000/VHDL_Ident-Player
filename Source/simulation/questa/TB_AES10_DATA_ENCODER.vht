@@ -36,10 +36,11 @@ constant clk_period : time := 8 ns;
 -- signals                                                   
 
 SIGNAL MADI_CLK 			: STD_LOGIC;
-SIGNAL MADI_OUT 			: STD_LOGIC;
+SIGNAL MADI_OUT 			: STD_LOGIC := '1';
 
 SIGNAL FIFO_READ_ENA	:	STD_LOGIC;
 SIGNAL FIFO_empty			:	STD_LOGIC;
+SIGNAL Encoder_ENA		:	STD_LOGIC := '1';
 
 SIGNAL MADI_DATA			:	std_logic_vector(3 downto	0);
 
@@ -50,6 +51,7 @@ BEGIN
 -- list connections between master ports and signals
 	MADI_CLK			=>	MADI_CLK,
 	MADI_OUT			=>	MADI_OUT,
+	Encoder_ENA		=>	Encoder_ENA,
 	FIFO_READ_ENA	=>	FIFO_READ_ENA,
 	FIFO_empty		=>	FIFO_empty,
 	MADI_DATA			=>	MADI_DATA
