@@ -31,12 +31,13 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= "1100010001"; -- Symbol J(11000) and Symbol K(10001)
 	
 	--Signal Declarations 
-	signal	Send_SYNC				:	std_logic												:= '0';
+	signal	Send_SYNC				:	std_logic												:= 	'0';
 	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) 	:= (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
 	signal	CTN							: integer range 0 to 16 					:=	0;
 	signal	Word_CTN				:	integer	range 0 to 1024					:=	0;
 	signal	CTN_SYNC				: integer range 0 to 16 					:=	0;
 	signal	CTN_S_SYMBOL		: integer range 0 to 64 					:=	0;
+	signal	Sync_Long				:	integer range 0 to 16						:=	0;
 
 
 begin
@@ -114,12 +115,24 @@ begin
 						end if;
 						if CTN_SYNC >= 9 then
 							CTN_S_SYMBOL	<=	CTN_S_SYMBOL	+	1;
-							if CTN_S_SYMBOL	= 35 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
-								Send_SYNC			<= '0';
-								CTN_SYNC			<= 0;
-								Word_CTN			<= 0;
-								CTN						<= 0;
-								CTN_S_SYMBOL	<= 0;
+							if Sync_Long	=	2 then
+								if CTN_S_SYMBOL	= 36 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
+									Send_SYNC			<= '0';
+									Sync_Long			<= 0;
+									CTN_SYNC			<= 0;
+									Word_CTN			<= 0;
+									CTN						<= 0;
+									CTN_S_SYMBOL	<= 0;
+								end if;
+							else
+								if CTN_S_SYMBOL	= 35 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
+									Send_SYNC			<= '0';
+									Sync_Long			<= Sync_Long + 1;
+									CTN_SYNC			<= 0;
+									Word_CTN			<= 0;
+									CTN						<= 0;
+									CTN_S_SYMBOL	<= 0;
+								end if;
 							end if;
 							CTN_SYNC 		<= 	0;
 							--Word_CTN		<= 	0;
