@@ -28,7 +28,7 @@ end AES10_DATA_ENCODER;
 architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 
 	--Constant Declarations
-	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= "1100010001"; -- Symbol J(11000) and Symbol K(10001)
+	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= /*"1000100011";*/ "1100010001"; -- Symbol J(11000) and Symbol K(10001)
 	
 	--Signal Declarations 
 	signal	Send_SYNC				:	std_logic												:= 	'0';
@@ -96,7 +96,7 @@ begin
 							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
 							
 						end if;
-							case MADI_DATA_5bit(/*4 -*/ CTN)	is							-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
+							case MADI_DATA_5bit(/*4 - */ CTN)	is							-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
 								when '1'		=>	MADI_OUT <= not MADI_OUT;
 								when '0'		=>	MADI_OUT <= MADI_OUT;
 								when others	=> null;
