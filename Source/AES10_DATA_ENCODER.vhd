@@ -40,6 +40,10 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	
 	--Signal Declarations 
 	signal	Start_Newframe	:	std_logic												:= 	'0';
+	signal	DelayFF0				:	std_logic												:=	'0';
+	signal	DelayFF1				:	std_logic												:=	'0';
+	signal	DelayFF2				:	std_logic												:=	'0';
+	Signal	Word_CLK_EDGE		:	std_logic												:=	'0';
 	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) 	:= (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
 	signal	CTN							: integer range 0 to 16 					:=	0;
 	signal	Word_CTN				:	integer	range 0 to 1024					:=	0;
@@ -136,6 +140,24 @@ begin
 				end if;
 	end process NRZI_encoding;
 	
+	Word_CLK_Edge_Detection	: process(all)
+	
+		begin
+		
+			if rising_edge(MADI_CLK) then
+				DelayFF0	<= Word_CLK;
+				DelayFF1	<=	DelayFF0;
+				DelayFF2	<=	DelayFF1;
+				
+				if Word_CLK_EDGE	= '0' then
+					Word_CLK_EDGE	<= DelayFF1	and not DelayFF2;
+				else
+					Word_CLK_EDGE	<= Word_CLK_EDGE;
+				end if;
+				
+			end if;
+		
+	end process Word_CLK_Edge_Detection;
 
 	
 	
