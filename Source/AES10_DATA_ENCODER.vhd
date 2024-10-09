@@ -86,12 +86,12 @@ begin
 
 					if SEND_SYNC = '0' and Encoder_ENA	= '1' then
 						
-						CTN <= CTN + 1;
+						CTN <= CTN - 1;
 						
-						if CTN >= 4 then
-							CTN <= 0;
+						if CTN <= 0 then
+							CTN <= 4;
 							Word_CTN	<=	Word_CTN + 1;
-						elsif CTN =	3	then									-- VLt muss hier auch zwei stehen, da im Mapper ein Taktzyklus vergeht bis das SIgnal am FIFO anliegt.
+						elsif CTN =	1	then									-- VLt muss hier auch zwei stehen, da im Mapper ein Taktzyklus vergeht bis das SIgnal am FIFO anliegt.
 						
 							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
 							
@@ -107,34 +107,34 @@ begin
 					if	Word_CTN	>= 448 and ENcoder_ENA	= '1' then --448 for 56 CH 512 64CH
 						FIFO_READ_ENA	<=	'0';
 						SenD_SYNC	<= '1';
-						CTN_SYNC	<=	CTN_SYNC + 1;
+						CTN_SYNC	<=	CTN_SYNC - 1;
 						if CTN_SYNC	= 8 then
 							--FIFO_READ_ENA	<= '1'; -- ISt das Sinnvoll? verliert mann so nicht ein Datenpaket weil auf Linie 93 wird ja bereits ein neues Paket in den Prozess geschoben
 																		-- Bitte Zeitnahe Überprüfen. Merci :)
 							--Send_SYNC 	<=	'0';
 						end if;
-						if CTN_SYNC >= 9 then
+						if CTN_SYNC <= 0 then
 							CTN_S_SYMBOL	<=	CTN_S_SYMBOL	+	1;
 							if Sync_Long	=	1 then
-								if CTN_S_SYMBOL	= 36 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
+								if CTN_S_SYMBOL	= 64 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
 									Send_SYNC			<= '0';
 									Sync_Long			<= 0;
-									CTN_SYNC			<= 0;
+									CTN_SYNC			<= 9;
 									Word_CTN			<= 0;
-									CTN						<= 0;
+									CTN						<= 4;
 									CTN_S_SYMBOL	<= 0;
 								end if;
 							else
-								if CTN_S_SYMBOL	= 35 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
+								if CTN_S_SYMBOL	= 64 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
 									Send_SYNC			<= '0';
 									Sync_Long			<= Sync_Long + 1;
-									CTN_SYNC			<= 0;
+									CTN_SYNC			<= 9;
 									Word_CTN			<= 0;
-									CTN						<= 0;
+									CTN						<= 4;
 									CTN_S_SYMBOL	<= 0;
 								end if;
 							end if;
-							CTN_SYNC 		<= 	0;
+							CTN_SYNC 		<= 	9;
 							--Word_CTN		<= 	0;
 							--CTN 				<= 	0;
 							--Send_SYNC 	<=	'0';
