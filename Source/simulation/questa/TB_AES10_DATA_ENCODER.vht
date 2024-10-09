@@ -32,10 +32,12 @@ ENTITY AES10_DATA_ENCODER_vhd_tst IS
 END AES10_DATA_ENCODER_vhd_tst;
 ARCHITECTURE BEH_AES10_DATA_ENCODER_vhd_tst OF AES10_DATA_ENCODER_vhd_tst IS
 -- constants 
-constant clk_period : time := 8 ns;                                                
+constant MADI_clk_period : time := 8 ns;
+constant WORD_clk_period : time := 20.8 us;                                                
 -- signals                                                   
 
 SIGNAL MADI_CLK 			: STD_LOGIC;
+Signal Word_CLK				:	STD_LOGIC;
 SIGNAL MADI_OUT 			: STD_LOGIC := '1';
 
 SIGNAL FIFO_READ_ENA	:	STD_LOGIC;
@@ -50,6 +52,7 @@ BEGIN
 	PORT MAP (
 -- list connections between master ports and signals
 	MADI_CLK			=>	MADI_CLK,
+	Word_CLK			=>	Word_CLK,
 	MADI_OUT			=>	MADI_OUT,
 	Encoder_ENA		=>	Encoder_ENA,
 	FIFO_READ_ENA	=>	FIFO_READ_ENA,
@@ -63,13 +66,21 @@ BEGIN
 WAIT;                                                       
 END PROCESS init;
 
-Clock : process
+MADI_Clock : process
 begin
 	MADI_CLK	<= '0';
-	wait for clk_period/2;
+	wait for MADI_clk_period/2;
 	MADI_CLK	<= '1';
-	wait for clk_period/2;
-end proCESS Clock;
+	wait for MADI_clk_period/2;
+end proCESS MADI_Clock;
+
+WORD_CLOCK	: process
+begin
+	WORD_CLK	<=	'0';
+	wait for	WORD_clk_period/2;
+	WORD_CLK	<=	'1';
+	wait for 	WORD_clk_period/2;
+end process WORD_CLOCK;
                                            
 always : PROCESS                                              
 -- optional sensitivity list                                  
