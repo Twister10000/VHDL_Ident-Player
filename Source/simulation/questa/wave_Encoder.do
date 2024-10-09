@@ -14,10 +14,15 @@ add wave -noupdate -expand -group Counter -color Khaki -label CTN /aes10_data_en
 add wave -noupdate -expand -group Counter -color Khaki -label WORD_CTN -radix decimal /aes10_data_encoder_vhd_tst/i1/Word_CTN
 add wave -noupdate -expand -group Counter -color Khaki -label CTN_SYNC /aes10_data_encoder_vhd_tst/i1/CTN_SYNC
 add wave -noupdate -expand -group FIFO -color {Pale Green} -label FIFO_READ_ENA /aes10_data_encoder_vhd_tst/i1/FIFO_READ_ENA
+add wave -noupdate -label DELAYFF0 /aes10_data_encoder_vhd_tst/i1/DelayFF0
+add wave -noupdate -label DELAYFF1 /aes10_data_encoder_vhd_tst/i1/DelayFF1
+add wave -noupdate -label DELAYFF2 /aes10_data_encoder_vhd_tst/i1/DelayFF2
+add wave -noupdate -label WORD_CLK_EDGE /aes10_data_encoder_vhd_tst/i1/Word_CLK_EDGE
+add wave -noupdate -label Start_NewFrame /aes10_data_encoder_vhd_tst/i1/Start_Newframe
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1635193 ps} 0} {{Cursor 2} {31200000 ps} 0}
-quietly wave cursor active 1
-configure wave -namecolwidth 162
+WaveRestoreCursors {{Cursor 1} {10400000 ps} 0} {{Cursor 2} {39957168 ps} 0}
+quietly wave cursor active 2
+configure wave -namecolwidth 491
 configure wave -valuecolwidth 63
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -31,4 +36,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {34814754 ps}
+WaveRestoreZoom {37753928 ps} {43009248 ps}

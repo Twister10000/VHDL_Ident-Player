@@ -90,41 +90,37 @@ BEGIN
         -- code executes for every event on sensitivity list
 			assert (false) report "0000 ist Rengeschrieben" severity note;
 			MADI_DATA	<= "0000";
-			wait for 36ns; -- Die Erste Halbwelle wird nicht richtig Simuliert deswegen muss hier 36ns
+			wait until FIFO_READ_ENA = '1'; -- Die Erste Halbwelle wird nicht richtig Simuliert deswegen muss hier 36ns
 			assert (false) report "0011 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0011";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "0100 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0100";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "1101 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "1101";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "0000 ist Rengeschrieben" severity note;
 			MADI_DATA	<= "0000";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';			
 			assert (false) report "0011 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0011";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "0100 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0100";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "1111 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "1111";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "0010 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0010";
-			wait for 40ns;
-			assert (false) report "Sync Symbol soll ausgegeben werden 10001" severity note;
-			wait for 40ns;
-			assert (false) report "Sync Symbol soll ausgegeben werden 11000" severity note;
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "1000 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "1000";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 			assert (false) report "0000 ist Rengeschrieben" severity note;
 			MadI_DATA	<= "0000";
-			wait for 40ns;
+			wait until FIFO_READ_ENA = '1';
 		
 WAIT;                                                        
 END PROCESS always;                                          
