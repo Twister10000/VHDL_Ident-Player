@@ -27,6 +27,13 @@ end AES10_DATA_ENCODER;
 
 
 architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
+	-- FSM Declarations
+		type state_type	is (Send_Frame, Send_Sync_Symbols, IDLE);
+		
+		signal	State : state_type;
+		
+		attribute syn_encoding	: string;
+		attribute	syn_encoding	of state_type	:	type is "safe";
 
 	--Constant Declarations
 	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= /*"1000100011";*/ "1100010001"; -- Symbol J(11000) and Symbol K(10001)
