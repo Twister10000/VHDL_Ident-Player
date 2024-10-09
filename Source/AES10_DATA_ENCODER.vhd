@@ -90,70 +90,44 @@ begin
 	
 				if rising_edge(MADI_CLK) then
 					
-					FIFO_READ_ENA	<=	'0';
-
-					if SEND_SYNC = '0' and Encoder_ENA	= '1' then
-						
-						CTN <= CTN - 1;
-						
-						if CTN <= 0 then
-							CTN <= 4;
-							Word_CTN	<=	Word_CTN + 1;
-						elsif CTN =	1	then									-- VLt muss hier auch zwei stehen, da im Mapper ein Taktzyklus vergeht bis das SIgnal am FIFO anliegt.
-						
-							FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
-							
-						end if;
-							case MADI_DATA_5bit(/*4 - */ CTN)	is							-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
-								when '1'		=>	MADI_OUT <= not MADI_OUT;
-								when '0'		=>	MADI_OUT <= MADI_OUT;
-								when others	=> null;
-							end case;
-						
-					end if;
+					FIFO_READ_ENA	<= '0';
+					if Encoder_ENA	= '1' then
 					
-					if	Word_CTN	>= 448 and ENcoder_ENA	= '1' then --448 for 56 CH 512 64CH
-						FIFO_READ_ENA	<=	'0';
-						SenD_SYNC	<= '1';
-						CTN_SYNC	<=	CTN_SYNC - 1;
-						if CTN_SYNC	= 8 then
-							--FIFO_READ_ENA	<= '1'; -- ISt das Sinnvoll? verliert mann so nicht ein Datenpaket weil auf Linie 93 wird ja bereits ein neues Paket in den Prozess geschoben
-																		-- Bitte Zeitnahe Überprüfen. Merci :)
-							--Send_SYNC 	<=	'0';
-						end if;
-						if CTN_SYNC <= 0 then
-							CTN_S_SYMBOL	<=	CTN_S_SYMBOL	+	1;
-							if Sync_Long	=	1 then
-								if CTN_S_SYMBOL	= 64 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
-									Send_SYNC			<= '0';
-									Sync_Long			<= 0;
-									CTN_SYNC			<= 9;
-									Word_CTN			<= 0;
-									CTN						<= 4;
-									CTN_S_SYMBOL	<= 0;
-								end if;
-							else
-								if CTN_S_SYMBOL	= 64 then 					-- Ziel ist es 35.4@56CH oder 3.4@64CH
-									Send_SYNC			<= '0';
-									Sync_Long			<= Sync_Long + 1;
-									CTN_SYNC			<= 9;
-									Word_CTN			<= 0;
-									CTN						<= 4;
-									CTN_S_SYMBOL	<= 0;
-								end if;
-							end if;
-							CTN_SYNC 		<= 	9;
-							--Word_CTN		<= 	0;
-							--CTN 				<= 	0;
-							--Send_SYNC 	<=	'0';
-						end if;
-							case Sync_Symbol(/*9 - */CTN_SYNC)	is						-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
-							when '1'		=>	MADI_OUT <= not MADI_OUT;
-							when '0'		=>	MADI_OUT <= MADI_OUT;
+						case State is
+							when Send_Frame					=>
+
+										CTN <= CTN - 1;
+										if CTN <= 0 then
+											CTN <= 4;
+											Word_CTN	<=	Word_CTN + 1;
+											if Word_CTN	>= 448 then
+												State	<= Send_Sync_Symbols;
+											else
+												State	<= Send_Frame;
+											end if;
+										elsif CTN =	1	then									-- VLt muss hier auch zwei stehen, da im Mapper ein Taktzyklus vergeht bis das SIgnal am FIFO anliegt.
+										
+											FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
+											
+										end if;
+										case MADI_DATA_5bit(CTN)	is							-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
+											when '1'		=>	MADI_OUT <= not MADI_OUT;
+											when '0'		=>	MADI_OUT <= MADI_OUT;
+											when others	=> null;
+										end case;
+										
+							--when Send_Sync_Symbols	=>
+										--
+										
 							when others	=> null;
 						end case;
 					end if;
+					
+					
 				end if;
 	end process NRZI_encoding;
+	
 
+	
+	
 end BEH_AES10_DATA_ENCODER;
