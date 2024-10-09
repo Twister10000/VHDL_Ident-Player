@@ -28,7 +28,7 @@ end AES10_DATA_ENCODER;
 
 architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	-- FSM Declarations
-		type state_type	is (Send_Frame, Send_Sync_Symbols, IDLE);
+		type state_type	is (Send_Frame, Word_CLK_Check, Send_Sync_Symbols, IDLE);
 		
 		signal	State : state_type;
 		
@@ -39,7 +39,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= /*"1000100011";*/ "1100010001"; -- Symbol J(11000) and Symbol K(10001)
 	
 	--Signal Declarations 
-	signal	Send_SYNC				:	std_logic												:= 	'0';
+	signal	Start_Newframe	:	std_logic												:= 	'0';
 	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) 	:= (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
 	signal	CTN							: integer range 0 to 16 					:=	0;
 	signal	Word_CTN				:	integer	range 0 to 1024					:=	0;
@@ -58,7 +58,7 @@ begin
 	
 				if rising_edge(MADI_CLK) then
 					/*4B5B Encoding*/
-					if SEND_SYNC	= '0' and FIFO_READ_ENA	= '1' and Encoder_ENA	= '1' then
+					if FIFO_READ_ENA	= '1' and Encoder_ENA	= '1' then
 						case MADI_DATA(3 downto	0) is
 							when "0000"		=>	MADI_DATA_5bit	<= "11110";
 							when "0001"		=>	MADI_DATA_5bit	<= "01001";
@@ -116,8 +116,17 @@ begin
 											when others	=> null;
 										end case;
 										
-							--when Send_Sync_Symbols	=>
-										--
+							when Send_Sync_Symbols	=>
+											--
+											if CTN_SYNC <= 0 then
+													State	<= Word_CLK_Check;
+											end if;
+											case Sync_Symbol(CTN_SYNC)	is						-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
+												when '1'		=>	MADI_OUT <= not MADI_OUT;
+												when '0'		=>	MADI_OUT <= MADI_OUT;
+												when others	=> null;
+											end case;
+							
 										
 							when others	=> null;
 						end case;
