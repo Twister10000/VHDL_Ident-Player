@@ -12,6 +12,7 @@ entity AES10_DATA_ENCODER is
 	(
 		-- Input ports
 		MADI_CLK		: in  std_logic;
+		Word_CLK		:	in	std_logic;
 		FIFO_empty	:	in	std_logic;
 		Encoder_ENA	:	in	std_logic;
 		MADI_DATA		: in  std_logic_vector (3 downto 0) := (others => '0'); -- MADI_DATA(3) last send Bit

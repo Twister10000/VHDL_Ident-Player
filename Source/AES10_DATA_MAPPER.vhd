@@ -20,6 +20,7 @@ entity AES10_DATA_MAPPER is
 	(
 		-- Input ports
 		MADI_CLK	: in  std_logic;
+		Word_CLK	:	in	std_logic;
 		FIFO_DATA	: in  std_logic_vector (23 downto 0) 					:= (others => '1');
 
 		-- Output ports
@@ -60,6 +61,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	signal	MADI_FRAME_READY						:	std_logic	:=	'0';
 	signal	MADI_FRAME_PARITY						:	std_logic	:=	'0';
 	signal	MADI_OUT_BUFFER							:	std_logic	:=	'0';
+	signal	Word_CLK_Buffer							:	std_logic	:=	'0';
 			
 	-- Vektor Declarations		
 	signal	MADI_DATA										:	std_logic_vector	(3 downto		0)	:=	(others =>	'0');
@@ -84,6 +86,7 @@ begin
 			port map(
 			
 				MADI_CLK			=>	MADI_CLK,
+				Word_CLK			=>	Word_CLK,
 				MADI_DATA			=>	MADI_DATA,
 				Encoder_ENA		=>	EncODER_ENABLE,
 				FIFO_READ_ENA	=>	FIFO_READ_ENA,

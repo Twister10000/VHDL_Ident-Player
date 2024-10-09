@@ -87,7 +87,8 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
 	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);
 	signal			MADI_CLK_PLL		: std_logic;
-	signal			MADI_Locked		: std_logic;
+	signal			MADI_Locked			: std_logic;
+	signal			Word_CLK				:	std_logic;
 
 begin
 	
@@ -97,6 +98,7 @@ begin
 		port map(
 				inclk0				=>	CLK,
 				c0						=>	MADI_CLK_PLL,
+				c1						=>	Word_CLK,
 				locked				=>	MADI_Locked
 		
 		
@@ -108,6 +110,7 @@ begin
 		port map(
 		
 			MADI_CLK				=>	MADI_CLK_PLL,
+			Word_CLK				=>	Word_CLK,
 			FIFO_DATA				=>	FIFO_DATA_SEND,
 			MADI_FRAME_OUT	=>	MADI_DATA,
 			MADI_OUT				=>	MADI_OUT);
