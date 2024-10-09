@@ -30,7 +30,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	-- FSM Declarations
 		type state_type	is (Send_Frame, Word_CLK_Check, Send_Sync_Symbols, IDLE);
 		
-		signal	State : state_type := Send_Frame;
+		signal	State : state_type := IDLE;
 		
 		attribute syn_encoding	: string;
 		attribute	syn_encoding	of state_type	:	type is "safe";
@@ -108,6 +108,14 @@ begin
 							end if;
 						
 						case State is
+							
+							when IDLE								=>
+										
+										if Start_Newframe	= '1' then
+											Start_Newframe	<= '0';
+											State						<= Send_Frame;
+										end if;
+							
 							when Send_Frame					=>
 										if CTN > 0 then
 											CTN <= CTN - 1;
@@ -142,6 +150,7 @@ begin
 														State					<= Send_Frame;
 														CTN						<= 	4;
 														Word_CTN			<=	0;
+														CTN_SYNC			<= 	9;
 													else
 														CTN_SYNC			<= 9;
 														state					<= Send_Sync_Symbols;
