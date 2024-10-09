@@ -103,7 +103,7 @@ begin
 							DelayFF2	<=	DelayFF1;								
 							Word_CLK_EDGE	<= DelayFF1	and not DelayFF2;
 							
-							if Word_CLK_EDGE	= '1' then
+							if Word_CLK	= '1' then
 								Start_Newframe	<= '1';
 							end if;
 						

@@ -139,12 +139,12 @@ begin
 						NEW_AUDIO_DATA_RQ		<=	'0';
 						
 						if	FIFO_wrusedw	< x"3D"  then	
-							if MADI_Chanel_CTN >= MADI_AcTIVE_CH	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
+							if MADI_Chanel_CTN >= 70	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
 								
-								MADI_FRAME(31 downto	0) <= (others	=>	'0');
-								MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
-								FIFO_wrrq	<= '1';
-								
+								--MADI_FRAME(31 downto	0) <= (others	=>	'0');
+								--MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
+								--FIFO_wrrq	<= '1';
+								--
 							else
 								if MADI_FRAME_READY = '0' and MADI_FRAME_PARITY = '0' then
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
@@ -209,7 +209,7 @@ begin
 									temp	:= MADI_FRAME(28) xor temp;
 									temp	:= MADI_FRAME(29) xor temp;
 									temp	:= MADI_FRAME(30) xor temp;
-									MADI_FRAME(31)	<=   temp;
+									MADI_FRAME(31)	<=  not temp;
 									
 									
 									MADI_FRAME_READY	<= '1';

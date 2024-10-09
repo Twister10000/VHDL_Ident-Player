@@ -89,6 +89,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			MADI_CLK_PLL		: std_logic;
 	signal			MADI_Locked			: std_logic;
 	signal			Word_CLK				:	std_logic;
+	signal			Divider					: integer	range	0	to 4096 := 0;
 
 begin
 	
@@ -98,7 +99,6 @@ begin
 		port map(
 				inclk0				=>	CLK,
 				c0						=>	MADI_CLK_PLL,
-				c1						=>	Word_CLK,
 				locked				=>	MADI_Locked
 		
 		
@@ -122,13 +122,30 @@ begin
 	
 	begin
 	
-						if rising_edge(MADI_CLK_PLL)	then
-						ARDUINO_IO(12) <= Word_CLK;		
-						if BTN(0) = '1' then
-							LED(1) <= '1';
-						else
-							LED(1) <= '0';
-						end if;
+						if rising_edge(CLK)	then
+							--if RST = '0' then
+							--	Divider <= 0;
+							--end if;
+							
+							Divider 		<= Divider + 1;
+						
+							if Divider	= 2603 then
+								Divider 	<= 0;
+							end if;
+						
+							if Divider 	= 0 then
+								Word_CLK 		<= '1';
+							else
+								Word_CLK		<= '0';
+							end if;			
+						
+						
+							ARDUINO_IO(12) <= Word_CLK;		
+							if BTN(0) = '1' then
+								LED(1) <= '1';
+							else
+								LED(1) <= '0';
+							end if;
 						
 						end if;
 	
