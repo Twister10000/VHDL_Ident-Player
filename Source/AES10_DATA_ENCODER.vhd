@@ -123,7 +123,7 @@ begin
 										if CTN <= 0 then
 											CTN <= 4;
 											Word_CTN	<=	Word_CTN + 1;
-											if Word_CTN	>= 448 then
+											if Word_CTN	>= 447 then
 												State	<= Send_Sync_Symbols;
 											else
 												State	<= Send_Frame;
