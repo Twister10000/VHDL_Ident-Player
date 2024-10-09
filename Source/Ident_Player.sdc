@@ -14,7 +14,7 @@ create_clock -period "50.0 MHz" [get_ports MAX10_CLK2_50]
 #**************************************************************
 # Create Generated Clock
 #**************************************************************
-derive_pll_clocks
+derive_pll_clocks -create_base_clocks
 set MADI_CLK	{MADI_PLL|altpll_component|auto_generated|pll1|clk[0]}
 set Word_CLK	{MADI_PLL|altpll_component|auto_generated|pll1|clk[1]}
 
