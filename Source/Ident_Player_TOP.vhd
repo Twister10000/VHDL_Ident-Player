@@ -122,8 +122,8 @@ begin
 	
 	begin
 	
-						if rising_edge(CLK)	then
-						
+						if rising_edge(MADI_CLK_PLL)	then
+						ARDUINO_IO(12) <= Word_CLK;		
 						if BTN(0) = '1' then
 							LED(1) <= '1';
 						else
