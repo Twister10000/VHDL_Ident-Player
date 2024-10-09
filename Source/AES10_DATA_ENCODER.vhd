@@ -30,7 +30,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	-- FSM Declarations
 		type state_type	is (Send_Frame, Word_CLK_Check, Send_Sync_Symbols, IDLE);
 		
-		signal	State : state_type;
+		signal	State : state_type := Send_Frame;
 		
 		attribute syn_encoding	: string;
 		attribute	syn_encoding	of state_type	:	type is "safe";
@@ -45,9 +45,9 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	signal	DelayFF2				:	std_logic												:=	'0';
 	Signal	Word_CLK_EDGE		:	std_logic												:=	'0';
 	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) 	:= (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
-	signal	CTN							: integer range 0 to 16 					:=	0;
+	signal	CTN							: integer range 0 to 16 					:=	4;
 	signal	Word_CTN				:	integer	range 0 to 1024					:=	0;
-	signal	CTN_SYNC				: integer range 0 to 16 					:=	0;
+	signal	CTN_SYNC				: integer range 0 to 16 					:=	9;
 	signal	CTN_S_SYMBOL		: integer range 0 to 64 					:=	0;
 	signal	Sync_Long				:	integer range 0 to 16						:=	0;
 
@@ -95,12 +95,23 @@ begin
 				if rising_edge(MADI_CLK) then
 					
 					FIFO_READ_ENA	<= '0';
+					Word_CLK_EDGE	<= '0';
 					if Encoder_ENA	= '1' then
-					
+						
+							DelayFF0	<= Word_CLK;
+							DelayFF1	<=	DelayFF0;
+							DelayFF2	<=	DelayFF1;								
+							Word_CLK_EDGE	<= DelayFF1	and not DelayFF2;
+							
+							if Word_CLK_EDGE	= '1' then
+								Start_Newframe	<= '1';
+							end if;
+						
 						case State is
 							when Send_Frame					=>
-
-										CTN <= CTN - 1;
+										if CTN > 0 then
+											CTN <= CTN - 1;
+										end if;
 										if CTN <= 0 then
 											CTN <= 4;
 											Word_CTN	<=	Word_CTN + 1;
@@ -122,8 +133,20 @@ begin
 										
 							when Send_Sync_Symbols	=>
 											--
+											if CTN_SYNC	> 0 then
+												CTN_SYNC	<= CTN_SYNC	-	1;
+											end if;
 											if CTN_SYNC <= 0 then
-													State	<= Word_CLK_Check;
+													if Start_Newframe	= '1' then
+														Start_Newframe	<= '0';
+														State					<= Send_Frame;
+														CTN						<= 	4;
+														Word_CTN			<=	0;
+													else
+														CTN_SYNC			<= 9;
+														state					<= Send_Sync_Symbols;
+													end if;
+													
 											end if;
 											case Sync_Symbol(CTN_SYNC)	is						-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
 												when '1'		=>	MADI_OUT <= not MADI_OUT;
@@ -139,26 +162,5 @@ begin
 					
 				end if;
 	end process NRZI_encoding;
-	
-	Word_CLK_Edge_Detection	: process(all)
-	
-		begin
 		
-			if rising_edge(MADI_CLK) then
-				DelayFF0	<= Word_CLK;
-				DelayFF1	<=	DelayFF0;
-				DelayFF2	<=	DelayFF1;
-				
-				if Word_CLK_EDGE	= '0' then
-					Word_CLK_EDGE	<= DelayFF1	and not DelayFF2;
-				else
-					Word_CLK_EDGE	<= Word_CLK_EDGE;
-				end if;
-				
-			end if;
-		
-	end process Word_CLK_Edge_Detection;
-
-	
-	
 end BEH_AES10_DATA_ENCODER;
