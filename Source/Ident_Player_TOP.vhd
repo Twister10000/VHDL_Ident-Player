@@ -122,7 +122,7 @@ begin
 	
 	begin
 	
-						if rising_edge(CLK)	then
+						if rising_edge(MADI_CLK_PLL)	then
 							--if RST = '0' then
 							--	Divider <= 0;
 							--end if;
