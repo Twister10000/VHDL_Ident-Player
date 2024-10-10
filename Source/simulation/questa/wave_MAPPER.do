@@ -1,6 +1,7 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -expand -group CLK -color {Slate Blue} -label MADI_CLK /aes10_data_mapper_vhd_tst/i1/MADI_CLK
+add wave -noupdate -expand -group CLK -color {Slate Blue} -label WORD_CLK /aes10_data_mapper_vhd_tst/Word_CLK
 add wave -noupdate -divider {New Divider}
 add wave -noupdate -expand -group CONSTANTS -color {Lime Green} -label AUDIO_DATA /aes10_data_mapper_vhd_tst/i1/FIFO_DATA
 add wave -noupdate -expand -group CONSTANTS -color {Lime Green} -label {ACTIVE CHANNELS} /aes10_data_mapper_vhd_tst/i1/MADI_ACTIVE_CH
@@ -25,7 +26,7 @@ add wave -noupdate -color {Cornflower Blue} -format Analog-Step -height 74 -labe
 add wave -noupdate /aes10_data_mapper_vhd_tst/i1/ENCODER_ENABLE
 add wave -noupdate /aes10_data_mapper_vhd_tst/NEW_AUDIO_DATA_REQ
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {164467 ps} 0}
+WaveRestoreCursors {{Cursor 1} {164467 ps} 0} {{Cursor 2} {41608000 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 304
 configure wave -valuecolwidth 132
