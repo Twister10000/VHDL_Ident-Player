@@ -104,6 +104,7 @@ begin
 							
 							if Word_CLK	= '1' then
 								Start_Newframe	<= '1';
+								FIFO_READ_ENA		<= '1';
 							end if;
 							
 						-- Zustandsmaschine: Steuert den Gesamtbetrieb des Kodierers
@@ -132,7 +133,7 @@ begin
 												State	<= Send_Frame;
 											end if;
 										-- Wenn CTN = 1, wird das nächste Datenbit aus dem FIFO gelesen
-										elsif CTN =	1	then								
+										elsif CTN =	1 and Word_CTN	<= 446	then								
 											FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
 										end if;
 										-- Übertragung des aktuellen Datenbits
