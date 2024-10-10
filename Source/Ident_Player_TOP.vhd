@@ -90,6 +90,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			MADI_Locked			: std_logic;
 	signal			Word_CLK				:	std_logic;
 	signal			Divider					: integer	range	0	to 4096 := 0;
+	signal			BTN_SYNC				: std_logic_vector	(2 downto	0) := (others	=>	'0');
 
 begin
 	
@@ -138,10 +139,12 @@ begin
 							else
 								Word_CLK		<= '0';
 							end if;			
-						
+							BTN_SYNC(0) <= BTN(0);
+							BTN_SYNC(1) <= BTN_SYNC(0);
+							BTN_SYNC(2) <= BTN_SYNC(1);
 						
 							ARDUINO_IO(12) <= Word_CLK;		
-							if BTN(0) = '1' then
+							if BTN_SYNC(2) = '1' then
 								LED(1) <= '1';
 							else
 								LED(1) <= '0';
