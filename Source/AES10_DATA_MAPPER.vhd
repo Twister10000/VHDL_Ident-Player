@@ -10,18 +10,18 @@ entity AES10_DATA_MAPPER is
 
 	generic(
 	
-		MADI_Mode				:	integer	range 0 to 	64 	:= 56;
-		SIMULATION			: boolean	:= false;								
-		MADI_ACTIVE_CH	: integer	range 0	to	64	:= 56
+		MADI_Mode						:	integer	range 0 to 	64 	:= 56;
+		SIMULATION					: boolean	:= false;								
+		MADI_ACTIVE_CH			: integer	range 0	to	64	:= 56
 	
 	);
 
 	port
 	(
 		-- Input ports
-		MADI_CLK	: in  std_logic;
-		Word_CLK	:	in	std_logic;
-		FIFO_DATA	: in  std_logic_vector (23 downto 0) 					:= (others => '1');
+		MADI_CLK						: in  std_logic;
+		Word_CLK						:	in	std_logic;
+		FIFO_DATA						: in  std_logic_vector (23 downto 0) 	:= (others => '1');
 
 		-- Output ports
 		MADI_OUT						: out std_logic	:=	'0';
@@ -109,10 +109,7 @@ begin
 					wrfull			=>	FIFO_FULL,
 					wrusedw			=>	FIFO_wrusedw);
 		--end generate FIFO_MAP_ENCO;
-		
-		
-		
-		
+
 	-- Process Statement (optional)
 	
 	AES10_DATA_Formatter	: process(all)
@@ -158,15 +155,16 @@ begin
 
 									MADI_FRAME(2 downto 1)		<= "01";					-- Status Bit Active & Status Bit für Subframe Identifikation wird gesetzt
 									
-									case MADI_BLock_Start	is				-- Beim Start von den AudioFiles wird der Block gestartet.
+									case MADI_BLock_Start	is				-- Beim Start von einem AES3-BLock (192) wird der Block gestartet.
 										when '1'					=>	MADI_FRAME(3)	<=	'1';
 										when others				=>	MADI_FRAME(3)	<=	'0';
 									end case;
 									
 									MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 									
-									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User und Channel Status Bit wird auf 0 gesetzt. 0 = Valid
+									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User Bit wird auf 0 gesetzt. 0 = Valid
 									
+									-- Die Channel Status Bits werden hinzugefügt. 
 									case	MADI_BLOck_CTN	is
 										when 0 to 7			=>	MADI_FRAME(30)	<=	BytE0(MADI_BLOck_CTN);
 										when 8 to 15		=>	MADI_FRAME(30)	<=	BYTE1(MADI_BLOck_CTN-8);
@@ -179,10 +177,9 @@ begin
 				
 									MADI_FRAME_PARITY	<= '1';
 								end if;
+								-- Das Parit Bit wird erzeugt
 								if MADI_FRAME_PARITY = '1' and FIFO_wrusedw	< x"3D" then
-									
-									
-								
+
 									temp	:= MADI_FRAME(4) xor MADI_FRAME(5);
 									temp	:= MADI_FRAME(6) xor temp;
 									temp	:= MADI_FRAME(7) xor temp;
@@ -213,9 +210,9 @@ begin
 									
 									
 									MADI_FRAME_READY	<= '1';
-									
-									
+
 								end if;
+								-- Das MADI_Frame wird in das FIFO geschrieben
 								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" then
 									
 									FIFO_wrrq					<= '1';
@@ -240,8 +237,8 @@ begin
 							--MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
 							FIFO_wrrq	<= '0';
 						end if;
-						
-						if MadI_Chanel_CTN >= MADI_Mode then -- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
+						-- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
+						if MadI_Chanel_CTN >= MADI_Mode then 
 						
 							Madi_Chanel_CTN		<= 	0;
 							MADI_BLOCk_Start	<=	'0';
@@ -249,16 +246,12 @@ begin
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
 							MADI_SUBFRAME_Start	<= '1';
 							
+							-- Wenn 192 Subframe geschickt worden sind muss ein neuer AES3-Block gestartet werden
 							if MADI_BLock_CTN	>= 191 then
 								MADI_BLOCK_Start	<=	'1';
 								MADI_BLock_CTN <= 0;
 							end if;
-						end if;
-
-						
+						end if;		
 				end if;
-				
-				
 	end process AES10_DATA_Formatter;
-
 end BEH_AES10_DATA_MAPPER;
