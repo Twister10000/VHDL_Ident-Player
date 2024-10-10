@@ -91,7 +91,7 @@ begin
 				Encoder_ENA		=>	EncODER_ENABLE,
 				FIFO_READ_ENA	=>	FIFO_READ_ENA,
 				FIFO_EMPTY		=>	FIFO_EMPTY,
-				MADI_OUT			=>	MADI_OUT_BUFFER);
+				MADI_OUT			=>	MADI_OUT);
 		end generate MADI_ENCDOER;
 		
 		--FIFO_MAP_ENCO	:	if SIMULATION	= false	generate
@@ -129,8 +129,7 @@ begin
 					end if;
 						
 						FIFO_wrrq	<= '0';
-						
-						MADI_OUT		<= MADI_OUT_BUFFER;				
+							
 						MADI_FRAME_READY		<= 	'0';
 						MADI_FRAME_PARITY		<= 	'0';
 						NEW_AUDIO_DATA_RQ		<=	'0';
