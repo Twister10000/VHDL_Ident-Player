@@ -136,13 +136,7 @@ begin
 						NEW_AUDIO_DATA_RQ		<=	'0';
 						
 						if	FIFO_wrusedw	< x"3D"  then	
-							if MADI_Chanel_CTN >= 70	then		-- Bei Inaktiven Kanälen muss der Frame mit 0en gefüllt werden
-								
-								--MADI_FRAME(31 downto	0) <= (others	=>	'0');
-								--MADI_FRAME_OUT(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
-								--FIFO_wrrq	<= '1';
-								--
-							else
+
 								if MADI_FRAME_READY = '0' and MADI_FRAME_PARITY = '0' then
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
 										
@@ -178,7 +172,7 @@ begin
 									MADI_FRAME_PARITY	<= '1';
 								end if;
 								-- Das Parit Bit wird erzeugt
-								if MADI_FRAME_PARITY = '1' and FIFO_wrusedw	< x"3D" then
+								if MADI_FRAME_PARITY = '1' then
 
 									temp	:= MADI_FRAME(4) xor MADI_FRAME(5);
 									temp	:= MADI_FRAME(6) xor temp;
@@ -213,28 +207,19 @@ begin
 
 								end if;
 								-- Das MADI_Frame wird in das FIFO geschrieben
-								if MADI_FRAME_READY	= '1' and FIFO_wrusedw	< x"3D" then
+								if MADI_FRAME_READY	= '1' then
 									
 									FIFO_wrrq					<= '1';
 									Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 									MADI_FRAME_READY	<=	'0';
 									MADI_FRAME_PARITY	<=	'0';
 									NEW_AUDIO_DATA_RQ	<=	'1';
-									--MADI_FRAME_FIFO(3 downto	0)					<= MADI_FRAME(31 downto 28);
-									--MADI_FRAME_FIFO(7 downto	4)					<= MADI_FRAME(27 downto 24);
-									--MADI_FRAME_FIFO(11 downto	8)					<= MADI_FRAME(23 downto 20);
-									--MADI_FRAME_FIFO(15 downto	12)					<= MADI_FRAME(19 downto 16);
-									--MADI_FRAME_FIFO(19 downto	16)					<= MADI_FRAME(15 downto 12);
-									--MADI_FRAME_FIFO(23 downto	20)					<= MADI_FRAME(11 downto 8);
-									--MADI_FRAME_FIFO(27 downto	24)					<= MADI_FRAME(7 downto 4);
-									--MADI_FRAME_FIFO(31 downto	28)					<= MADI_FRAME(3 downto 0);
 									
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 									
-								end if;
-							end if;	
+								end if;	
 						else -- Falls FIFO Voll ist
-							--MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
+							MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
 							FIFO_wrrq	<= '0';
 						end if;
 						-- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
