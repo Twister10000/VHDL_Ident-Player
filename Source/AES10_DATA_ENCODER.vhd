@@ -15,8 +15,7 @@ entity AES10_DATA_ENCODER is
 		Word_CLK		:	in	std_logic;
 		FIFO_empty	:	in	std_logic;
 		Encoder_ENA	:	in	std_logic;
-		MADI_DATA		: in  std_logic_vector (3 downto 0) := (others => '0'); -- MADI_DATA(3) last send Bit
---		SEND_SYNC	:	in	std_logic;																				-- Signal als zeichen wann ein Sync-Symbol gesendet werden muss
+		MADI_DATA		: in  std_logic_vector (3 downto 0) := (others => '0'); 
 
 		-- Output ports
 		MADI_OUT					: out std_logic	:=	'0';
@@ -24,7 +23,6 @@ entity AES10_DATA_ENCODER is
 		
 	);
 end AES10_DATA_ENCODER;
-
 
 architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	-- FSM Declarations
@@ -37,7 +35,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 		attribute	syn_encoding	of state_type	:	type is "safe";
 
 	--Constant Declarations
-	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= /*"1000100011";*/ "1100010001"; -- Symbol J(11000) and Symbol K(10001)
+	constant	Sync_Symbol			:	std_logic_vector	(9 downto	0)	:= "1100010001"; -- Symbol J(11000) and Symbol K(10001)
 	
 	--Signal Declarations 
 	signal	Start_Newframe	:	std_logic												:= 	'0';
@@ -45,7 +43,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	signal	DelayFF1				:	std_logic												:=	'0';
 	signal	DelayFF2				:	std_logic												:=	'0';
 	Signal	Word_CLK_EDGE		:	std_logic												:=	'0';
-	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) 	:= (others	=> '0'); -- MADI_DATA_5bit(4) last send Bit
+	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) 	:= (others	=> '0');
 	signal	CTN							: integer range 0 to 16 					:=	4;
 	signal	Word_CTN				:	integer	range 0 to 1024					:=	0;
 	signal	CTN_SYNC				: integer range 0 to 16 					:=	9;
@@ -88,7 +86,6 @@ begin
 				end if;
 	
 	end process bit_encoding;
-	
 	
 	NRZI_encoding : process(all) -- Implementiert die NRZI-Modulation für die codierten Daten.
 	
@@ -169,15 +166,10 @@ begin
 												when '1'		=>	MADI_OUT <= not MADI_OUT;
 												when '0'		=>	MADI_OUT <= MADI_OUT;
 												when others	=> null;
-											end case;
-							
-										
+											end case;		
 							when others	=> null;
 						end case;
 					end if;
-					
-					
 				end if;
 	end process NRZI_encoding;
-		
 end BEH_AES10_DATA_ENCODER;
