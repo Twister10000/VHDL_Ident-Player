@@ -206,7 +206,7 @@ begin
 									temp	:= MADI_FRAME(28) xor temp;
 									temp	:= MADI_FRAME(29) xor temp;
 									temp	:= MADI_FRAME(30) xor temp;
-									MADI_FRAME(31)	<=  not temp;
+									MADI_FRAME(31)	<=   temp;
 									
 									
 									MADI_FRAME_READY	<= '1';

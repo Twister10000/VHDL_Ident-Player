@@ -130,7 +130,7 @@ begin
 							
 							Divider 		<= Divider + 1;
 						
-							if Divider	= 2603 then
+							if Divider	= 2604 then
 								Divider 	<= 0;
 							end if;
 						
