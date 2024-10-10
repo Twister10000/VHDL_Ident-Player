@@ -77,9 +77,9 @@ end proCESS MADI_Clock;
 WORD_CLOCK	: process
 begin
 	WORD_CLK	<=	'0';
-	wait for	WORD_clk_period/2;
+	wait for	WORD_clk_period;
 	WORD_CLK	<=	'1';
-	wait for 	WORD_clk_period/2;
+	wait for 	MADI_clk_period;
 end process WORD_CLOCK;
                                            
 always : PROCESS                                              
