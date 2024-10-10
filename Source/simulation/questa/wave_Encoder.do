@@ -14,6 +14,7 @@ add wave -noupdate -expand -group Counter -color Khaki -label CTN /aes10_data_en
 add wave -noupdate -expand -group Counter -color Khaki -label WORD_CTN -radix decimal /aes10_data_encoder_vhd_tst/i1/Word_CTN
 add wave -noupdate -expand -group Counter -color Khaki -label CTN_SYNC /aes10_data_encoder_vhd_tst/i1/CTN_SYNC
 add wave -noupdate -expand -group FIFO -color {Pale Green} -label FIFO_READ_ENA /aes10_data_encoder_vhd_tst/i1/FIFO_READ_ENA
+add wave -noupdate -label NEW_5BIT_DATA /aes10_data_encoder_vhd_tst/i1/NEW_5bit_DATA
 add wave -noupdate -label DELAYFF0 /aes10_data_encoder_vhd_tst/i1/DelayFF0
 add wave -noupdate -label DELAYFF1 /aes10_data_encoder_vhd_tst/i1/DelayFF1
 add wave -noupdate -label DELAYFF2 /aes10_data_encoder_vhd_tst/i1/DelayFF2
@@ -36,4 +37,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {37753928 ps} {43009248 ps}
+WaveRestoreZoom {50457446 ps} {55712766 ps}

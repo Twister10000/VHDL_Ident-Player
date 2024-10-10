@@ -43,6 +43,7 @@ architecture BEH_AES10_DATA_ENCODER of AES10_DATA_ENCODER is
 	signal	DelayFF1				:	std_logic												:=	'0';
 	signal	DelayFF2				:	std_logic												:=	'0';
 	Signal	Word_CLK_EDGE		:	std_logic												:=	'0';
+	Signal	NEW_5bit_DATA		:	std_logic												:=	'0';
 	signal	MADI_DATA_5bit 	: std_logic_vector	(4 downto 0) 	:= (others	=> '0');
 	signal	CTN							: integer range 0 to 16 					:=	4;
 	signal	Word_CTN				:	integer	range 0 to 1024					:=	0;
@@ -62,7 +63,8 @@ begin
 				if rising_edge(MADI_CLK) then
 					/*4B5B Encoding*/
 					-- Führt die 4B5B-Codierung basierend auf den Eingangsdaten durch.
-					if FIFO_READ_ENA	= '1' and Encoder_ENA	= '1' then
+					FIFO_READ_ENA	<= '0';
+					if NEW_5bit_DATA	= '1' and Encoder_ENA	= '1' then
 						case MADI_DATA(3 downto	0) is
 							when "0000"		=>	MADI_DATA_5bit	<= "11110";
 							when "0001"		=>	MADI_DATA_5bit	<= "01001";
@@ -82,6 +84,7 @@ begin
 							when "1111"		=>	MADI_DATA_5bit	<= "11101";
 							when others		=> MADI_DATA_5bit 	<= (others => '0');
 						end case;
+						FIFO_READ_ENA	<= '1';
 					end if;
 				end if;
 	
@@ -93,7 +96,7 @@ begin
 	
 				if rising_edge(MADI_CLK) then
 					
-					FIFO_READ_ENA	<= '0';
+					NEW_5bit_DATA	<= '0';
 					Word_CLK_EDGE	<= '0';
 					if Encoder_ENA	= '1' then
 						
@@ -104,7 +107,7 @@ begin
 							
 							if Word_CLK	= '1' then
 								Start_Newframe	<= '1';
-								FIFO_READ_ENA		<= '1';
+								NEW_5bit_DATA		<= '1';
 							end if;
 							
 						-- Zustandsmaschine: Steuert den Gesamtbetrieb des Kodierers
@@ -134,7 +137,7 @@ begin
 											end if;
 										-- Wenn CTN = 1, wird das nächste Datenbit aus dem FIFO gelesen
 										elsif CTN =	1 and Word_CTN	<= 446	then								
-											FIFO_READ_ENA <= '1'; --FIFO Read_Enbaled active
+											NEW_5bit_DATA <= '1'; --FIFO Read_Enbaled active
 										end if;
 										-- Übertragung des aktuellen Datenbits
 										case MADI_DATA_5bit(CTN)	is							-- Das erste Bit von Links muss als erstes Übermittelt werden AES-10 S11 Table 5
