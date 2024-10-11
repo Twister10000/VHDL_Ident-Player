@@ -155,7 +155,46 @@ begin
 									
 									MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 									
-									MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User Bit wird auf 0 gesetzt. 0 = Valid
+									/*
+									MADI_FRAME(0)						<= '0'; -- Audio Data Bit 4
+									MADI_FRAME(1)						<= '0';	-- Audio Data Bit 3 
+									MADI_FRAME(2)						<= '0'; -- Audio Data Bit 2
+									MADI_FRAME(3)						<= '0';	-- Audio Data Bit 1
+									MADI_FRAME(4)						<= '0'; -- Audio Data Bit 8
+									MADI_FRAME(5)						<= '0'; -- Audio Data Bit 7
+									MADI_FRAME(6)						<= '0'; -- Audio Data Bit 6
+									MADI_FRAME(7)						<= '0'; -- Audio Data Bit 5
+									MADI_FRAME(8)						<= '0'; -- Audio Data Bit 12
+									MADI_FRAME(9)						<= '0'; -- Audio Data Bit 11
+									MADI_FRAME(10)					<= '0'; -- Audio Data Bit 10
+									MADI_FRAME(11)					<= '0'; -- Audio Data Bit 9
+									MADI_FRAME(12)					<= '0'; -- Audio Data Bit 16
+									MADI_FRAME(13)					<= '0'; -- Audio Data Bit 15
+									MADI_FRAME(14)					<= '0'; -- Audio Data Bit 14
+									MADI_FRAME(15)					<= '0'; -- Audio Data Bit 13
+									MADI_FRAME(16)					<= '0'; -- Audio Data Bit 20
+									MADI_FRAME(17)					<= '0'; -- Audio Data Bit 19
+									MADI_FRAME(18)					<= '0'; -- Audio Data Bit 18
+									MADI_FRAME(19)					<= '0'; -- Audio Data Bit 17
+									MADI_FRAME(20)					<= '0'; -- Audio Data Bit 24
+									MADI_FRAME(21)					<= '0'; -- Audio Data Bit 23
+									MADI_FRAME(22)					<= '0'; -- Audio Data Bit 22
+									MADI_FRAME(23)					<= '0'; -- Audio Data Bit 21
+									MADI_FRAME(24)					<= '0'; -- AES3 Parity Bit
+									MADI_FRAME(25)					<= '0';	-- AES3 Channel Status
+									MADI_FRAME(26)					<= '0';	-- AES3 USER Bit
+									MADI_FRAME(27)					<= '0';	-- AES3 Valid
+									MADI_FRAME(28)					<= '0'; -- Blockstart
+									MADI_FRAME(29)					<= '0';	-- SubFrame A/B
+									MADI_FRAME(30)					<= '0';	-- Channel Active
+									MADI_FRAME(31)					<= '0';	-- Subframe Zero
+									
+									*/
+									
+									--MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User Bit wird auf 0 gesetzt. 0 = Valid
+									
+									MADI_FRAME(26)								<=	'0';
+									MADI_FRAME(27)								<=	'0'; 
 									
 									-- Die Channel Status Bits werden hinzugefügt. 
 									case	MADI_BLOck_CTN	is
