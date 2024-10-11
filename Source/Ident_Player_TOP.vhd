@@ -87,6 +87,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			MADI_Locked			: std_logic;
 	signal			Word_CLK				:	std_logic;
 	signal			Divider					: integer	range	0	to 4096 := 0;
+	signal			FAKE_AUDIO			: integer	range	0	to 17e6 := 0;
 	signal			BTN_SYNC				: std_logic_vector	(2 downto	0) := (others	=>	'0');
 
 begin
@@ -132,7 +133,12 @@ begin
 							--end if;
 							
 							Divider 		<= Divider + 1;
-						
+							FAKE_AUDIO	<= FAKE_AUDIO	+	1;
+							if FAKE_AUDIO	= 12e6 then
+								Fake_AUDIO	<= 0;
+							end if;
+							FIFO_DATA_SEND	<= std_logic_vector(to_unsigned(FAKE_AUDIO,24));
+							
 							if Divider	= 2603 then
 								Divider 	<= 0;
 							end if;
