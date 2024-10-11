@@ -139,21 +139,24 @@ begin
 								if MADI_FRAME_READY = '0' and MADI_FRAME_PARITY = '0' then
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
 										
-										when '1'			=>	MADI_FRAME(0) <= '1';
+										when '1'			=>	MADI_FRAME(31) <= '1';
 																			MADI_SUBFRAME_Start	<= '0';
-										when '0'			=>	MADI_FRAME(0) <= '0';
+										when '0'			=>	MADI_FRAME(31) <= '1';
 										when others 	=>	null;
 									
 									end case;
 
-									MADI_FRAME(2 downto 1)		<= "01";					-- Status Bit Active & Status Bit für Subframe Identifikation wird gesetzt
+									--MADI_FRAME(2 downto 1)		<= "01";					-- Status Bit Active & Status Bit für Subframe Identifikation wird gesetzt
 									
+									MADI_FRAME(30)								<=	'1';
+									MADI_FRAME(29)								<=	'0';
 									case MADI_BLock_Start	is				-- Beim Start von einem AES3-BLock (192) wird der Block gestartet.
-										when '1'					=>	MADI_FRAME(3)	<=	'1';
-										when others				=>	MADI_FRAME(3)	<=	'0';
+										when '1'					=>	MADI_FRAME(28)	<=	'1';
+										when '0'					=>	MADI_FRAME(28)	<=	'0';
+										when others				=>	null;
 									end case;
 									
-									MADI_FRAME(27 downto	4) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
+									MADI_FRAME(23 downto	0) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 									
 									/*
 									MADI_FRAME(0)						<= '0'; -- Audio Data Bit 4
@@ -198,15 +201,15 @@ begin
 									
 									-- Die Channel Status Bits werden hinzugefügt. 
 									case	MADI_BLOck_CTN	is
-										when 0 to 7			=>	MADI_FRAME(30)	<=	BytE0(MADI_BLOck_CTN);
-										when 8 to 15		=>	MADI_FRAME(30)	<=	BYTE1(MADI_BLOck_CTN-8);
-										when 16 to 23		=>	MADI_FRAME(30)	<=	BYTE2(MADI_BLOck_CTN-16);
-										when 24 to 31		=>	MADI_FRAME(30)	<=	BYTE3(MADI_BLOCK_CTN-24);
-										when 32 to 40		=>	MADI_FRAME(30)	<=	BYTE4(MADI_BLOCK_CTN-32); 
-										when 183   to 191	=>	MADI_FRAME(30)	<= BYTECRC(MADI_BLOCk_CTN-183);
-										when others				=>	MADI_FRAME(30)	<= '0';
-									end case;
-				
+										when 0 to 7			=>	MADI_FRAME(25)	<=	BytE0(MADI_BLOck_CTN);
+										when 8 to 15		=>	MADI_FRAME(25)	<=	BYTE1(MADI_BLOck_CTN-8);
+										when 16 to 23		=>	MADI_FRAME(25)	<=	BYTE2(MADI_BLOck_CTN-16);
+										when 24 to 31		=>	MADI_FRAME(25)	<=	BYTE3(MADI_BLOCK_CTN-24);
+										when 32 to 40		=>	MADI_FRAME(25)	<=	BYTE4(MADI_BLOCK_CTN-32); 
+										when 183   to 191	=>	MADI_FRAME(25)	<= BYTECRC(MADI_BLOCk_CTN-183);
+										when others				=>	MADI_FRAME(25)	<= '0'; -- Channel Active 
+ 									end case;
+									
 									MADI_FRAME_PARITY	<= '1';
 								end if;
 								-- Das Parit Bit wird erzeugt
@@ -235,10 +238,11 @@ begin
 									temp	:= MADI_FRAME(25) xor temp;
 									temp	:= MADI_FRAME(26) xor temp;
 									temp	:= MADI_FRAME(27) xor temp;
-									temp	:= MADI_FRAME(28) xor temp;
-									temp	:= MADI_FRAME(29) xor temp;
-									temp	:= MADI_FRAME(30) xor temp;
-									MADI_FRAME(31)	<=   temp;
+									temp	:= MADI_FRAME(0) xor temp;
+									temp	:= MADI_FRAME(1) xor temp;
+									temp	:= MADI_FRAME(2) xor temp;
+									temp	:= MADI_FRAME(3) xor temp;
+									MADI_FRAME(24)	<=  not temp;
 									
 									
 									MADI_FRAME_READY	<= '1';
@@ -252,7 +256,6 @@ begin
 									MADI_FRAME_READY	<=	'0';
 									MADI_FRAME_PARITY	<=	'0';
 									NEW_AUDIO_DATA_RQ	<=	'1';
-									
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 									
 								end if;	
@@ -261,14 +264,14 @@ begin
 							FIFO_wrrq	<= '0';
 						end if;
 						-- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
-						if MadI_Chanel_CTN >= MADI_Mode then 
+						if MadI_Chanel_CTN >= MADI_MODE then 
 						
 							Madi_Chanel_CTN		<= 	0;
 							MADI_BLOCk_Start	<=	'0';
 							FIFO_wrrq					<= 	'0';
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
 							MADI_SUBFRAME_Start	<= '1';
-							
+
 							-- Wenn 192 Subframe geschickt worden sind muss ein neuer AES3-Block gestartet werden
 							if MADI_BLock_CTN	>= 191 then
 								MADI_BLOCK_Start	<=	'1';
