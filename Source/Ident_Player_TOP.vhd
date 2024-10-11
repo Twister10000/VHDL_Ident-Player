@@ -7,12 +7,9 @@ use	ieee.numeric_std.all;
 use	ieee.std_logic_unsigned.all;
 
 entity Ident_Player_TOP is
---	generic
---	(
---		<name>	: <type>  :=	<default_value>;
---		...
---		<name>	: <type>  :=	<default_value>
---	);
+	generic
+	(
+		SIMULATION					: boolean	:= false);
 
 
 	port
@@ -95,27 +92,33 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 begin
 	
 	-- MADI_PLL Instantiation
+	PLL								: if SimULATION = false generate
+		MADI_PLL					:	entity	work.MADI_PLL
+			port map(
+					inclk0				=>	CLK,
+					c0						=>	MADI_CLK_PLL,
+					locked				=>	MADI_Locked
+			
+			
+			);
+	end generate PLL;
 	
-	MADI_PLL					:	entity	work.MADI_PLL
-		port map(
-				inclk0				=>	CLK,
-				c0						=>	MADI_CLK_PLL,
-				locked				=>	MADI_Locked
-		
-		
-		);
-	
+	Simu_PLL: if SimULATION = true generate -- wird bei der Questasim Simulation ausgeführt
+			MADI_CLK_PLL <= CLK; 								-- Der Clock input wird direkt mit dem globalen
+ end generate Simu_PLL;
 	
 	-- MADI_DATA_MAPPER Instantiation
-	MADI_DATA_MAPPER	:	entity work.AES10_DATA_MAPPER
-		port map(
-		
-			MADI_CLK				=>	MADI_CLK_PLL,
-			Word_CLK				=>	Word_CLK,
-			FIFO_DATA				=>	FIFO_DATA_SEND,
-			MADI_FRAME_OUT	=>	MADI_DATA,
-			MADI_OUT				=>	MADI_OUT);
+	MADI_MAPPER	: if SimULATION	= false generate
 	
+		MADI_DATA_MAPPER	:	entity work.AES10_DATA_MAPPER
+			port map(
+			
+				MADI_CLK				=>	MADI_CLK_PLL,
+				Word_CLK				=>	Word_CLK,
+				FIFO_DATA				=>	FIFO_DATA_SEND,
+				MADI_FRAME_OUT	=>	MADI_DATA,
+				MADI_OUT				=>	MADI_OUT);
+	end generate MADI_MAPPER;
 	
 	-- Process Statement (optional)
 
@@ -130,7 +133,7 @@ begin
 							
 							Divider 		<= Divider + 1;
 						
-							if Divider	= 2603 then
+							if Divider	= 2599 then
 								Divider 	<= 0;
 							end if;
 						

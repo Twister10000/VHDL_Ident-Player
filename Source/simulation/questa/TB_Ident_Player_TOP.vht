@@ -18,7 +18,7 @@
 -- suit user's needs .Comments are provided in each section to help the user  
 -- fill out necessary details.                                                
 -- ***************************************************************************
--- Generated on "09/18/2024 10:37:12"
+-- Generated on "10/11/2024 10:03:05"
                                                             
 -- Vhdl Test Bench template for design  :  Ident_Player_TOP
 -- 
@@ -31,8 +31,10 @@ USE ieee.std_logic_1164.all;
 ENTITY Ident_Player_TOP_vhd_tst IS
 END Ident_Player_TOP_vhd_tst;
 ARCHITECTURE Ident_Player_TOP_arch OF Ident_Player_TOP_vhd_tst IS
--- constants                                                 
--- signals                                                   
+-- constants   
+constant MADI_clk_period : time := 8 ns;                                               
+-- signals
+SIGNAL SIMulation						: boolean := true;                                                   
 SIGNAL ADC_CLK_10 : STD_LOGIC;
 SIGNAL ARDUINO_IO : STD_LOGIC_VECTOR(15 DOWNTO 0);
 SIGNAL ARDUINO_RESET_N : STD_LOGIC;
@@ -96,7 +98,9 @@ COMPONENT Ident_Player_TOP
 	);
 END COMPONENT;
 BEGIN
-	i1 : Ident_Player_TOP
+	i1 : entity work.Ident_Player_TOP
+	generic MAP(
+		Simulation	=> Simulation)
 	PORT MAP (
 -- list connections between master ports and signals
 	ADC_CLK_10 => ADC_CLK_10,
@@ -134,7 +138,14 @@ init : PROCESS
 BEGIN                                                        
         -- code that executes only once                      
 WAIT;                                                       
-END PROCESS init;                                           
+END PROCESS init;
+Clock : process
+begin
+	CLK	<= '0';
+	wait for MADI_clk_period/2;
+	CLK	<= '1';
+	wait for MADI_clk_period/2;
+end proCESS Clock;                                           
 always : PROCESS                                              
 -- optional sensitivity list                                  
 -- (        )                                                 
