@@ -130,13 +130,13 @@ begin
 											CTN <= 4;
 											Word_CTN	<=	Word_CTN + 1;
 											-- Wenn alle Wörter übertragen wurden, wechselt in den Send_Sync_Symbols-Zustand
-											if Word_CTN	>= 447 then
+											if Word_CTN	>= 447 then  -- 447@56CH 511@64CH
 												State	<= Send_Sync_Symbols;
 											else
 												State	<= Send_Frame;
 											end if;
 										-- Wenn CTN = 1, wird das nächste Datenbit aus dem FIFO gelesen
-										elsif CTN =	1 and Word_CTN	<= 446	then								
+										elsif CTN =	1 and Word_CTN	<= 446	then	-- 446@56CH 510@64CH							
 											NEW_5bit_DATA <= '1'; --FIFO Read_Enbaled active
 										end if;
 										-- Übertragung des aktuellen Datenbits
