@@ -38,6 +38,7 @@ derive_clock_uncertainty
 set_input_delay -clock CLK -max 0ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO*}] 
 set_input_delay -clock CLK -min 0.000ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO*}] 
 
+set_input_delay -add_delay -clock [get_clocks {MADI_PLL|altpll_component|auto_generated|pll1|clk[0]}] 0.000 [get_ports {MADI_OUT}]
 
 
 #**************************************************************
@@ -46,9 +47,9 @@ set_input_delay -clock CLK -min 0.000ns [get_ports {BTN* GPIO* Slider* ARDUINO_I
 
 set_output_delay	-clock	CLK	-max 0ns [get_ports {LED* GPIO* HEX0* HEX1* HEX2* HEX3* HEX4* HEX5* ARDUINO_IO*}]
 set_output_delay	-clock	CLK	-min -0ns [get_ports {LED* GPIO* HEX0* HEX1* HEX2* HEX3* HEX4* HEX5* ARDUINO_IO*}]
+set_output_delay -add_delay  -clock [get_clocks {\PLL:MADI_PLL|altpll_component|auto_generated|pll1|clk[0]}]  0.000 [get_ports {MADI_OUT}]
 
-set_output_delay	-clock	$MADI_CLK	-max 0ns [get_ports {MADI_OUT}]
-set_output_delay	-clock	$MADI_CLK	-min -0ns [get_ports {MADI_OUT}]
+
 
 #**************************************************************
 # Set Clock Groups
