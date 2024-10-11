@@ -234,7 +234,6 @@ begin
 									temp	:= MADI_FRAME(21) xor temp;
 									temp	:= MADI_FRAME(22) xor temp;
 									temp	:= MADI_FRAME(23) xor temp;
-									temp	:= MADI_FRAME(24) xor temp;
 									temp	:= MADI_FRAME(25) xor temp;
 									temp	:= MADI_FRAME(26) xor temp;
 									temp	:= MADI_FRAME(27) xor temp;
@@ -242,7 +241,7 @@ begin
 									temp	:= MADI_FRAME(1) xor temp;
 									temp	:= MADI_FRAME(2) xor temp;
 									temp	:= MADI_FRAME(3) xor temp;
-									MADI_FRAME(24)	<=  not temp;
+									MADI_FRAME(24)	<=   temp;
 									
 									
 									MADI_FRAME_READY	<= '1';
