@@ -42,7 +42,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	constant BYTE2											:	std_logic_vector	(7 downto 0)	:=	"00101100"; -- Auxiliary bits, word length and alignment level
 	constant BYTE3											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Auxiliary bits, word length and alignment level
 	constant BYTE4											:	std_logic_vector	(7 downto 0)	:=	"00000001"; -- Auxiliary bits, word length and alignment level
-	constant BYTECRC										:	std_logic_vector	(7 downto	0)	:=	"11100101";
+	constant BYTECRC										:	std_logic_vector	(7 downto	0)	:=	"10110000"; -- Fixed CRC Value beacuse The Channelstatus will not Change
 	constant BYTEZ											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Constant for zero filling
 	
 	
