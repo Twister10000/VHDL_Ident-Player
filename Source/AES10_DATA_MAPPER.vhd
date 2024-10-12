@@ -201,12 +201,12 @@ begin
 									
 									-- Die Channel Status Bits werden hinzugefügt. 
 									case	MADI_BLOck_CTN	is
-										when 0 to 7			=>	MADI_FRAME(25)	<=	BytE0(MADI_BLOck_CTN);
-										when 8 to 15		=>	MADI_FRAME(25)	<=	BYTE1(MADI_BLOck_CTN-8);
-										when 16 to 23		=>	MADI_FRAME(25)	<=	BYTE2(MADI_BLOck_CTN-16);
-										when 24 to 31		=>	MADI_FRAME(25)	<=	BYTE3(MADI_BLOCK_CTN-24);
-										when 32 to 40		=>	MADI_FRAME(25)	<=	BYTE4(MADI_BLOCK_CTN-32); 
-										when 183   to 191	=>	MADI_FRAME(25)	<= BYTECRC(MADI_BLOCk_CTN-183);
+										when 0 			to 7			=>	MADI_FRAME(25)	<=	BytE0(MADI_BLOck_CTN);
+										when 8 			to 15			=>	MADI_FRAME(25)	<=	BYTE1(MADI_BLOck_CTN-8);
+										when 16 		to 23			=>	MADI_FRAME(25)	<=	BYTE2(MADI_BLOck_CTN-16);
+										when 24 		to 31			=>	MADI_FRAME(25)	<=	BYTE3(MADI_BLOCK_CTN-24);
+										when 32 		to 40			=>	MADI_FRAME(25)	<=	BYTE4(MADI_BLOCK_CTN-32); 
+										when 184   	to 192		=>	MADI_FRAME(25)	<= 	BYTECRC(MADI_BLOCk_CTN-184);
 										when others				=>	MADI_FRAME(25)	<= '0'; -- Channel Active 
  									end case;
 									
