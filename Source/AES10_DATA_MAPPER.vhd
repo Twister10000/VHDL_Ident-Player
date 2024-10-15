@@ -41,7 +41,7 @@ architecture BEH_AES10_DATA_MAPPER of AES10_DATA_MAPPER is
 	constant BYTE1											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Channel modes, user bits management
 	constant BYTE2											:	std_logic_vector	(7 downto 0)	:=	"00101100"; -- Auxiliary bits, word length and alignment level
 	constant BYTE3											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Auxiliary bits, word length and alignment level
-	constant BYTE4											:	std_logic_vector	(7 downto 0)	:=	"00000001"; -- Auxiliary bits, word length and alignment level
+	constant BYTE4											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Auxiliary bits, word length and alignment level
 	constant BYTECRC										:	std_logic_vector	(7 downto	0)	:=	"10110000"; -- Fixed CRC Value beacuse The Channelstatus will not Change
 	constant BYTEZ											:	std_logic_vector	(7 downto 0)	:=	"00000000"; -- Constant for zero filling
 	
@@ -124,7 +124,7 @@ begin
 					
 						ENCODER_ENABLE	<= '0';
 				
-					if FIFO_wrusedw	> x"05" and FIFO_EMPTY	= '0' then
+					if FIFO_wrusedw	> x"15" and FIFO_EMPTY	= '0' then
 						ENCODER_ENABLE	<= '1';
 					end if;
 						
@@ -141,7 +141,7 @@ begin
 										
 										when '1'			=>	MADI_FRAME(31) <= '1';
 																			MADI_SUBFRAME_Start	<= '0';
-										when '0'			=>	MADI_FRAME(31) <= '1';
+										when '0'			=>	MADI_FRAME(31) <= '0';
 										when others 	=>	null;
 									
 									end case;
@@ -158,41 +158,40 @@ begin
 									
 									MADI_FRAME(23 downto	0) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 									
-									/*
-									MADI_FRAME(0)						<= '0'; -- Audio Data Bit 4
-									MADI_FRAME(1)						<= '0';	-- Audio Data Bit 3 
-									MADI_FRAME(2)						<= '0'; -- Audio Data Bit 2
-									MADI_FRAME(3)						<= '0';	-- Audio Data Bit 1
-									MADI_FRAME(4)						<= '0'; -- Audio Data Bit 8
-									MADI_FRAME(5)						<= '0'; -- Audio Data Bit 7
-									MADI_FRAME(6)						<= '0'; -- Audio Data Bit 6
-									MADI_FRAME(7)						<= '0'; -- Audio Data Bit 5
-									MADI_FRAME(8)						<= '0'; -- Audio Data Bit 12
-									MADI_FRAME(9)						<= '0'; -- Audio Data Bit 11
-									MADI_FRAME(10)					<= '0'; -- Audio Data Bit 10
-									MADI_FRAME(11)					<= '0'; -- Audio Data Bit 9
-									MADI_FRAME(12)					<= '0'; -- Audio Data Bit 16
-									MADI_FRAME(13)					<= '0'; -- Audio Data Bit 15
-									MADI_FRAME(14)					<= '0'; -- Audio Data Bit 14
-									MADI_FRAME(15)					<= '0'; -- Audio Data Bit 13
-									MADI_FRAME(16)					<= '0'; -- Audio Data Bit 20
-									MADI_FRAME(17)					<= '0'; -- Audio Data Bit 19
-									MADI_FRAME(18)					<= '0'; -- Audio Data Bit 18
-									MADI_FRAME(19)					<= '0'; -- Audio Data Bit 17
-									MADI_FRAME(20)					<= '0'; -- Audio Data Bit 24
-									MADI_FRAME(21)					<= '0'; -- Audio Data Bit 23
-									MADI_FRAME(22)					<= '0'; -- Audio Data Bit 22
-									MADI_FRAME(23)					<= '0'; -- Audio Data Bit 21
-									MADI_FRAME(24)					<= '0'; -- AES3 Parity Bit
-									MADI_FRAME(25)					<= '0';	-- AES3 Channel Status
-									MADI_FRAME(26)					<= '0';	-- AES3 USER Bit
-									MADI_FRAME(27)					<= '0';	-- AES3 Valid
-									MADI_FRAME(28)					<= '0'; -- Blockstart
-									MADI_FRAME(29)					<= '0';	-- SubFrame A/B
-									MADI_FRAME(30)					<= '0';	-- Channel Active
-									MADI_FRAME(31)					<= '0';	-- Subframe Zero
 									
-									*/
+									--MADI_FRAME(0)						<= '0'; -- Audio Data Bit 4
+									--MADI_FRAME(1)						<= '0';	-- Audio Data Bit 3 
+									--MADI_FRAME(2)						<= '0'; -- Audio Data Bit 2
+									--MADI_FRAME(3)						<= '0';	-- Audio Data Bit 1
+									--MADI_FRAME(4)						<= '0'; -- Audio Data Bit 8
+									--MADI_FRAME(5)						<= '0'; -- Audio Data Bit 7
+									--MADI_FRAME(6)						<= '0'; -- Audio Data Bit 6
+									--MADI_FRAME(7)						<= '0'; -- Audio Data Bit 5
+									--MADI_FRAME(8)						<= '0'; -- Audio Data Bit 12
+									--MADI_FRAME(9)						<= '0'; -- Audio Data Bit 11
+									--MADI_FRAME(10)					<= '0'; -- Audio Data Bit 10
+									--MADI_FRAME(11)					<= '0'; -- Audio Data Bit 9
+									--MADI_FRAME(12)					<= '0'; -- Audio Data Bit 16
+									--MADI_FRAME(13)					<= '0'; -- Audio Data Bit 15
+									--MADI_FRAME(14)					<= '0'; -- Audio Data Bit 14
+									--MADI_FRAME(15)					<= '0'; -- Audio Data Bit 13
+									--MADI_FRAME(16)					<= '0'; -- Audio Data Bit 20
+									--MADI_FRAME(17)					<= '0'; -- Audio Data Bit 19
+									--MADI_FRAME(18)					<= '0'; -- Audio Data Bit 18
+									--MADI_FRAME(19)					<= '0'; -- Audio Data Bit 17
+									--MADI_FRAME(20)					<= '0'; -- Audio Data Bit 24
+									--MADI_FRAME(21)					<= '0'; -- Audio Data Bit 23
+									--MADI_FRAME(22)					<= '0'; -- Audio Data Bit 22
+									--MADI_FRAME(23)					<= '0'; -- Audio Data Bit 21
+									--MADI_FRAME(24)					<= '0'; -- AES3 Parity Bit
+									--MADI_FRAME(25)					<= '0';	-- AES3 Channel Status
+									--MADI_FRAME(26)					<= '0';	-- AES3 USER Bit
+									--MADI_FRAME(27)					<= '0';	-- AES3 Valid
+									--MADI_FRAME(28)					<= '0'; -- Blockstart
+									--MADI_FRAME(29)					<= '0';	-- SubFrame A/B
+									--MADI_FRAME(30)					<= '1';	-- Channel Active
+									--MADI_FRAME(31)					<= '1';	-- Subframe Zero
+
 									
 									--MADI_FRAME(29 downto 28)	<= "00";					-- Validty, User Bit wird auf 0 gesetzt. 0 = Valid
 									
@@ -202,11 +201,11 @@ begin
 									-- Die Channel Status Bits werden hinzugefügt. 
 									case	MADI_BLOck_CTN	is
 										when 0 			to 7			=>	MADI_FRAME(25)	<=	BytE0(MADI_BLOck_CTN);
-										when 8 			to 15			=>	MADI_FRAME(25)	<=	BYTE1(MADI_BLOck_CTN-8);
-										when 16 		to 23			=>	MADI_FRAME(25)	<=	BYTE2(MADI_BLOck_CTN-16);
-										when 24 		to 31			=>	MADI_FRAME(25)	<=	BYTE3(MADI_BLOCK_CTN-24);
-										when 32 		to 40			=>	MADI_FRAME(25)	<=	BYTE4(MADI_BLOCK_CTN-32); 
-										when 184   	to 192		=>	MADI_FRAME(25)	<= 	BYTECRC(MADI_BLOCk_CTN-184);
+										when 8 			to 15			=>	MADI_FRAME(25)	<=	BYTE1(MADI_BLOck_CTN - 8);
+										when 16 		to 23			=>	MADI_FRAME(25)	<=	BYTE2(MADI_BLOck_CTN - 16);
+										when 24 		to 31			=>	MADI_FRAME(25)	<=	BYTE3(MADI_BLOCK_CTN - 24);
+										when 32 		to 40			=>	MADI_FRAME(25)	<=	BYTE4(MADI_BLOCK_CTN - 32); 
+										when 184   	to 192		=>	MADI_FRAME(25)	<= 	BYTECRC(MADI_BLOCk_CTN - 184);
 										when others				=>	MADI_FRAME(25)	<= '0'; -- Channel Active 
  									end case;
 									
@@ -262,6 +261,14 @@ begin
 							MADI_FRAME(31 downto	0) <= MADI_FRAME(31 downto	0);
 							FIFO_wrrq	<= '0';
 						end if;
+						
+						-- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
+						if MADI_CHANEL_CTN	= MADI_MODE - 1 then
+							MADI_SUBFRAME_Start	<= 	'1';
+						else
+							MADI_SUBFRAME_Start	<=	'0';
+						end if;
+						
 						-- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
 						if MadI_Chanel_CTN >= MADI_MODE then 
 						
@@ -269,7 +276,6 @@ begin
 							MADI_BLOCk_Start	<=	'0';
 							FIFO_wrrq					<= 	'0';
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
-							MADI_SUBFRAME_Start	<= '1';
 
 							-- Wenn 192 Subframe geschickt worden sind muss ein neuer AES3-Block gestartet werden
 							if MADI_BLock_CTN	>= 191 then
