@@ -159,7 +159,7 @@ begin
 									MADI_FRAME(23 downto	0) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
 									
 									
-									--MADI_FRAME(0)						<= '0'; -- Audio Data Bit 4
+									--MADI_FRAME(0)						<= '1'; -- Audio Data Bit 4
 									--MADI_FRAME(1)						<= '0';	-- Audio Data Bit 3 
 									--MADI_FRAME(2)						<= '0'; -- Audio Data Bit 2
 									--MADI_FRAME(3)						<= '0';	-- Audio Data Bit 1
@@ -256,39 +256,40 @@ begin
 									NEW_AUDIO_DATA_RQ	<=	'1';
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 									
+									-- Test Szenario für das Testen wo welches BIt beim ANNA-LISA ankommt. 
 									
-									MADI_FRAME_FIFO(0)					<=	'0'; 		--MADI_FRAME(0);
-									MADI_FRAME_FIFO(1)					<=	'0'; 		--MADI_FRAME(1);	
-									MADI_FRAME_FIFO(2)					<=	'1'; 		--MADI_FRAME(2);	
-									MADI_FRAME_FIFO(3)					<=	'1'; 		--MADI_FRAME(3);	
-									MADI_FRAME_FIFO(4)					<=	'0'; 		--MADI_FRAME(4);	
-									MADI_FRAME_FIFO(5)					<=	'0'; 		--MADI_FRAME(5);	
-									MADI_FRAME_FIFO(6)					<=	'0'; 		--MADI_FRAME(6);	
-									MADI_FRAME_FIFO(7)					<=	'0'; 		--MADI_FRAME(7);	
-									MADI_FRAME_FIFO(8)					<=	'0'; 		--MADI_FRAME(8);	
-									MADI_FRAME_FIFO(9)					<=	'0'; 		--MADI_FRAME(9);	
-									MADI_FRAME_FIFO(10)					<=	'0'; 		--MADI_FRAME(10);
-									MADI_FRAME_FIFO(11)					<=	'0'; 		--MADI_FRAME(11);
-									MADI_FRAME_FIFO(12)					<=	'0'; 		--MADI_FRAME(12);
-									MADI_FRAME_FIFO(13)					<=	'0'; 		--MADI_FRAME(13);
-									MADI_FRAME_FIFO(14)					<=	'0'; 		--MADI_FRAME(14);
-									MADI_FRAME_FIFO(15)					<=	'0'; 		--MADI_FRAME(15);
-									MADI_FRAME_FIFO(16)					<=	'0'; 		--MADI_FRAME(16);
-									MADI_FRAME_FIFO(17)					<=	'0'; 		--MADI_FRAME(17);
-									MADI_FRAME_FIFO(18)					<=	'0'; 		--MADI_FRAME(18);
-									MADI_FRAME_FIFO(19)					<=	'0'; 		--MADI_FRAME(19);
-									MADI_FRAME_FIFO(20)					<=	'0'; 		--MADI_FRAME(20);
-									MADI_FRAME_FIFO(21)					<=	'0'; 		--MADI_FRAME(21);
-									MADI_FRAME_FIFO(22)					<=	'0'; 		--MADI_FRAME(22);
-									MADI_FRAME_FIFO(23)					<=	'0'; 		--MADI_FRAME(23);
-									MADI_FRAME_FIFO(24)					<=	'0'; 		--MADI_FRAME(24);
-									MADI_FRAME_FIFO(25)					<=	'0'; 		--MADI_FRAME(25);
-									MADI_FRAME_FIFO(26)					<=	'0'; 		--MADI_FRAME(26);
-									MADI_FRAME_FIFO(27)					<=	'0'; 		--MADI_FRAME(27);
-									MADI_FRAME_FIFO(28)					<=	'0'; 		--MADI_FRAME(28);
-									MADI_FRAME_FIFO(29)					<=	'0'; 		--MADI_FRAME(29);
-									MADI_FRAME_FIFO(30)					<=	'0'; 		--MADI_FRAME(30);
-									MADI_FRAME_FIFO(31)					<=	'0'; 		--MADI_FRAME(31);
+									--MADI_FRAME_FIFO(0)					<=	'0'; 		--MADI_FRAME(0);
+									--MADI_FRAME_FIFO(1)					<=	'0'; 		--MADI_FRAME(1);	
+									--MADI_FRAME_FIFO(2)					<=	'1'; 		--MADI_FRAME(2);	
+									--MADI_FRAME_FIFO(3)					<=	'1'; 		--MADI_FRAME(3);	
+									--MADI_FRAME_FIFO(4)					<=	'0'; 		--MADI_FRAME(4);	
+									--MADI_FRAME_FIFO(5)					<=	'0'; 		--MADI_FRAME(5);	
+									--MADI_FRAME_FIFO(6)					<=	'0'; 		--MADI_FRAME(6);	
+									--MADI_FRAME_FIFO(7)					<=	'0'; 		--MADI_FRAME(7);	
+									--MADI_FRAME_FIFO(8)					<=	'0'; 		--MADI_FRAME(8);	
+									--MADI_FRAME_FIFO(9)					<=	'0'; 		--MADI_FRAME(9);	
+									--MADI_FRAME_FIFO(10)					<=	'0'; 		--MADI_FRAME(10);
+									--MADI_FRAME_FIFO(11)					<=	'0'; 		--MADI_FRAME(11);
+									--MADI_FRAME_FIFO(12)					<=	'0'; 		--MADI_FRAME(12);
+									--MADI_FRAME_FIFO(13)					<=	'0'; 		--MADI_FRAME(13);
+									--MADI_FRAME_FIFO(14)					<=	'0'; 		--MADI_FRAME(14);
+									--MADI_FRAME_FIFO(15)					<=	'0'; 		--MADI_FRAME(15);
+									--MADI_FRAME_FIFO(16)					<=	'0'; 		--MADI_FRAME(16);
+									--MADI_FRAME_FIFO(17)					<=	'0'; 		--MADI_FRAME(17);
+									--MADI_FRAME_FIFO(18)					<=	'0'; 		--MADI_FRAME(18);
+									--MADI_FRAME_FIFO(19)					<=	'0'; 		--MADI_FRAME(19);
+									--MADI_FRAME_FIFO(20)					<=	'0'; 		--MADI_FRAME(20);
+									--MADI_FRAME_FIFO(21)					<=	'0'; 		--MADI_FRAME(21);
+									--MADI_FRAME_FIFO(22)					<=	'0'; 		--MADI_FRAME(22);
+									--MADI_FRAME_FIFO(23)					<=	'0'; 		--MADI_FRAME(23);
+									--MADI_FRAME_FIFO(24)					<=	'0'; 		--MADI_FRAME(24);
+									--MADI_FRAME_FIFO(25)					<=	'0'; 		--MADI_FRAME(25);
+									--MADI_FRAME_FIFO(26)					<=	'0'; 		--MADI_FRAME(26);
+									--MADI_FRAME_FIFO(27)					<=	'0'; 		--MADI_FRAME(27);
+									--MADI_FRAME_FIFO(28)					<=	'0'; 		--MADI_FRAME(28);
+									--MADI_FRAME_FIFO(29)					<=	'0'; 		--MADI_FRAME(29);
+									--MADI_FRAME_FIFO(30)					<=	'0'; 		--MADI_FRAME(30);
+									--MADI_FRAME_FIFO(31)					<=	'0'; 		--MADI_FRAME(31);
 									
 								end if;	
 						else -- Falls FIFO Voll ist
