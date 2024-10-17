@@ -79,7 +79,21 @@ entity Ident_Player_TOP is
 end Ident_Player_TOP;
 
 architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
-
+	
+	-- Component Declarations
+		component ONCHIP_AUDIO_STORAGE is
+		port (
+			clk_clk                         : in  std_logic                     := 'X';             -- clk
+			reset_reset_n                   : in  std_logic                     := 'X';             -- reset_n
+			onchip_audio_data_address       : in  std_logic_vector(17 downto 0) := (others => 'X'); -- address
+			onchip_audio_data_read          : in  std_logic                     := 'X';             -- read
+			onchip_audio_data_readdata      : out std_logic_vector(31 downto 0);                    -- readdata
+			onchip_audio_data_waitrequest   : out std_logic;                                        -- waitrequest
+			onchip_audio_data_readdatavalid : out std_logic;                                        -- readdatavalid
+			onchip_audio_data_burstcount    : in  std_logic_vector(3 downto 0)  := (others => 'X')  -- burstcount
+		);
+	end component ONCHIP_AUDIO_STORAGE;
+	
 	-- Declarations (optional)
 	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
 	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);
@@ -89,8 +103,31 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			Divider					: integer	range	0	to 4096 := 0;
 	signal			FAKE_AUDIO			: integer	range	0	to 17e6 := 0;
 	signal			BTN_SYNC				: std_logic_vector	(2 downto	0) := (others	=>	'0');
+	
+	
+	-- Signal Declarations for Flash Memory
+	signal			FL_reset									:	std_logic											:=	'0';
+	signal			FL_data_read							:	std_logic											:=	'0';
+	signal			FL_wait_request						:	std_logic											:=	'0';
+	signal			FL_readdata_valid					:	std_logic											:=	'0';
+	signal			FL_data_address						:	std_logic_vector(17 downto 0) := 	(others => 	'0');					
+	signal			FL_data_burstcount				:	std_logic_vector(3 downto 0)  := 	(others => 	'0');
+	signal			FL_read_data							:	std_logic_vector(31 downto 0)	:=	(others	=>	'0');									
+	
 
 begin
+	-- ONCHIP_AUDIO_STORAGE Instantiation
+	
+	ON_AUDIO_STORAGE : component ONCHIP_AUDIO_STORAGE
+		port map (
+			clk_clk                         => clk,                   -- clk.clk
+			reset_reset_n                   => FL_reset,              -- reset.reset_n
+			onchip_audio_data_address       => FL_data_address,       -- onchip_audio_data.address
+			onchip_audio_data_read          => FL_Data_read,          -- .read
+			onchip_audio_data_readdata      => FL_read_data,      		-- .readdata
+			onchip_audio_data_waitrequest   => FL_wait_request,   		-- .waitrequest
+			onchip_audio_data_readdatavalid => FL_readdata_valid, 		-- .readdatavalid
+			onchip_audio_data_burstcount    => FL_data_burstcount);   -- .burstcount
 	
 	-- MADI_PLL Instantiation
 	PLL								: if SimULATION = false generate
