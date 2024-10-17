@@ -412,6 +412,9 @@ set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE output_files/stp1.stp
 set_location_assignment PIN_AA2 -to MADI_OUT
 set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to MADI_OUT
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name QSYS_FILE ONCHIP_AUDIO_STORAGE.qsys
 set_global_assignment -name VHDL_FILE Ident_Player_TOP.vhd
 set_global_assignment -name SDC_FILE Ident_Player.sdc
 set_global_assignment -name VHDL_FILE AES10_DATA_MAPPER.vhd
@@ -424,5 +427,3 @@ set_global_assignment -name QIP_FILE FIFO_MAP_ENC.qip
 set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
 set_global_assignment -name QIP_FILE MADI_PLL.qip
 set_global_assignment -name COMMAND_MACRO_FILE simulation/questa/rtl_TOP_LEVEL_DESIGN.do
-set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
