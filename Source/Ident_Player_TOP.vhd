@@ -145,6 +145,16 @@ begin
 			MADI_CLK_PLL <= CLK; 								-- Der Clock input wird direkt mit dem globalen
  end generate Simu_PLL;
 	
+	
+	-- AUDIO_DATA_CONTROLLER Instantiation
+	
+	AUDIO_DATA_CTRL	:	entity work.AUDIO_DATA_CONTROLLER
+		port map(
+				CLK							=>	CLK
+		
+		);
+	
+	
 	-- MADI_DATA_MAPPER Instantiation
 	MADI_MAPPER	: if SimULATION	= false generate
 	
