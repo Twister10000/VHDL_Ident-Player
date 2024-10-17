@@ -1,0 +1,13 @@
+	component Ident_Player is
+		port (
+			clk_clk                               : in  std_logic                     := 'X';             -- clk
+			reset_reset_n                         : in  std_logic                     := 'X';             -- reset_n
+			onchip_audio_flash_data_address       : in  std_logic_vector(17 downto 0) := (others => 'X'); -- address
+			onchip_audio_flash_data_read          : in  std_logic                     := 'X';             -- read
+			onchip_audio_flash_data_readdata      : out std_logic_vector(31 downto 0);                    -- readdata
+			onchip_audio_flash_data_waitrequest   : out std_logic;                                        -- waitrequest
+			onchip_audio_flash_data_readdatavalid : out std_logic;                                        -- readdatavalid
+			onchip_audio_flash_data_burstcount    : in  std_logic_vector(3 downto 0)  := (others => 'X')  -- burstcount
+		);
+	end component Ident_Player;
+
