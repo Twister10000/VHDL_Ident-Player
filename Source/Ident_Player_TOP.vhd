@@ -94,7 +94,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 		);
 	end component ONCHIP_AUDIO_STORAGE;
 	
-	-- Declarations (optional)
+	-- Signal Declarations FOR AES10_TX 
 	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
 	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);
 	signal			MADI_CLK_PLL		: std_logic;
@@ -199,17 +199,4 @@ begin
 						end if;
 	
 	end process	main;
-
-	-- Concurrent Procedure Call (optional)
-
-	-- Concurrent Signal Assignment (optional)
-
-	-- Conditional Signal Assignment (optional)
-
-	-- Selected Signal Assignment (optional)
-
-	-- Component Instantiation Statement (optional)
-
-	-- Generate Statement (optional)
-
 end BEH_Ident_Player_TOP;
