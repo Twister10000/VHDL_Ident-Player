@@ -93,6 +93,17 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 			onchip_audio_data_burstcount    : in  std_logic_vector(3 downto 0)  := (others => 'X')  -- burstcount
 		);
 	end component ONCHIP_AUDIO_STORAGE;
+	-- FSM Declarations
+	
+		-- Type Declarations
+	
+		type state_type	is (sSetAdr, sReading);
+	
+		-- Finite-State-Maschine Declarations
+		signal	State : state_type := sSetAdr;
+		
+		attribute syn_encoding	: string;
+		attribute	syn_encoding	of state_type	:	type is "safe";
 	
 	-- Signal Declarations FOR AES10_TX 
 	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
@@ -144,16 +155,6 @@ begin
 	Simu_PLL: if SimULATION = true generate -- wird bei der Questasim Simulation ausgeführt
 			MADI_CLK_PLL <= CLK; 								-- Der Clock input wird direkt mit dem globalen
  end generate Simu_PLL;
-	
-	
-	-- AUDIO_DATA_CONTROLLER Instantiation
-	
-	AUDIO_DATA_CTRL	:	entity work.AUDIO_DATA_CONTROLLER
-		port map(
-				CLK							=>	CLK
-		
-		);
-	
 	
 	-- MADI_DATA_MAPPER Instantiation
 	MADI_MAPPER	: if SimULATION	= false generate
@@ -209,4 +210,14 @@ begin
 						end if;
 	
 	end process	main;
+	
+	ONCHIP_FLASH_CONTROLLER	: process(all)
+	
+	begin
+	
+			if rising_edge(CLK)	then
+				
+			end if;
+	
+	end process ONCHIP_FLASH_CONTROLLER;
 end BEH_Ident_Player_TOP;
