@@ -9,6 +9,7 @@ use	ieee.std_logic_unsigned.all;
 entity Ident_Player_TOP is
 	generic
 	(
+	
 		SIMULATION					: boolean	:= false);
 
 
@@ -97,13 +98,13 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	
 		-- Type Declarations
 	
-		type state_type	is (sSetAdr, sReading);
+		type Storage_FSM	is (sSetAdr, sReading);
 	
 		-- Finite-State-Maschine Declarations
-		signal	State : state_type := sSetAdr;
+		signal	FSM_Storage : Storage_FSM := sSetAdr;
 		
 		attribute syn_encoding	: string;
-		attribute	syn_encoding	of state_type	:	type is "safe";
+		attribute	syn_encoding	of Storage_FSM	:	type is "safe";
 	
 	-- Signal Declarations FOR AES10_TX 
 	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
@@ -117,14 +118,14 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	
 	
 	-- Signal Declarations for Flash Memory
-	signal			FL_reset									:	std_logic											:=	'0';
-	signal			FL_data_read							:	std_logic											:=	'0';
-	signal			FL_wait_request						:	std_logic											:=	'0';
-	signal			FL_readdata_valid					:	std_logic											:=	'0';
-	signal			FL_data_address						:	std_logic_vector(17 downto 0) := 	(others => 	'0');					
-	signal			FL_data_burstcount				:	std_logic_vector(3 downto 0)  := 	(others => 	'0');
-	signal			FL_read_data							:	std_logic_vector(31 downto 0)	:=	(others	=>	'0');									
-	
+	signal			FL_reset									:	std_logic												:=	'0';
+	signal			FL_data_read							:	std_logic												:=	'0';
+	signal			FL_wait_request						:	std_logic												:=	'0';
+	signal			FL_readdata_valid					:	std_logic												:=	'0';
+	signal			FL_data_address						:	std_logic_vector(17 downto 	0) 	:= 	(others => 	'0');					
+	signal			FL_data_burstcount				:	std_logic_vector(3	downto	0)	:=	(others	=>	'0');
+	signal			FL_read_data							:	std_logic_vector(31 downto 	0)	:=	(others	=>	'0');									
+	signal			burstcount								:	integer	range	0	to 7 := 0;
 
 begin
 	-- ONCHIP_AUDIO_STORAGE Instantiation
@@ -216,6 +217,33 @@ begin
 	begin
 	
 			if rising_edge(CLK)	then
+				--wrreq <= '0'; -- FIFO to MAPPER default 0
+				
+				case FSM_Storage is
+					when sSetAdr	=>	FL_data_read				<=	'0';
+														FL_data_address			<=	FL_data_address; -- Vlt mit einer zwischen Variabel lösen
+														FL_data_burstcount	<=	x"8";
+														--if FIFO_ALMOST_EMPTY = '1' then
+														--	
+														--	FL_data_read			<=	'1';
+														--	FSM_Storage				<=	sReading;
+														--	
+														--end if;
+					
+					when sReading	=>	if FL_readdata_valid	=	'1' then
+															FL_data_read				<=	'0';
+															--FIFO_DATA_IN			<= FL_read_data;
+															--wwreq							<=	'1';
+															burstcount					<= burstcount +	1;
+														end if;
+														if	burstcount	>= 7	then
+															FL_data_address			<= FL_data_address	+ 8;
+															burstcount					<= 0;
+															FSM_Storage					<= sSetAdr;
+														end if;
+					when	others	=> 	FSM_Storage	<=	sSetAdr;
+					
+				end case;
 				
 			end if;
 	
