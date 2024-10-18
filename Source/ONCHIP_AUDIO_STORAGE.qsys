@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element ONCHIP_AUDIO_DATA
@@ -39,7 +39,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="Ident_Player.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -67,7 +67,7 @@
   <parameter name="PART_NAME" value="10M50DAF484C7G" />
   <parameter name="READ_BURST_COUNT" value="8" />
   <parameter name="READ_BURST_MODE" value="Incrementing" />
-  <parameter name="SECTOR_ACCESS_MODE">Read only,Read only,Read only,Read only,Hidden</parameter>
+  <parameter name="SECTOR_ACCESS_MODE">Read only,Read only,Read only,Read only,Read only</parameter>
   <parameter name="autoInitializationFileName">$${FILENAME}_ONCHIP_AUDIO_DATA</parameter>
   <parameter name="initFlashContent" value="false" />
   <parameter name="initializationFileName">altera_onchip_flash.hex</parameter>

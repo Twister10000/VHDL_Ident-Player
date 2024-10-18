@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 23.1 993 (Future versions may contain additional information.) -->
- <!-- 2024.10.18.09:05:27 -->
+ <!-- 2024.10.18.09:25:34 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1729235127</value>
+  <value>1729236334</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -164,15 +164,15 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SECTOR5_ENABLED</name>
-   <value>0</value>
+   <value>1</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SECTOR5_END_ADDR</name>
-   <value>-1</value>
+   <value>1441791</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SECTOR5_START_ADDR</name>
-   <value>-1</value>
+   <value>753664</value>
   </assignment>
   <assignment>
    <name>embeddedsw.memoryInfo.DAT_SYM_INSTALL_DIR</name>
@@ -272,7 +272,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR_ID">
    <type>[Ljava.lang.String;</type>
-   <value>1,2,3,4,NA</value>
+   <value>1,2,3,4,5</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>true</visible>
@@ -280,7 +280,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR_ACCESS_MODE">
    <type>[Ljava.lang.String;</type>
-   <value>Read only,Read only,Read only,Read only,Hidden</value>
+   <value>Read only,Read only,Read only,Read only,Read only</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -288,7 +288,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR_ADDRESS_MAPPING">
    <type>[Ljava.lang.String;</type>
-   <value>0x00000 - 0x07fff,0x08000 - 0x0ffff,0x10000 - 0x6ffff,0x70000 - 0xb7fff,NA</value>
+   <value>0x00000 - 0x07fff,0x08000 - 0x0ffff,0x10000 - 0x6ffff,0x70000 - 0xb7fff,0xb8000 - 0x15ffff</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>true</visible>
@@ -461,17 +461,17 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR5_START_ADDR">
    <type>int</type>
-   <value>0</value>
+   <value>188416</value>
    <derived>true</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>false</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="SECTOR5_END_ADDR">
    <type>int</type>
-   <value>0</value>
+   <value>360447</value>
    <derived>true</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>false</visible>
    <valid>true</valid>
   </parameter>
@@ -485,7 +485,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="MAX_VALID_ADDR">
    <type>int</type>
-   <value>188415</value>
+   <value>360447</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -541,7 +541,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="SECTOR5_MAP">
    <type>int</type>
-   <value>0</value>
+   <value>5</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -549,7 +549,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="ADDR_RANGE1_END_ADDR">
    <type>int</type>
-   <value>188415</value>
+   <value>360447</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -557,7 +557,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="ADDR_RANGE2_END_ADDR">
    <type>int</type>
-   <value>188415</value>
+   <value>360447</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -589,7 +589,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="AVMM_DATA_ADDR_WIDTH">
    <type>int</type>
-   <value>18</value>
+   <value>19</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -883,7 +883,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>753664</value>
+    <value>1441792</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -971,7 +971,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>753664</value>
+    <value>1441792</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -1182,7 +1182,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>avmm_data_addr</name>
     <direction>Input</direction>
-    <width>18</width>
+    <width>19</width>
     <role>address</role>
    </port>
    <port>

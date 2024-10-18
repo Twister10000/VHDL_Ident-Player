@@ -34,8 +34,8 @@ https://fpgasoftware.intel.com/eula.
 	(port
 		(pt 0 112)
 		(input)
-		(text "onchip_audio_data_address[17..0]" (rect 0 0 134 12)(font "Arial" (font_size 8)))
-		(text "onchip_audio_data_address[17..0]" (rect 4 101 196 112)(font "Arial" (font_size 8)))
+		(text "onchip_audio_data_address[18..0]" (rect 0 0 134 12)(font "Arial" (font_size 8)))
+		(text "onchip_audio_data_address[18..0]" (rect 4 101 196 112)(font "Arial" (font_size 8)))
 		(line (pt 0 112)(pt 192 112)(line_width 3))
 	)
 	(port

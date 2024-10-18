@@ -9,7 +9,7 @@ use IEEE.numeric_std.all;
 entity ONCHIP_AUDIO_STORAGE is
 	port (
 		clk_clk                         : in  std_logic                     := '0';             --               clk.clk
-		onchip_audio_data_address       : in  std_logic_vector(17 downto 0) := (others => '0'); -- onchip_audio_data.address
+		onchip_audio_data_address       : in  std_logic_vector(18 downto 0) := (others => '0'); -- onchip_audio_data.address
 		onchip_audio_data_read          : in  std_logic                     := '0';             --                  .read
 		onchip_audio_data_readdata      : out std_logic_vector(31 downto 0);                    --                  .readdata
 		onchip_audio_data_waitrequest   : out std_logic;                                        --                  .waitrequest
@@ -72,7 +72,7 @@ architecture rtl of ONCHIP_AUDIO_STORAGE is
 		port (
 			clock                   : in  std_logic                     := 'X';             -- clk
 			reset_n                 : in  std_logic                     := 'X';             -- reset_n
-			avmm_data_addr          : in  std_logic_vector(17 downto 0) := (others => 'X'); -- address
+			avmm_data_addr          : in  std_logic_vector(18 downto 0) := (others => 'X'); -- address
 			avmm_data_read          : in  std_logic                     := 'X';             -- read
 			avmm_data_readdata      : out std_logic_vector(31 downto 0);                    -- readdata
 			avmm_data_waitrequest   : out std_logic;                                        -- waitrequest
@@ -175,23 +175,23 @@ begin
 			SECTOR3_END_ADDR                    => 114687,
 			SECTOR4_START_ADDR                  => 114688,
 			SECTOR4_END_ADDR                    => 188415,
-			SECTOR5_START_ADDR                  => 0,
-			SECTOR5_END_ADDR                    => 0,
+			SECTOR5_START_ADDR                  => 188416,
+			SECTOR5_END_ADDR                    => 360447,
 			MIN_VALID_ADDR                      => 0,
-			MAX_VALID_ADDR                      => 188415,
+			MAX_VALID_ADDR                      => 360447,
 			MIN_UFM_VALID_ADDR                  => 0,
 			MAX_UFM_VALID_ADDR                  => 188415,
 			SECTOR1_MAP                         => 1,
 			SECTOR2_MAP                         => 2,
 			SECTOR3_MAP                         => 3,
 			SECTOR4_MAP                         => 4,
-			SECTOR5_MAP                         => 0,
-			ADDR_RANGE1_END_ADDR                => 188415,
-			ADDR_RANGE2_END_ADDR                => 188415,
+			SECTOR5_MAP                         => 5,
+			ADDR_RANGE1_END_ADDR                => 360447,
+			ADDR_RANGE2_END_ADDR                => 360447,
 			ADDR_RANGE1_OFFSET                  => 2048,
 			ADDR_RANGE2_OFFSET                  => 0,
 			ADDR_RANGE3_OFFSET                  => 0,
-			AVMM_DATA_ADDR_WIDTH                => 18,
+			AVMM_DATA_ADDR_WIDTH                => 19,
 			AVMM_DATA_DATA_WIDTH                => 32,
 			AVMM_DATA_BURSTCOUNT_WIDTH          => 4,
 			SECTOR_READ_PROTECTION_MODE         => 31,

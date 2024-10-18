@@ -86,7 +86,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 		port (
 			clk_clk                         : in  std_logic                     := 'X';             -- clk
 			reset_reset_n                   : in  std_logic                     := 'X';             -- reset_n
-			onchip_audio_data_address       : in  std_logic_vector(17 downto 0) := (others => 'X'); -- address
+			onchip_audio_data_address       : in  std_logic_vector(18 downto 0) := (others => 'X'); -- address
 			onchip_audio_data_read          : in  std_logic                     := 'X';             -- read
 			onchip_audio_data_readdata      : out std_logic_vector(31 downto 0);                    -- readdata
 			onchip_audio_data_waitrequest   : out std_logic;                                        -- waitrequest
@@ -122,7 +122,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FL_data_read							:	std_logic												:=	'0';
 	signal			FL_wait_request						:	std_logic												:=	'0';
 	signal			FL_readdata_valid					:	std_logic												:=	'0';
-	signal			FL_data_address						:	std_logic_vector(17 downto 	0) 	:= 	(others => 	'0');					
+	signal			FL_data_address						:	std_logic_vector(18 downto 	0) 	:= 	(others => 	'0');					
 	signal			FL_data_burstcount				:	std_logic_vector(3	downto	0)	:=	(others	=>	'0');
 	signal			FL_read_data							:	std_logic_vector(31 downto 	0)	:=	(others	=>	'0');									
 	signal			burstcount								:	integer	range	0	to 7 := 0;
