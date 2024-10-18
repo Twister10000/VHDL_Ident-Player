@@ -29,8 +29,18 @@ end AUDIO_DATA_CONTROLLER;
 -- Use Clause(s) (optional)
 
 architecture beh_AUDIO_DATA_CONTROLLER of AUDIO_DATA_CONTROLLER is
-
-	-- Declarations (optional)
+	-- Type Declarations
+	
+	type state_type	is (sSetAdr, sReading);
+	
+	-- Finite-State-Maschine Declarations
+		signal	State : state_type := sSetAdr;
+		
+		attribute syn_encoding	: string;
+		attribute	syn_encoding	of state_type	:	type is "safe";
+		
+	-- Signal Declarations (optional)
+	
 
 begin
 
