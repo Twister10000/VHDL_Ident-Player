@@ -188,7 +188,7 @@ begin
 							end if;
 							FIFO_DATA_SEND	<= std_logic_vector(to_unsigned(FAKE_AUDIO,24));
 							
-							if Divider	= 2603 then
+							if Divider	= 2624 then
 								Divider 	<= 0;
 							end if;
 						

@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484) Path("C:/Users/Admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/output_files/") File("Ident_Player.sof") MfrSpec(OpMask(1));
+		Device PartName(10M50DAF484) Path("C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/output_files/") File("Ident_Player.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

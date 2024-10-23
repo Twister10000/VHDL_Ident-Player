@@ -9,6 +9,6 @@
  </systemtable>
  <library
    expandedCategories="Project,Library/Basic Functions/On Chip Memory,Project/System,Library/Basic Functions,Library" />
- <window width="2906" height="1850" x="-13" y="-13" />
+ <window width="2560" height="1392" x="0" y="0" />
  <generation path="_PROJECT_NAME_/" synthesis="VHDL" />
 </preferences>
