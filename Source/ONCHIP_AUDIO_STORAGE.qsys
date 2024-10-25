@@ -69,10 +69,10 @@
   <parameter name="READ_BURST_MODE" value="Incrementing" />
   <parameter name="SECTOR_ACCESS_MODE">Read only,Read only,Read only,Read only,Read only</parameter>
   <parameter name="autoInitializationFileName">$${FILENAME}_ONCHIP_AUDIO_DATA</parameter>
-  <parameter name="initFlashContent" value="false" />
-  <parameter name="initializationFileName">altera_onchip_flash.hex</parameter>
-  <parameter name="initializationFileNameForSim">altera_onchip_flash.dat</parameter>
-  <parameter name="useNonDefaultInitFile" value="false" />
+  <parameter name="initFlashContent" value="true" />
+  <parameter name="initializationFileName" value="" />
+  <parameter name="initializationFileNameForSim">C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</parameter>
+  <parameter name="useNonDefaultInitFile" value="true" />
  </module>
  <module name="SYS_CLK" kind="clock_source" version="23.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />

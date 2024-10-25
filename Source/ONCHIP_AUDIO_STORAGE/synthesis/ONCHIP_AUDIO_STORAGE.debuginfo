@@ -5,7 +5,7 @@
  version="23.1"
  fabric="QSYS">
  <!-- Format version 23.1 993 (Future versions may contain additional information.) -->
- <!-- 2024.10.18.09:09:55 -->
+ <!-- 2024.10.25.12:03:07 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -57,7 +57,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1729235393</value>
+  <value>1729850585</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -263,6 +263,10 @@ the requested settings for a module instance. -->
    <value>32</value>
   </assignment>
   <assignment>
+   <name>embeddedsw.memoryInfo.MEM_INIT_FILENAME</name>
+   <value>altera_onchip_flash</value>
+  </assignment>
+  <assignment>
    <name>embeddedsw.memoryInfo.USE_BYTE_ADDRESSING_FOR_HEX</name>
    <value>1</value>
   </assignment>
@@ -356,7 +360,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="initFlashContent">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -364,25 +368,25 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="useNonDefaultInitFile">
    <type>boolean</type>
-   <value>false</value>
+   <value>true</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="initializationFileName">
    <type>java.lang.String</type>
-   <value>altera_onchip_flash.hex</value>
+   <value></value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="initializationFileNameForSim">
    <type>java.lang.String</type>
-   <value>altera_onchip_flash.dat</value>
+   <value>C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</value>
    <derived>false</derived>
-   <enabled>false</enabled>
+   <enabled>true</enabled>
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
@@ -405,7 +409,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="INIT_FILENAME_SIM">
    <type>java.lang.String</type>
-   <value></value>
+   <value>C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -2175,5 +2179,5 @@ parameters are a RESULT of the module parameters. -->
   <version>23.1</version>
  </plugin>
  <reportVersion>23.1 993</reportVersion>
- <uniqueIdentifier>10510788D2DF000001929E761E6D</uniqueIdentifier>
+ <uniqueIdentifier>86C5A6F93EAE00000192C32135F6</uniqueIdentifier>
 </EnsembleReport>
