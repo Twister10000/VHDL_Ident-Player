@@ -85,7 +85,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 		component ONCHIP_AUDIO_STORAGE is
 		port (
 			clk_clk                         : in  std_logic                     := 'X';             -- clk
-			reset_reset_n                   : in  std_logic                     := 'X';             -- reset_n
+			reset_reset_n                   : in  std_logic                     := '1';             -- reset_n
 			onchip_audio_data_address       : in  std_logic_vector(18 downto 0) := (others => 'X'); -- address
 			onchip_audio_data_read          : in  std_logic                     := 'X';             -- read
 			onchip_audio_data_readdata      : out std_logic_vector(31 downto 0);                    -- readdata
@@ -128,7 +128,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:= (others	=> '1');
 	
 	-- Signal Declarations for Flash Memory
-	signal			FL_reset									:	std_logic												:=	'0';
+	signal			FL_reset									:	std_logic												:=	'1';
 	signal			FL_data_read							:	std_logic												:=	'0';
 	signal			FL_wait_request						:	std_logic												:=	'0';
 	signal			FL_readdata_valid					:	std_logic												:=	'0';
