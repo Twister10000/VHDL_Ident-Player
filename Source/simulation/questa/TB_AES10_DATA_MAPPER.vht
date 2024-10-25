@@ -42,7 +42,7 @@ Signal Word_CLK							:	STD_LOGIC;
 SIGNAL MADI_OUT 						: STD_LOGIC;
 SIGNAL NEW_AUDIO_DATA_REQ		:	STD_LOGIC := '1';
 SIGNAL MADI_FRAME_OUT				:	std_logic_vector(31 downto	0);
-SIGNAL FIFO_DATA						:	std_logic_vector(23 downto	0);
+SIGNAL FIFO_DATA						:	std_logic_vector(31 downto	0);
 
 
 
@@ -90,40 +90,40 @@ always : PROCESS
 -- variable declarations                                      
 BEGIN                                                         
         -- code executes for every event on sensitivity list
-			assert (false) report "000000 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000000";
+			assert (false) report "00000000 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000000";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 			
-			assert (false) report "000001 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000001";
+			assert (false) report "00000001 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000001";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 			
-			assert (false) report "000002 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000002";
+			assert (false) report "00000002 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000002";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 			
-			assert (false) report "000003 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000003";
+			assert (false) report "00000003 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000003";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 			
-			assert (false) report "000004 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000004";
+			assert (false) report "00000004 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000004";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 
-			assert (false) report "000005 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000005";
+			assert (false) report "00000005 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000005";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 
-			assert (false) report "000006 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000006";
+			assert (false) report "00000006 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000006";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 
-			assert (false) report "000007 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000007";
+			assert (false) report "00000007 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000007";
 			wait until	NEW_AUDIO_DATA_REQ = '1';
 
-			assert (false) report "000008 ist Rengeschrieben" severity note;
-			FIFO_DATA	<= x"000008";
+			assert (false) report "00000008 ist Rengeschrieben" severity note;
+			FIFO_DATA	<= x"00000008";
 			wait until	NEW_AUDIO_DATA_REQ = '1';			
 	
 		
