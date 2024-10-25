@@ -107,15 +107,25 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 		attribute	syn_encoding	of Storage_FSM	:	type is "safe";
 	
 	-- Signal Declarations FOR AES10_TX 
-	signal			FIFO_DATA_SEND	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
-	signal			MADI_DATA				:	std_logic_vector	(31 downto	0);
-	signal			MADI_CLK_PLL		: std_logic;
-	signal			MADI_Locked			: std_logic;
-	signal			Word_CLK				:	std_logic;
-	signal			Divider					: integer	range	0	to 4096 := 0;
-	signal			FAKE_AUDIO			: integer	range	0	to 17e6 := 0;
-	signal			BTN_SYNC				: std_logic_vector	(2 downto	0) := (others	=>	'0');
+	signal			FIFO_DATA_SEND_24_Bit	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
+	signal			MADI_DATA							:	std_logic_vector	(31 downto	0);
+	signal			MADI_CLK_PLL					: std_logic;
+	signal			MADI_Locked						: std_logic;
+	signal			Word_CLK							:	std_logic;
+	signal			Divider								: integer	range	0	to 4096 := 0;
+	signal			FAKE_AUDIO						: integer	range	0	to 17e6 := 0;
+	signal			BTN_SYNC							: std_logic_vector	(2 downto	0) := (others	=>	'0');
 	
+	
+	-- Signal Declarations FOR FIFO_FLASH_AES10
+	signal			FIFO_Empty_TOP				:	std_logic :=	'0';
+	signal			FIFO_FULL_TOP					:	std_logic	:=	'0';
+	signal			FIFO_wrreq_TOP				:	std_logic	:=	'0';
+	signal			FIFO_rdreq_TOP				:	std_logic	:=	'0';
+	
+	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(5 downto	0)		:=	(others	=>	'0');
+	signal			FIFO_DATA_INPUT				:	std_logic_vector	(31	downto	0)	:=	(others	=>	'0');
+	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:= (others	=> '0');
 	
 	-- Signal Declarations for Flash Memory
 	signal			FL_reset									:	std_logic												:=	'0';
@@ -156,6 +166,24 @@ begin
 	Simu_PLL: if SimULATION = true generate -- wird bei der Questasim Simulation ausgeführt
 			MADI_CLK_PLL <= CLK; 								-- Der Clock input wird direkt mit dem globalen
  end generate Simu_PLL;
+ 
+ 
+	-- FIFO_FLASH_AES10 Instantiation
+	
+	FIFO_FLASH_AES10	:	entity work.FIFO_FLASH_AES10
+	
+		port map(
+					
+			data				=>	FIFO_DATA_INPUT,								-- FIFO DATA Input
+			rdclk				=>	MADI_CLK,										-- READ_CLK
+			rdreq				=>	FIFO_rdreq_TOP,							-- FIFO READ REQUEST
+			wrclk				=>	CLK,												-- Write CLK
+			wrreq				=>	FIFO_wrreq_TOP,							-- FIFO WRite Request
+			q						=>	FIFO_DATA_SEND_32_Bit,			-- 24 BIt ich muss aber auf 32 Bit gehen :/
+			rdempty			=>	FIFO_EMPTY_TOP,							-- FIFO EMPTY SIgnal
+			wrfull			=>	FIFO_FULL_TOP,							-- FIFO FULL SIgnal
+			wrusedw			=>	FIFO_wrusedw_TOP);					-- FIFO wordused SIgnal
+	
 	
 	-- MADI_DATA_MAPPER Instantiation
 	MADI_MAPPER	: if SimULATION	= false generate
@@ -163,11 +191,12 @@ begin
 		MADI_DATA_MAPPER	:	entity work.AES10_DATA_MAPPER
 			port map(
 			
-				MADI_CLK				=>	MADI_CLK_PLL,
-				Word_CLK				=>	Word_CLK,
-				FIFO_DATA				=>	FIFO_DATA_SEND,
-				MADI_FRAME_OUT	=>	MADI_DATA,
-				MADI_OUT				=>	MADI_OUT);
+				MADI_CLK					=>	MADI_CLK_PLL,
+				Word_CLK					=>	Word_CLK,
+				FIFO_DATA					=>	FIFO_DATA_SEND_24_Bit,
+				MADI_FRAME_OUT		=>	MADI_DATA,
+				NEW_AUDIO_DATA_RQ	=>	FIFO_rdreq_TOP,
+				MADI_OUT					=>	MADI_OUT);
 	end generate MADI_MAPPER;
 	
 	-- Process Statement (optional)
@@ -182,11 +211,13 @@ begin
 							--end if;
 							
 							Divider 		<= Divider + 1;
-							FAKE_AUDIO	<= FAKE_AUDIO	+	1;
-							if FAKE_AUDIO	= 12e6 then
-								Fake_AUDIO	<= 0;
-							end if;
-							FIFO_DATA_SEND	<= std_logic_vector(to_unsigned(FAKE_AUDIO,24));
+--							FAKE_AUDIO	<= FAKE_AUDIO	+	1;
+--							if FAKE_AUDIO	= 12e6 then
+--								Fake_AUDIO	<= 0;
+--							end if;
+--							FIFO_DATA_SEND	<= std_logic_vector(to_unsigned(FAKE_AUDIO,24));
+
+							FIFO_DATA_SEND_24_Bit(23	downto	0)	<= FIFO_DATA_SEND_32_Bit(23	downto	0);
 							
 							if Divider	= 2624 then --2624 @ 126MHZ 2603@125MHZ
 								Divider 	<= 0;
@@ -223,17 +254,17 @@ begin
 					when sSetAdr	=>	FL_data_read				<=	'0';
 														FL_data_address			<=	FL_data_address; -- Vlt mit einer zwischen Variabel lösen
 														FL_data_burstcount	<=	x"8";
-														--if FIFO_ALMOST_EMPTY = '1' then
-														--	
-														--	FL_data_read			<=	'1';
-														--	FSM_Storage				<=	sReading;
-														--	
-														--end if;
+														if FIFO_wrusedw_TOP <= x"10" then
+															
+															FL_data_read			<=	'1';
+															FSM_Storage				<=	sReading;
+															
+														end if;
 					
 					when sReading	=>	if FL_readdata_valid	=	'1' then
 															FL_data_read				<=	'0';
-															--FIFO_DATA_IN			<= FL_read_data;
-															--wwreq							<=	'1';
+															FIFO_DATA_INPUT			<= FL_read_data;
+															FIFO_wrreq_TOP			<=	'1';
 															burstcount					<= burstcount +	1;
 														end if;
 														if	burstcount	>= 7	then
