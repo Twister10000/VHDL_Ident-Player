@@ -37,5 +37,6 @@ quit -sim
 vsim -t 1ps -gui -msgmode both -displaymsgmode both -L work -L ONCHIP_AUDIO_STORAGE work.Ident_Player_TOP_vhd_tst -voptargs=+acc=lprn -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm -L rtl_work  
 
 do wave_TOP.do
+#run -all
 run 450ns
 

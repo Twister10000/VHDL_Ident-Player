@@ -232,7 +232,6 @@ begin
 							BTN_SYNC(1) <= BTN_SYNC(0);
 							BTN_SYNC(2) <= BTN_SYNC(1);
 						
-							ARDUINO_IO(12) <= Word_CLK;		
 							if BTN_SYNC(2) = '1' then
 								LED(1) <= '1';
 							else
@@ -264,7 +263,10 @@ begin
 															FSM_Storage				<=	sReading;
 															
 														end if;
-					
+														if FL_wait_request	= '1' then
+															FL_Data_read			<=	'0';
+															FSM_Storage				<=	sSetAdr;
+														end if;
 					when sReading	=>	if FL_readdata_valid	=	'1' then
 															FL_data_read				<=	'0';
 															FIFO_DATA_INPUT			<= FL_read_data;
