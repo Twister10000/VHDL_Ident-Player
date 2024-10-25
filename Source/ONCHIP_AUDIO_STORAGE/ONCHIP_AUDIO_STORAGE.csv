@@ -1,0 +1,24 @@
+# system info ONCHIP_AUDIO_STORAGE on 2024.10.25.13:04:08
+system_info:
+name,value
+DEVICE,10M50DAF484C7G
+DEVICE_FAMILY,MAX 10
+GENERATION_ID,1729854246
+#
+#
+# Files generated for ONCHIP_AUDIO_STORAGE on 2024.10.25.13:04:08
+files:
+filepath,kind,attributes,module,is_top
+simulation/ONCHIP_AUDIO_STORAGE.vhd,VHDL,,ONCHIP_AUDIO_STORAGE,true
+simulation/submodules/altera_onchip_flash_util.v,VERILOG,,altera_onchip_flash,false
+simulation/submodules/altera_onchip_flash.v,VERILOG,,altera_onchip_flash,false
+simulation/submodules/altera_onchip_flash_avmm_data_controller.v,VERILOG,,altera_onchip_flash,false
+simulation/submodules/altera_reset_controller.v,VERILOG,,altera_reset_controller,false
+simulation/submodules/altera_reset_synchronizer.v,VERILOG,,altera_reset_controller,false
+simulation/submodules/altera_reset_controller.sdc,SDC,,altera_reset_controller,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+ONCHIP_AUDIO_STORAGE.ONCHIP_AUDIO_DATA,altera_onchip_flash
+ONCHIP_AUDIO_STORAGE.rst_controller,altera_reset_controller

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/altera_reset_controller.v"
+   type="VERILOG"
+   library="rst_controller" />
+ <file
+   path="simulation/submodules/altera_reset_synchronizer.v"
+   type="VERILOG"
+   library="rst_controller" />
+ <file
+   path="simulation/submodules/altera_reset_controller.sdc"
+   type="SDC"
+   library="rst_controller" />
+ <file
+   path="simulation/submodules/altera_onchip_flash_util.v"
+   type="VERILOG"
+   library="ONCHIP_AUDIO_DATA" />
+ <file
+   path="simulation/submodules/altera_onchip_flash.v"
+   type="VERILOG"
+   library="ONCHIP_AUDIO_DATA" />
+ <file
+   path="simulation/submodules/altera_onchip_flash_avmm_data_controller.v"
+   type="VERILOG"
+   library="ONCHIP_AUDIO_DATA" />
+ <file path="simulation/ONCHIP_AUDIO_STORAGE.vhd" type="VHDL" />
+ <topLevel name="ONCHIP_AUDIO_STORAGE" />
+ <deviceFamily name="max10" />
+ <modelMap
+   controllerPath="ONCHIP_AUDIO_STORAGE.ONCHIP_AUDIO_DATA"
+   modelPath="ONCHIP_AUDIO_STORAGE.ONCHIP_AUDIO_DATA" />
+</simPackage>
