@@ -125,7 +125,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	
 	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(5 downto	0)		:=	(others	=>	'0');
 	signal			FIFO_DATA_INPUT				:	std_logic_vector	(31	downto	0)	:=	(others	=>	'0');
-	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:= (others	=> '0');
+	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:= (others	=> '1');
 	
 	-- Signal Declarations for Flash Memory
 	signal			FL_reset									:	std_logic												:=	'0';
@@ -174,8 +174,8 @@ begin
 	
 		port map(
 					
-			data				=>	FIFO_DATA_INPUT,								-- FIFO DATA Input
-			rdclk				=>	MADI_CLK,										-- READ_CLK
+			data				=>	FIFO_DATA_INPUT,						-- FIFO DATA Input
+			rdclk				=>	MADI_CLK_PLL,										-- READ_CLK
 			rdreq				=>	FIFO_rdreq_TOP,							-- FIFO READ REQUEST
 			wrclk				=>	CLK,												-- Write CLK
 			wrreq				=>	FIFO_wrreq_TOP,							-- FIFO WRite Request
@@ -193,7 +193,7 @@ begin
 			
 				MADI_CLK					=>	MADI_CLK_PLL,
 				Word_CLK					=>	Word_CLK,
-				FIFO_DATA					=>	FIFO_DATA_SEND_24_Bit,
+				FIFO_DATA					=>	FIFO_DATA_SEND_32_Bit,
 				MADI_FRAME_OUT		=>	MADI_DATA,
 				NEW_AUDIO_DATA_RQ	=>	FIFO_rdreq_TOP,
 				MADI_OUT					=>	MADI_OUT);
@@ -251,7 +251,11 @@ begin
 				--wrreq <= '0'; -- FIFO to MAPPER default 0
 				
 				case FSM_Storage is
-					when sSetAdr	=>	FL_data_read				<=	'0';
+					when sSetAdr	=>	--if FL_data_address	>= x"63"	then
+														--	FL_data_address	<= (others =>	'0');
+														--end if;
+					
+														FL_data_read				<=	'0';
 														FL_data_address			<=	FL_data_address; -- Vlt mit einer zwischen Variabel lösen
 														FL_data_burstcount	<=	x"8";
 														if FIFO_wrusedw_TOP <= x"10" then

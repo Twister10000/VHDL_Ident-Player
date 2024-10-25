@@ -21,7 +21,7 @@ entity AES10_DATA_MAPPER is
 		-- Input ports
 		MADI_CLK						: in  std_logic;
 		Word_CLK						:	in	std_logic;
-		FIFO_DATA						: in  std_logic_vector (23 downto 0) 	:= (others => '1');
+		FIFO_DATA						: in  std_logic_vector (31 downto 0) 	:= (others => '1');
 
 		-- Output ports
 		MADI_OUT						: out std_logic	:=	'0';
