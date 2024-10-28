@@ -10,6 +10,7 @@ add wave -noupdate -expand -group FLASH -color Magenta -label FL_DATA_ADDRESS /i
 add wave -noupdate -expand -group FLASH -color Magenta -label FL_DATA_BURSTCOUNT /ident_player_top_vhd_tst/i1/FL_data_burstcount
 add wave -noupdate -expand -group FLASH /ident_player_top_vhd_tst/i1/ON_AUDIO_STORAGE/onchip_audio_data_address
 add wave -noupdate -expand -group FLASH /ident_player_top_vhd_tst/i1/ON_AUDIO_STORAGE/reset_reset_n
+add wave -noupdate /ident_player_top_vhd_tst/i1/FL_read_data
 add wave -noupdate -expand -group FIFO -expand -group WRITE -label FIFO_DATA_IN /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/data
 add wave -noupdate -expand -group FIFO -expand -group WRITE -label FIFO_WR_CLK /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/wrclk
 add wave -noupdate -expand -group FIFO -expand -group WRITE -label FIFO_WR_REQ /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/wrreq
@@ -22,7 +23,7 @@ add wave -noupdate -expand -group FIFO -expand -group READ -label FIFO_DATA_OUT 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {6046 ps} 0} {{Cursor 2} {431359 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 304
+configure wave -namecolwidth 350
 configure wave -valuecolwidth 132
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -36,4 +37,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {20597 ps}
+WaveRestoreZoom {430433 ps} {450439 ps}
