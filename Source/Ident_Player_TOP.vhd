@@ -135,7 +135,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FL_data_address						:	std_logic_vector(18 downto 	0) 	:= 	(others => 	'0');					
 	signal			FL_data_burstcount				:	std_logic_vector(3	downto	0)	:=	(others	=>	'0');
 	signal			FL_read_data							:	std_logic_vector(31 downto 	0)	:=	(others	=>	'0');									
-	signal			burstcount								:	integer	range	0	to 7 := 0;
+	signal			burstcount								:	integer	range	0	to 8 := 0;
 
 begin
 	-- ONCHIP_AUDIO_STORAGE Instantiation
