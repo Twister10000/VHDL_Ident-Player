@@ -6,7 +6,7 @@ preplace inst ONCHIP_AUDIO_STORAGE -pg 1 -lvl 1 -y 40 -regy -20
 preplace netloc POINT_TO_POINT<net_container>ONCHIP_AUDIO_STORAGE</net_container>(MASTER)SYS_CLK.clk_reset,(SLAVE)ONCHIP_AUDIO_DATA.nreset) 1 1 1 370
 preplace netloc EXPORT<net_container>ONCHIP_AUDIO_STORAGE</net_container>(SLAVE)ONCHIP_AUDIO_STORAGE.clk,(SLAVE)SYS_CLK.clk_in) 1 0 1 NJ
 preplace netloc POINT_TO_POINT<net_container>ONCHIP_AUDIO_STORAGE</net_container>(MASTER)SYS_CLK.clk,(SLAVE)ONCHIP_AUDIO_DATA.clk) 1 1 1 330
-preplace netloc EXPORT<net_container>ONCHIP_AUDIO_STORAGE</net_container>(SLAVE)ONCHIP_AUDIO_STORAGE.reset,(SLAVE)SYS_CLK.clk_in_reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>ONCHIP_AUDIO_STORAGE</net_container>(SLAVE)ONCHIP_AUDIO_DATA.data,(SLAVE)ONCHIP_AUDIO_STORAGE.onchip_audio_data) 1 0 2 NJ 140 NJ
+preplace netloc EXPORT<net_container>ONCHIP_AUDIO_STORAGE</net_container>(SLAVE)ONCHIP_AUDIO_STORAGE.onchip_audio_data,(SLAVE)ONCHIP_AUDIO_DATA.data) 1 0 2 NJ 140 NJ
+preplace netloc EXPORT<net_container>ONCHIP_AUDIO_STORAGE</net_container>(SLAVE)SYS_CLK.clk_in_reset,(SLAVE)ONCHIP_AUDIO_STORAGE.reset) 1 0 1 NJ
 levelinfo -pg 1 0 120 560
 levelinfo -hier ONCHIP_AUDIO_STORAGE 130 160 430 550

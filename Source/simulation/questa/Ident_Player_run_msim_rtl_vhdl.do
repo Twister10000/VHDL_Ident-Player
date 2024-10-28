@@ -7,7 +7,6 @@ vmap work rtl_work
 
 vlib ONCHIP_AUDIO_STORAGE
 vmap ONCHIP_AUDIO_STORAGE ONCHIP_AUDIO_STORAGE
-vlog -vlog01compat -work ONCHIP_AUDIO_STORAGE +incdir+c:/users/mikaj/onedrive\ -\ juventus\ schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage {c:/users/mikaj/onedrive - juventus schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/onchip_audio_storage.v}
 vlog -vlog01compat -work ONCHIP_AUDIO_STORAGE +incdir+c:/users/mikaj/onedrive\ -\ juventus\ schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/submodules {c:/users/mikaj/onedrive - juventus schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/submodules/altera_onchip_flash.v}
 vlog -vlog01compat -work ONCHIP_AUDIO_STORAGE +incdir+c:/users/mikaj/onedrive\ -\ juventus\ schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/submodules {c:/users/mikaj/onedrive - juventus schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/submodules/altera_onchip_flash_avmm_data_controller.v}
 vlog -vlog01compat -work ONCHIP_AUDIO_STORAGE +incdir+c:/users/mikaj/onedrive\ -\ juventus\ schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/submodules {c:/users/mikaj/onedrive - juventus schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/submodules/altera_onchip_flash_util.v}
@@ -18,6 +17,7 @@ vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juve
 vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/FIFO_MAP_ENC.vhd}
 vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/MADI_PLL.vhd}
 vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/FIFO_FLASH_AES10.vhd}
+vcom -2008 -work ONCHIP_AUDIO_STORAGE {c:/users/mikaj/onedrive - juventus schulen/dokumente/juventus/diplom/diplomarbeit/vhdl/vhdl_ident-player/source/db/ip/onchip_audio_storage/onchip_audio_storage.vhd}
 vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/AES10_DATA_MAPPER.vhd}
 vcom -2008 -work work {C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/Ident_Player_TOP.vhd}
 

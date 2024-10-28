@@ -5,7 +5,7 @@
  version="23.1"
  fabric="QSYS">
  <!-- Format version 23.1 993 (Future versions may contain additional information.) -->
- <!-- 2024.10.25.15:02:35 -->
+ <!-- 2024.10.28.14:42:57 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -57,7 +57,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1729861354</value>
+  <value>1730122977</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -384,7 +384,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="initializationFileNameForSim">
    <type>java.lang.String</type>
-   <value>C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</value>
+   <value>C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -409,7 +409,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="INIT_FILENAME_SIM">
    <type>java.lang.String</type>
-   <value>C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</value>
+   <value>C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -2179,5 +2179,5 @@ parameters are a RESULT of the module parameters. -->
   <version>23.1</version>
  </plugin>
  <reportVersion>23.1 993</reportVersion>
- <uniqueIdentifier>86C5A6F93EAE00000192C3C58811</uniqueIdentifier>
+ <uniqueIdentifier>18C04D892EC100000192D35D91C5</uniqueIdentifier>
 </EnsembleReport>

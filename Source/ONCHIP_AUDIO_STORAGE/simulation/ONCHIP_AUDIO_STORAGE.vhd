@@ -163,7 +163,7 @@ begin
 	onchip_audio_data : component altera_onchip_flash
 		generic map (
 			INIT_FILENAME                       => "",
-			INIT_FILENAME_SIM                   => "C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif",
+			INIT_FILENAME_SIM                   => "C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif",
 			DEVICE_FAMILY                       => "MAX 10",
 			PART_NAME                           => "10M50DAF484C7G",
 			DEVICE_ID                           => "50",
