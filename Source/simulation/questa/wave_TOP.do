@@ -8,20 +8,19 @@ add wave -noupdate -expand -group FLASH -color Magenta -label FL_WAIT_REQUEST /i
 add wave -noupdate -expand -group FLASH -color Magenta -label FL_READDATA_VALID /ident_player_top_vhd_tst/i1/FL_readdata_valid
 add wave -noupdate -expand -group FLASH -color Magenta -label FL_DATA_ADDRESS /ident_player_top_vhd_tst/i1/FL_data_address
 add wave -noupdate -expand -group FLASH -color Magenta -label FL_DATA_BURSTCOUNT /ident_player_top_vhd_tst/i1/FL_data_burstcount
-add wave -noupdate -expand -group FLASH /ident_player_top_vhd_tst/i1/ON_AUDIO_STORAGE/onchip_audio_data_address
-add wave -noupdate -expand -group FLASH /ident_player_top_vhd_tst/i1/ON_AUDIO_STORAGE/reset_reset_n
-add wave -noupdate /ident_player_top_vhd_tst/i1/FL_read_data
+add wave -noupdate -expand -group FLASH /ident_player_top_vhd_tst/i1/FL_read_data
+add wave -noupdate -expand -group FLASH /ident_player_top_vhd_tst/i1/burstcount
 add wave -noupdate -expand -group FIFO -expand -group WRITE -label FIFO_DATA_IN /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/data
 add wave -noupdate -expand -group FIFO -expand -group WRITE -label FIFO_WR_CLK /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/wrclk
 add wave -noupdate -expand -group FIFO -expand -group WRITE -label FIFO_WR_REQ /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/wrreq
 add wave -noupdate -expand -group FIFO -expand -group WRITE -label FIFO_WR_FULL /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/wrfull
 add wave -noupdate -expand -group FIFO -label FIFO_WORDS_USED /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/wrusedw
-add wave -noupdate -expand -group FIFO -expand -group READ -label FIFO_READ_CLK /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/rdclk
-add wave -noupdate -expand -group FIFO -expand -group READ -label FIFO_READ_REQ /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/rdreq
-add wave -noupdate -expand -group FIFO -expand -group READ -label FIFO_READ_EMPTY /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/rdempty
-add wave -noupdate -expand -group FIFO -expand -group READ -label FIFO_DATA_OUT /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/q
+add wave -noupdate -expand -group FIFO -group READ -label FIFO_READ_CLK /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/rdclk
+add wave -noupdate -expand -group FIFO -group READ -label FIFO_READ_REQ /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/rdreq
+add wave -noupdate -expand -group FIFO -group READ -label FIFO_READ_EMPTY /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/rdempty
+add wave -noupdate -expand -group FIFO -group READ -label FIFO_DATA_OUT /ident_player_top_vhd_tst/i1/FIFO_FLASH_AES10/q
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {6046 ps} 0} {{Cursor 2} {431359 ps} 0}
+WaveRestoreCursors {{Cursor 1} {340573 ps} 0} {{Cursor 2} {444000 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 350
 configure wave -valuecolwidth 132
@@ -37,4 +36,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {430433 ps} {450439 ps}
+WaveRestoreZoom {331983 ps} {352372 ps}

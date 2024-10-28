@@ -247,8 +247,7 @@ begin
 	begin
 	
 			if rising_edge(CLK)	then
-				--wrreq <= '0'; -- FIFO to MAPPER default 0
-				
+				FIFO_wrreq_TOP			<=	'0';
 				case FSM_Storage is
 					when sSetAdr	=>	--if FL_data_address	>= x"63"	then
 														--	FL_data_address	<= (others =>	'0');
@@ -263,7 +262,9 @@ begin
 															FSM_Storage				<=	sReading;
 															
 														end if;
-					when sReading	=>	if FL_readdata_valid	=	'1' then
+														
+					when sReading	=>	
+														if FL_readdata_valid	=	'1' then
 															FL_data_read				<=	'0';
 															FIFO_DATA_INPUT			<= FL_read_data;
 															FIFO_wrreq_TOP			<=	'1';
