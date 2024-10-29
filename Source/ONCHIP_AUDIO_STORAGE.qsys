@@ -71,7 +71,7 @@
   <parameter name="autoInitializationFileName">$${FILENAME}_ONCHIP_AUDIO_DATA</parameter>
   <parameter name="initFlashContent" value="true" />
   <parameter name="initializationFileName" value="" />
-  <parameter name="initializationFileNameForSim">C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</parameter>
+  <parameter name="initializationFileNameForSim">C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SQAURE_WAV.mif</parameter>
   <parameter name="useNonDefaultInitFile" value="true" />
  </module>
  <module name="SYS_CLK" kind="clock_source" version="23.1" enabled="1">
