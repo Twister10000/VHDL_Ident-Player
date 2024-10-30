@@ -249,9 +249,7 @@ begin
 			if rising_edge(CLK)	then
 				FIFO_wrreq_TOP			<=	'0';
 				case FSM_Storage is
-					when sSetAdr	=>	--if FL_data_address	>= x"63"	then
-														--	FL_data_address	<= (others =>	'0');
-														--end if;
+					when sSetAdr	=>	
 					
 														FL_data_read				<=	'0';
 														FL_data_address			<=	FL_data_address; -- Vlt mit einer zwischen Variabel lösen
@@ -263,6 +261,9 @@ begin
 															
 														end if;
 														
+														if FL_data_address	>= x"63"	then
+															FL_data_address	<= (others =>	'0');
+														end if;
 					when sReading	=>	
 														if FL_readdata_valid	=	'1' then
 															FL_data_read				<=	'0';
