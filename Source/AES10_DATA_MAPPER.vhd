@@ -156,9 +156,32 @@ begin
 										when others				=>	null;
 									end case;
 									
-									MADI_FRAME(23 downto	0) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
-									
-									
+									--MADI_FRAME(23 downto	0) <= FIFO_DATA(23 downto	0); -- Audio Daten werden in das Frame geschrieben. Bit 27 ist MSB!!!!
+									MADI_FRAME(0)					<=	FIFO_DATA(3);
+									MADI_FRAME(1)					<=	FIFO_DATA(2);
+									MADI_FRAME(2)					<=	FIFO_DATA(1);
+									MADI_FRAME(3)					<=	FIFO_DATA(0);
+									MADI_FRAME(4)					<=	FIFO_DATA(7);
+									MADI_FRAME(5)					<=	FIFO_DATA(6);
+									MADI_FRAME(6)					<=	FIFO_DATA(5);
+									MADI_FRAME(7)					<=	FIFO_DATA(4);
+									MADI_FRAME(8)					<=	FIFO_DATA(11);
+									MADI_FRAME(9)					<=	FIFO_DATA(10);
+									MADI_FRAME(10)				<=	FIFO_DATA(9);
+									MADI_FRAME(11)				<=	FIFO_DATA(8);
+									MADI_FRAME(12)				<=	FIFO_DATA(15);
+									MADI_FRAME(13)				<=	FIFO_DATA(14);
+									MADI_FRAME(14)				<=	FIFO_DATA(13);
+									MADI_FRAME(15)				<=	FIFO_DATA(12);
+									MADI_FRAME(16)				<=	FIFO_DATA(19);
+									MADI_FRAME(17)				<=	FIFO_DATA(18);
+									MADI_FRAME(18)				<=	FIFO_DATA(17);
+									MADI_FRAME(19)				<=	FIFO_DATA(16);
+									MADI_FRAME(20)				<=	FIFO_DATA(23);
+									MADI_FRAME(21)				<=	FIFO_DATA(22);
+									MADI_FRAME(22)				<=	FIFO_DATA(21);
+									MADI_FRAME(23)				<=	FIFO_DATA(20);
+
 									--MADI_FRAME(0)						<= '1'; -- Audio Data Bit 4
 									--MADI_FRAME(1)						<= '0';	-- Audio Data Bit 3 
 									--MADI_FRAME(2)						<= '0'; -- Audio Data Bit 2
