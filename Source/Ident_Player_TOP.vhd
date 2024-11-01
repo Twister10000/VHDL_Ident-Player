@@ -219,7 +219,7 @@ begin
 
 							FIFO_DATA_SEND_24_Bit(23	downto	0)	<= FIFO_DATA_SEND_32_Bit(23	downto	0);
 							
-							if Divider	= 2624 then --2624 @ 126MHZ 2603@125MHZ
+							if Divider	= 2603 then --2624 @ 126MHZ 2603@125MHZ
 								Divider 	<= 0;
 							end if;
 						
