@@ -186,7 +186,7 @@ begin
 	
 	
 	-- MADI_DATA_MAPPER Instantiation
-	MADI_MAPPER	: if SimULATION	= false generate
+	--MADI_MAPPER	: if SimULATION	= false generate
 	
 		MADI_DATA_MAPPER	:	entity work.AES10_DATA_MAPPER
 			port map(
@@ -197,7 +197,7 @@ begin
 				MADI_FRAME_OUT		=>	MADI_DATA,
 				NEW_AUDIO_DATA_RQ	=>	FIFO_rdreq_TOP,
 				MADI_OUT					=>	MADI_OUT);
-	end generate MADI_MAPPER;
+	--end generate MADI_MAPPER;
 	
 	-- Process Statement (optional)
 
@@ -261,7 +261,7 @@ begin
 															
 														end if;
 														
-														if FL_data_address	>= x"63"	then
+														if FL_data_address	>= x"60"	then
 															FL_data_address	<= (others =>	'0');
 														end if;
 					when sReading	=>	
