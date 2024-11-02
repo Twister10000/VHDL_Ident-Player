@@ -261,7 +261,7 @@ begin
 															
 														end if;
 														
-														if FL_data_address	>= x"60"	then
+														if FL_data_address	>= x"2F"	then
 															FL_data_address	<= (others =>	'0');
 														end if;
 					when sReading	=>	
