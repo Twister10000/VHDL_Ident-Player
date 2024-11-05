@@ -16,6 +16,7 @@ create_clock -period "50.0 MHz" [get_ports MAX10_CLK2_50]
 #**************************************************************
 derive_pll_clocks -create_base_clocks
 set MADI_CLK	{MADI_PLL|altpll_component|auto_generated|pll1|clk[0]}
+create_generated_clock -name flash_se_neg_reg  -source [get_pins {ON_AUDIO_STORAGE|onchip_audio_data|avmm_data_controller|flash_se_neg_reg|clk}] -divide_by 2 [get_pins {ON_AUDIO_STORAGE|onchip_audio_data|avmm_data_controller|flash_se_neg_reg|q}]
 
 
 #**************************************************************
