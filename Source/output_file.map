@@ -2,8 +2,8 @@ BLOCK		START ADDRESS		END ADDRESS
 
 ICB			0x00000000			0x00001FFF
 UFM			0x00002000			0x000B9FFF
-CFM0		0x000BA000			0x00161FFF (0x000FAC8F)
-CFM0_DATA	0x00161000			0x00161FFF
+CFM0		0x000BA000			0x00161FFF (0x000FACBF)
+CFM0_DATA	0x00161F40			0x00161FFF
 
 
 Max 10 Setting:
@@ -20,6 +20,6 @@ Max 10 Setting:
 
 Notes:
 
-- Data checksum for this conversion is 0x1261ED8B
+- Data checksum for this conversion is 0x126B0906
 
 - All the addresses in this file are byte addresses
