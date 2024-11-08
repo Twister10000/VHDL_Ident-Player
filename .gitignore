@@ -114,3 +114,4 @@ Source/output_files/VGA_DEMO.sof
 #Source/simulation/questa/wlftx5t6h7
 #/Source/simulation/questa
 Source/simulation/questa/Ident_Player_run_msim_rtl_vhdl.do
+Source/ONCHIP_AUDIO_STORAGE.sopcinfo
