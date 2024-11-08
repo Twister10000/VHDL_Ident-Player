@@ -1,12 +1,12 @@
-# system info ONCHIP_AUDIO_STORAGE on 2024.11.02.15:43:12
+# system info ONCHIP_AUDIO_STORAGE on 2024.11.08.13:36:30
 system_info:
 name,value
 DEVICE,10M50DAF484C7G
 DEVICE_FAMILY,MAX 10
-GENERATION_ID,1730558591
+GENERATION_ID,1731069387
 #
 #
-# Files generated for ONCHIP_AUDIO_STORAGE on 2024.11.02.15:43:12
+# Files generated for ONCHIP_AUDIO_STORAGE on 2024.11.08.13:36:30
 files:
 filepath,kind,attributes,module,is_top
 simulation/ONCHIP_AUDIO_STORAGE.vhd,VHDL,,ONCHIP_AUDIO_STORAGE,true

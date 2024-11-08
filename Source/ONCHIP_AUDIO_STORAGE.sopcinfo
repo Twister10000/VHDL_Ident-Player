@@ -5,11 +5,11 @@
  version="1.0"
  fabric="QSYS">
  <!-- Format version 23.1 993 (Future versions may contain additional information.) -->
- <!-- 2024.11.08.09:27:45 -->
+ <!-- 2024.11.08.13:37:22 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1731054465</value>
+  <value>1731069442</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -332,7 +332,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="initializationFileNameForSim">
    <type>java.lang.String</type>
-   <value>C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SINE_1kHz_WAV.mif</value>
+   <value>C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SINE_1kHz_WAV.mif</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -357,7 +357,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="INIT_FILENAME_SIM">
    <type>java.lang.String</type>
-   <value>C:/Users/mikaj/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SINE_1kHz_WAV.mif</value>
+   <value>C:/Users/admin/OneDrive - Juventus Schulen/Dokumente/Juventus/Diplom/Diplomarbeit/VHDL/VHDL_Ident-Player/Source/TEST_SINE_1kHz_WAV.mif</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
