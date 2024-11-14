@@ -1,0 +1,74 @@
+-- Copyright (C) 2024  Intel Corporation. All rights reserved.
+-- Your use of Intel Corporation's design tools, logic functions 
+-- and other software and tools, and any partner logic 
+-- functions, and any output files from any of the foregoing 
+-- (including device programming or simulation files), and any 
+-- associated documentation or information are expressly subject 
+-- to the terms and conditions of the Intel Program License 
+-- Subscription Agreement, the Intel Quartus Prime License Agreement,
+-- the Intel FPGA IP License Agreement, or other applicable license
+-- agreement, including, without limitation, that your use is for
+-- the sole purpose of programming logic devices manufactured by
+-- Intel and sold by Intel or its authorized distributors.  Please
+-- refer to the applicable agreement for further details, at
+-- https://fpgasoftware.intel.com/eula.
+
+-- Quartus Prime generated Memory Initialization File (.mif)
+
+WIDTH=32;
+DEPTH=48;
+
+ADDRESS_RADIX=UNS;
+DATA_RADIX=DEC;
+
+CONTENT BEGIN
+0	:	1313920;
+1	:	2605358;
+2	:	3852218;
+3	:	5033165;
+4	:	6127993;
+5	:	7117970;
+6	:	7986156;
+7	:	8717697;
+8	:	9300076;
+9	:	9723328;
+10	:	9980211;
+11	:	10066330;
+12	:	9980211;
+13	:	9723328;
+14	:	9300076;
+15	:	8717698;
+16	:	7986157;
+17	:	7117970;
+18	:	6127994;
+19	:	5033165;
+20	:	3852218;
+21	:	2605358;
+22	:	1313920;
+23	:	0;
+24	:	-1313919;
+25	:	-2605358;
+26	:	-3852217;
+27	:	-5033165;
+28	:	-6127993;
+29	:	-7117970;
+30	:	-7986156;
+31	:	-8717697;
+32	:	-9300076;
+33	:	-9723328;
+34	:	-9980211;
+35	:	-10066330;
+36	:	-9980211;
+37	:	-9723328;
+38	:	-9300076;
+39	:	-8717698;
+40	:	-7986157;
+41	:	-7117971;
+42	:	-6127994;
+43	:	-5033165;
+44	:	-3852218;
+45	:	-2605358;
+46	:	-1313920;
+47	:	-1;
+
+END;
