@@ -132,7 +132,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 		type Storage_FSM	is (sSetAdr, sReading);
 		
 		-- Type for SD Card
-		type	SDCARD_FSM	is	(init, SetAdr, SD_Reading, idle); 
+		type	SDCARD_FSM	is	(init, sFIFO_wr, SD_Reading, idle); 
 	
 		-- Finite-State-Maschine Declarations
 		-- FSM Declarations Internal Flash
@@ -262,6 +262,10 @@ begin
 	u_simple_sd:	simple_sd port map (rst=>rst, clk=>clk, sd_clk=>sd_clk, sd_cmd=>sd_cmd, sd_dat=>sd_dat, sd_cd=>sd_cd,
 									sleep=>sleep, mode=>mode, mode_fb=>mode_fb, dat_address=>dat_address, ctrl_tick=>ctrl_tick, fb_tick=>fb_tick,
 									dat_block=>dat_block, dat_valid=>dat_valid, dat_tick=>dat_tick, unit_stat=>unit_stat);
+									
+									
+	-- SD_CARD ADDRESS COUNTER instantiation
+		add_count:		count_bin generic map (bits=>32) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>dat_address);
 	
 	-- Process Statement (optional)
 
@@ -304,7 +308,8 @@ begin
 							else
 								LED(1) <= '0';
 							end if;
-						
+
+							
 						end if;
 	
 	end process	main;
