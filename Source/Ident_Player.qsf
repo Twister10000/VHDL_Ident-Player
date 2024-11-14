@@ -414,6 +414,20 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_location_assignment PIN_AB6 -to SD_CD
+set_location_assignment PIN_AB7 -to SD_DAT[2]
+set_location_assignment PIN_AB8 -to SD_DAT[1]
+set_location_assignment PIN_AB9 -to SD_CLK
+set_location_assignment PIN_Y10 -to SD_DAT[3]
+set_location_assignment PIN_AA11 -to SD_CMD
+set_location_assignment PIN_AA12 -to SD_DAT[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CD
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CMD
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[0]
 set_global_assignment -name QSYS_FILE ONCHIP_AUDIO_STORAGE.qsys
 set_global_assignment -name VHDL_FILE Ident_Player_TOP.vhd
 set_global_assignment -name SDC_FILE Ident_Player.sdc
@@ -430,19 +444,25 @@ set_global_assignment -name COMMAND_MACRO_FILE simulation/questa/rtl_TOP_LEVEL_D
 set_global_assignment -name MIF_FILE TEST_SQAURE_WAV.mif
 set_global_assignment -name QIP_FILE FIFO_FLASH_AES10.qip
 set_global_assignment -name VHDL_TEST_BENCH_FILE simulation/questa/TB_Ident_Player_TOP.vht
-set_location_assignment PIN_AB6 -to SD_CD
-set_location_assignment PIN_AB7 -to SD_DAT[2]
-set_location_assignment PIN_AB8 -to SD_DAT[1]
-set_location_assignment PIN_AB9 -to SD_CLK
-set_location_assignment PIN_Y10 -to SD_DAT[3]
-set_location_assignment PIN_AA11 -to SD_CMD
-set_location_assignment PIN_AA12 -to SD_DAT[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CD
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_CMD
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DAT[0]
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/vhdl_lib_pkg.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/toggle_unit.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/tick_extend.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/sweep_unit.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/rotary.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/reset_unit.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/pwm_unit.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/prescaler.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/one_shot.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/ff_rs.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/debounce.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/count_int.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/vhdl_lib/count_bin.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/sd/simple_sd.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/sd/sd_transceiver.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/sd/sd_pkg.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/sd/sd_controller.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/sd/sd_const_pkg.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/sd/crc.vhd
+set_global_assignment -name VHDL_FILE SD_Card_Lib/de0_nano/de0_nano_const_pkg.vhd
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
