@@ -173,8 +173,6 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	-- Signal Declarations for SD_CARD Controller
 	signal rst 									: std_ulogic;
 	-- =================================
-	signal pb_tick							: std_ulogic_vector(pb'length-1 downto 0);
-	-- =================================
 	signal sleep								: std_ulogic := '0';
 	signal mode, mode_fb				: sd_mode_record;
 	signal dat_address					: sd_dat_address_type := (others=>'0');
