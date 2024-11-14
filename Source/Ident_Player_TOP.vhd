@@ -6,6 +6,29 @@ use	ieee.std_logic_1164.all;
 use	ieee.numeric_std.all;
 use	ieee.std_logic_unsigned.all;
 
+
+library work;
+use work.de0_nano_const_pkg.all;
+
+-- vhdl_lib
+use work.vhdl_lib_pkg.count_bin;
+use work.vhdl_lib_pkg.count_int;
+use work.vhdl_lib_pkg.debounce;
+use work.vhdl_lib_pkg.ff_rs;
+use work.vhdl_lib_pkg.one_shot;
+use work.vhdl_lib_pkg.prescaler;
+use work.vhdl_lib_pkg.pwm_unit;
+use work.vhdl_lib_pkg.reset_unit;
+use work.vhdl_lib_pkg.rotary;
+use work.vhdl_lib_pkg.sweep_unit;
+use work.vhdl_lib_pkg.tick_extend;
+use work.vhdl_lib_pkg.toggle_unit;
+
+-- sd
+use work.sd_const_pkg.all;
+use work.sd_pkg.simple_sd;
+
+
 entity Ident_Player_TOP is
 	generic
 	(
@@ -145,6 +168,23 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FL_data_burstcount				:	std_logic_vector(3	downto	0)	:=	(others	=>	'0');
 	signal			FL_read_data							:	std_logic_vector(31 downto 	0)	:=	(others	=>	'0');									
 	signal			burstcount								:	integer	range	0	to 8 := 0;
+	
+	
+	-- Signal Declarations for SD_CARD Controller
+	signal rst 									: std_ulogic;
+	-- =================================
+	signal pb_tick							: std_ulogic_vector(pb'length-1 downto 0);
+	-- =================================
+	signal sleep								: std_ulogic := '0';
+	signal mode, mode_fb				: sd_mode_record;
+	signal dat_address					: sd_dat_address_type := (others=>'0');
+	signal ctrl_tick, fb_tick		: sd_tick_record;
+	signal dat_block						: dat_block_type;
+	signal dat_valid, dat_tick	: std_ulogic;
+	signal unit_stat						: sd_controller_stat_type;
+	-- =================================
+	signal byte									: std_ulogic_vector(7 downto 0);
+	signal valid								: std_ulogic;
 
 begin
 	-- ONCHIP_AUDIO_STORAGE Instantiation
@@ -184,7 +224,7 @@ begin
 		port map(
 					
 			data				=>	FIFO_DATA_INPUT,						-- FIFO DATA Input
-			rdclk				=>	MADI_CLK_PLL,										-- READ_CLK
+			rdclk				=>	MADI_CLK_PLL,								-- READ_CLK
 			rdreq				=>	FIFO_rdreq_TOP,							-- FIFO READ REQUEST
 			wrclk				=>	CLK,												-- Write CLK
 			wrreq				=>	FIFO_wrreq_TOP,							-- FIFO WRite Request
@@ -207,6 +247,13 @@ begin
 				NEW_AUDIO_DATA_RQ	=>	FIFO_rdreq_TOP,
 				MADI_OUT					=>	MADI_OUT);
 	--end generate MADI_MAPPER;
+	
+	
+	-- SD_CARD-Controller instantiation
+	
+	u_simple_sd:	simple_sd port map (rst=>rst, clk=>clk, sd_clk=>sd_clk, sd_cmd=>sd_cmd, sd_dat=>sd_dat, sd_cd=>sd_cd,
+									sleep=>sleep, mode=>mode, mode_fb=>mode_fb, dat_address=>dat_address, ctrl_tick=>ctrl_tick, fb_tick=>fb_tick,
+									dat_block=>dat_block, dat_valid=>dat_valid, dat_tick=>dat_tick, unit_stat=>unit_stat);
 	
 	-- Process Statement (optional)
 
@@ -236,7 +283,14 @@ begin
 							RST_SYNC(0) <= BTN(1);
 							RST_SYNC(1) <= RST_SYNC(0);
 							RST_SYNC(2) <= RST_SYNC(1);
-						
+							
+							-- Reset Signal 
+							if RST_SYNC(2)	=	'0'	then
+								rst	<=	'1';
+							else
+								rst	<=	'0';
+							end if;
+							-- Basic Fnction Test with LED
 							if BTN_SYNC(2) = '1' then
 								LED(1) <= '1';
 							else
