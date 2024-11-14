@@ -123,6 +123,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			Divider								: integer	range	0	to 4096 := 0;
 	signal			FAKE_AUDIO						: integer	range	0	to 17e6 := 0;
 	signal			BTN_SYNC							: std_logic_vector	(2 downto	0) := (others	=>	'0');
+	signal			RST_SYNC							: std_logic_vector	(2 downto	0) := (others	=>	'0');
 	
 	
 	-- Signal Declarations FOR FIFO_FLASH_AES10
@@ -214,16 +215,8 @@ begin
 	begin
 	
 						if rising_edge(MADI_CLK_PLL)	then
-							--if RST = '0' then
-							--	Divider <= 0;
-							--end if;
 							
 							Divider 		<= Divider + 1;
---							FAKE_AUDIO	<= FAKE_AUDIO	+	1;
---							if FAKE_AUDIO	= 12e6 then
---								Fake_AUDIO	<= 0;
---							end if;
---							FIFO_DATA_SEND	<= std_logic_vector(to_unsigned(FAKE_AUDIO,24));
 
 							FIFO_DATA_SEND_24_Bit(23	downto	0)	<= FIFO_DATA_SEND_32_Bit(23	downto	0);
 							
@@ -239,6 +232,10 @@ begin
 							BTN_SYNC(0) <= BTN(0);
 							BTN_SYNC(1) <= BTN_SYNC(0);
 							BTN_SYNC(2) <= BTN_SYNC(1);
+							
+							RST_SYNC(0) <= BTN(1);
+							RST_SYNC(1) <= RST_SYNC(0);
+							RST_SYNC(2) <= RST_SYNC(1);
 						
 							if BTN_SYNC(2) = '1' then
 								LED(1) <= '1';
