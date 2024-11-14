@@ -31,13 +31,18 @@ entity Ident_Player_TOP is
 			
 			-- Sliders--
 			Slider 					: in std_logic_vector(9 downto 0);
-
+			
+			--SD Card--
+			SD_CD						:	in	std_logic;
 		
 		-- Inout ports
 			-- ARDUINO Shield Pins
-			ARDUINO_IO 			: inout std_logic_vector(15 downto 0);
+			ARDUINO_IO 			: inout std_logic_vector(8 downto 	0);
 			ARDUINO_RESET_N : inout std_logic;
 			
+			-- SD-Card Pins
+			SD_CMD					:	inout	std_logic;
+			SD_DAT					:	inout	std_logic_vector(3	downto	0);
 			-- 2x20 GPIO Connector--
 			GPIO 						: inout std_logic_vector(32 downto 0);
 			
@@ -71,6 +76,9 @@ entity Ident_Player_TOP is
 
 			-- LEDS Pins --
 			LED 						: out std_logic_vector(9 downto 0)	:=	(others	=>	'0');
+			
+			-- SD-Card Pins --
+			SD_CLK					:	out	std_logic;
 			
 			-- MADI Pins --
 			
