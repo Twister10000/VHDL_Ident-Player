@@ -128,14 +128,24 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	-- FSM Declarations
 	
 		-- Type Declarations
-	
+		-- Type for internal Flash
 		type Storage_FSM	is (sSetAdr, sReading);
+		
+		-- Type for SD Card
+		type	SDCARD_FSM	is	(init, SetAdr, SD_Reading, idle); 
 	
 		-- Finite-State-Maschine Declarations
+		-- FSM Declarations Internal Flash
 		signal	FSM_Storage : Storage_FSM := sSetAdr;
 		
 		attribute syn_encoding	: string;
 		attribute	syn_encoding	of Storage_FSM	:	type is "safe";
+		
+		-- FSM Declarations SD_CARD
+		signal	FSM_SDCARD	:	SDCARD_FSM	:=	init;
+		
+		attribute syn_encoding_SD	: string;
+		attribute	syn_encoding_SD	of SDCARD_FSM	:	type is "safe";
 	
 	-- Signal Declarations FOR AES10_TX 
 	signal			FIFO_DATA_SEND_24_Bit	:	std_logic_vector	(23 downto	0) := (others	=> '0');--x"DC5E19"; --x"F0F0F0"; --(others	=> '0'); 
@@ -340,4 +350,15 @@ begin
 			end if;
 	
 	end process ONCHIP_FLASH_CONTROLLER;
+	
+	
+	SD_CARD_Controller	:	process(all) 
+	
+		begin
+	
+				if rising_edge(CLK)	then
+				
+				end if;
+		
+	end process	SD_CARD_Controller;
 end BEH_Ident_Player_TOP;
