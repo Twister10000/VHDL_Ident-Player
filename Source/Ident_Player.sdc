@@ -36,8 +36,8 @@ derive_clock_uncertainty
 # Set Input Delay
 #**************************************************************
 
-set_input_delay -clock CLK -max 0ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO* SD_DAT* SD_CMD SD_WP SD_CD}] 
-set_input_delay -clock CLK -min 0.000ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO* SD_DAT* SD_CMD SD_WP SD_CD}] 
+set_input_delay -clock CLK -max 0ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO* SD_DAT* SD_CMD  SD_CD}] 
+set_input_delay -clock CLK -min 0.000ns [get_ports {BTN* GPIO* Slider* ARDUINO_IO* SD_DAT* SD_CMD  SD_CD}] 
 set_input_delay -add_delay -clock [get_clocks {MADI_PLL|altpll_component|auto_generated|pll1|clk[0]}] 0.000 [get_ports {MADI_OUT}]
 
 
