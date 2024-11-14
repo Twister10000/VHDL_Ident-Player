@@ -32,7 +32,6 @@ use work.sd_pkg.simple_sd;
 entity Ident_Player_TOP is
 	generic
 	(
-	
 		SIMULATION					: boolean	:= false);
 
 
@@ -313,7 +312,7 @@ begin
 						end if;
 	
 	end process	main;
-	
+	/*
 	ONCHIP_FLASH_CONTROLLER	: process(all)
 	
 	begin
@@ -354,7 +353,7 @@ begin
 				
 			end if;
 	
-	end process ONCHIP_FLASH_CONTROLLER;
+	end process ONCHIP_FLASH_CONTROLLER;*/
 	
 	
 	SD_CARD_Controller	:	process(all) 
@@ -362,6 +361,61 @@ begin
 		begin
 	
 				if rising_edge(CLK)	then
+					
+					--Set default Values
+					ctrl_tick.reinit	<=	'0';
+					FIFO_wrreq_TOP		<=	'0';
+					
+					
+					case FSM_SDCARD is
+						when idle 				=>	
+																	if unit_stat	= s_ready then 
+																		if FIFO_wrusedw_TOP <= x"10" then
+																			FSM_SDCARD	<= SD_REading;
+																		else
+																			FSM_SDCARD	<= idle;
+																		end if;
+																	else
+																		FSM_SDCARD	<= init;
+																	end if;
+						
+						when init					=>	
+																	if unit_stat	=	s_ready then
+																		FSM_SDCARD	<= idle;
+																	else
+																		ctrl_tick.reinit	<=	'1';
+																	end if;
+																	
+						
+						when	SD_Reading	=>	
+																	if unit_stat	= s_ready or unit_stat	=	s_read then
+																	
+																		if dat_tick = '0' then
+																			
+																			ctrl_tick.read_single	<=	'1';
+																			
+																		else
+																			ctrl_tick.read_single	<=	'0';
+																			FSM_SDCARD	<=	sFIFO_wr;
+																		end if;
+																	
+																	else
+																		FSM_SDCARD	<= init;
+																	end if;
+						
+						when	sFIFO_wr			=>	
+																	if dat_valid	=	'1' then
+																		FIFO_DATA_INPUT	<= std_logic_vector(dat_block(0)) & std_logic_vector(dat_block(1)) & std_logic_vector(dat_block(2)) & std_logic_vector(dat_block(3));
+																		FIFO_wrreq_TOP	<=	'1';	
+																	else
+																	
+																	end if;
+																	FSM_SDCARD	<= idle;
+																	
+						
+						when others				=> FSM_SDCARD	<=	idle;
+					
+					end case;
 				
 				end if;
 		
