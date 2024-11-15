@@ -439,7 +439,7 @@ begin
 																			FIFO_wrreq_TOP	<=	'0';
 																		else
 																			CTN_dat_block		<=	CTN_dat_block	+	1;
-																			FIFO_DATA_INPUT	<=	dat_block(CTN_dat_block);
+																			--FIFO_DATA_INPUT	<=	dat_block(CTN_dat_block);
 																			FIFO_wrreq_TOP	<=	'1';
 																		end if;
 																	else
