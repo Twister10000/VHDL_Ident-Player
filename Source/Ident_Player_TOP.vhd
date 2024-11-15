@@ -367,9 +367,34 @@ begin
 					--Set default Values
 					ctrl_tick.reinit	<=	'0';
 					FIFO_wrreq_TOP		<=	'0';
+					LED(9 downto 4) <= "000000";
+					
+					if sd_cd = '1' then
+						LED(4)	<=	'1';
+					else
+						LED(4)	<=	'0';
+					end if;
 					
 					dat_address	<= sd_dat_address_type(to_unsigned(sd_Data_adress,32)); -- Integer to Vector converter
 					
+						-- LED Display for Status Info 
+						case unit_stat is
+						
+						when s_ready		=>	LED(5)	<=	'1';
+						
+						when s_init			=>	LED(6)	<= 	'1';
+						
+						when s_read			=>	LED(7)	<=	'1';
+						
+						when s_error		=>	LED(8)	<=	'1';
+						
+						when s_no_card	=>	LED(9)	<=	'1';
+						
+						when others		=>	null;
+						end case;
+						
+						
+						
 					case FSM_SDCARD is
 						when idle 				=>	
 																	if unit_stat	= s_ready then 
