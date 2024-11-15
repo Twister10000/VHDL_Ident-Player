@@ -189,7 +189,8 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal dat_block						: dat_block_type;
 	signal dat_valid, dat_tick	: std_ulogic;
 	signal unit_stat						: sd_controller_stat_type;
-	signal SD_data_adress				:	integer range 0 to 200e3 := 0;
+	signal SD_data_adress				:	integer range 0 to 	200e3 			:= 	0;
+	signal CTN_dat_block				:	integer	range	0	to	blocklen		:=	0;
 	-- =================================
 	signal byte									: std_ulogic_vector(7 downto 0);
 	signal valid								: std_ulogic;
@@ -265,7 +266,7 @@ begin
 									
 									
 	-- SD_CARD ADDRESS COUNTER instantiation
-		add_count:		count_int generic map (max=>1465) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress);
+		add_count:		count_int generic map (max=>1465) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress); -- Testfile is 749769 Byte larger
 	
 	-- Process Statement (optional)
 
@@ -407,13 +408,18 @@ begin
 						
 						when	sFIFO_wr			=>	
 																	if dat_valid	=	'1' then
-																		FIFO_DATA_INPUT	<= std_logic_vector(dat_block(0)) & std_logic_vector(dat_block(1)) & std_logic_vector(dat_block(2)) & std_logic_vector(dat_block(3));
-																		FIFO_wrreq_TOP	<=	'1';	
+																		if CTN_dat_block	>= blocklen then
+																			CTN_dat_block		<=	0;
+																			FSM_SDCARD			<=	idle;
+																			FIFO_wrreq_TOP	<=	'0';
+																		else
+																			CTN_dat_block		<=	CTN_dat_block	+	1;
+																			FIFO_DATA_INPUT	<=	dat_block(CTN_dat_block);
+																			FIFO_wrreq_TOP	<=	'1';
+																		end if;
 																	else
-																	
+																		FSM_SDCARD	<= idle;
 																	end if;
-																	FSM_SDCARD	<= idle;
-																	
 						
 						when others				=> FSM_SDCARD	<=	idle;
 					
