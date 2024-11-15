@@ -299,9 +299,9 @@ begin
 							
 							-- Reset Signal 
 							if RST_SYNC(2)	=	'0'	then
-								rst	<=	'1';
-							else
 								rst	<=	'0';
+							else
+								rst	<=	'1';
 							end if;
 							-- Basic Fnction Test with LED
 							if BTN_SYNC(2) = '1' then
