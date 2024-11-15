@@ -293,16 +293,6 @@ begin
 							BTN_SYNC(1) <= BTN_SYNC(0);
 							BTN_SYNC(2) <= BTN_SYNC(1);
 							
-							RST_SYNC(0) <= BTN(1);
-							RST_SYNC(1) <= RST_SYNC(0);
-							RST_SYNC(2) <= RST_SYNC(1);
-							
-							-- Reset Signal 
-							if RST_SYNC(2)	=	'0'	then
-								rst	<=	'0';
-							else
-								rst	<=	'1';
-							end if;
 							-- Basic Fnction Test with LED
 							if BTN_SYNC(2) = '1' then
 								LED(1) <= '1';
@@ -369,6 +359,21 @@ begin
 					FIFO_wrreq_TOP		<=	'0';
 					LED(9 downto 4) <= "000000";
 					
+					-- Generate reset Signal for SD-Card Library
+					RST_SYNC(0) <= BTN(1);
+					RST_SYNC(1) <= RST_SYNC(0);
+					RST_SYNC(2) <= RST_SYNC(1);
+
+					if RST_SYNC(2)	=	'0'	then
+						rst	<=	'0';
+					else
+						rst	<=	'1';
+					end if;
+					
+					-- Integer to Vector converter
+					dat_address	<= sd_dat_address_type(to_unsigned(sd_Data_adress,32)); 
+					
+					-- Card Detect Debugging
 					if sd_cd = '1' then
 						LED(4)	<=	'1';
 					else
