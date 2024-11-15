@@ -380,11 +380,9 @@ begin
 						LED(4)	<=	'0';
 					end if;
 					
-					dat_address	<= sd_dat_address_type(to_unsigned(sd_Data_adress,32)); -- Integer to Vector converter
+					-- LED Display for Status Info 
+					case unit_stat is
 					
-						-- LED Display for Status Info 
-						case unit_stat is
-						
 						when s_ready		=>	LED(5)	<=	'1';
 						
 						when s_init			=>	LED(6)	<= 	'1';
@@ -396,7 +394,7 @@ begin
 						when s_no_card	=>	LED(9)	<=	'1';
 						
 						when others		=>	null;
-						end case;
+					end case;
 						
 						
 						
@@ -412,7 +410,7 @@ begin
 																		FSM_SDCARD	<= init;
 																	end if;
 						
-						when init					=>	
+						when init					=>	-- Hier liegt noch ein Problem vor.
 																	if unit_stat	=	s_ready then
 																		FSM_SDCARD	<= idle;
 																	else
