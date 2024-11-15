@@ -189,7 +189,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal dat_block						: dat_block_type;
 	signal dat_valid, dat_tick	: std_ulogic;
 	signal unit_stat						: sd_controller_stat_type;
-	signal SD_data_adress				:	integer range 0 to 1e6 := 0;
+	signal SD_data_adress				:	integer range 0 to 200e3 := 0;
 	-- =================================
 	signal byte									: std_ulogic_vector(7 downto 0);
 	signal valid								: std_ulogic;
@@ -265,7 +265,7 @@ begin
 									
 									
 	-- SD_CARD ADDRESS COUNTER instantiation
-		add_count:		count_int generic map (max=>512) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress);
+		add_count:		count_int generic map (max=>1465) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress);
 	
 	-- Process Statement (optional)
 
