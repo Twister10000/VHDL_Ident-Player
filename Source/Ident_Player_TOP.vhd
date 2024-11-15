@@ -60,11 +60,11 @@ entity Ident_Player_TOP is
 		-- Inout ports
 			-- ARDUINO Shield Pins
 			ARDUINO_IO 			: inout std_logic_vector(8 downto 	0);
-			ARDUINO_RESET_N : inout std_logic;
+			ARDUINO_RESET_N : inout std_logic := '1';
 			
 			-- SD-Card Pins
 			SD_CMD					:	inout	std_logic;
-			SD_DAT					:	inout	std_logic_vector(3	downto	0);
+			SD_DAT					:	inout	std_logic_vector(3	downto	0) := (others => '1');
 			-- 2x20 GPIO Connector--
 			GPIO 						: inout std_logic_vector(32 downto 0);
 			
@@ -183,7 +183,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal rst 									: std_ulogic;
 	-- =================================
 	signal sleep								: std_ulogic := '0';
-	signal mode, mode_fb				: sd_mode_record;
+	signal mode, mode_fb				: sd_mode_record 			:=	(others	=>	'1');
 	signal dat_address					: sd_dat_address_type := (others=>'0');
 	signal ctrl_tick, fb_tick		: sd_tick_record;
 	signal dat_block						: dat_block_type;
