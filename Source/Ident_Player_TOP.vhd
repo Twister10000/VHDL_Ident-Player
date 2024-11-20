@@ -359,7 +359,7 @@ begin
 					ctrl_tick.reinit				<=	'0';
 					ctrl_tick.read_single		<=	'0';
 					FIFO_wrreq_TOP					<=	'0';
-					LED(9 downto 4) 				<= "000000";
+					LED(9 downto 2) 				<= "00000000";
 					
 					-- Generate reset Signal for SD-Card Library
 					RST_SYNC(0) <= BTN(1);
