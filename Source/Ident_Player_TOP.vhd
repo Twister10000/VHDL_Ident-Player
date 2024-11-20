@@ -191,6 +191,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal unit_stat						: sd_controller_stat_type;
 	signal SD_data_adress				:	integer range 0 to 	200e3 			:= 	0;
 	signal CTN_dat_block				:	integer	range	0	to	blocklen		:=	0;
+	signal CTN_init_delay				:	integer	range	0	to	50e6				:=	0;
 	-- =================================
 	signal byte									: std_ulogic_vector(7 downto 0);
 	signal valid								: std_ulogic;
@@ -407,7 +408,12 @@ begin
 																			FSM_SDCARD	<= idle;
 																		end if;
 																	else
-																		FSM_SDCARD	<= init;
+																		CTN_init_delay	<=	CTN_init_delay	+	1;
+																		if	CTN_init_delay	=	0 then
+																			FSM_SDCARD	<= init;
+																		elsif	CTN_init_delay	>= CLK_FREQ - 1 then
+																			CTN_init_delay	<=	0;
+																		end if;
 																	end if;
 						
 						when init					=>	-- Hier liegt noch ein Problem vor.
