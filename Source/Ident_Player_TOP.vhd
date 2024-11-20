@@ -131,7 +131,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 		type Storage_FSM	is (sSetAdr, sReading);
 		
 		-- Type for SD Card
-		type	SDCARD_FSM	is	(init, sFIFO_wr, SD_Reading, idle); 
+		type	SDCARD_FSM	is	(init, sFIFO_wr, SD_Start_Reading, SD_Reading, idle); 
 	
 		-- Finite-State-Maschine Declarations
 		-- FSM Declarations Internal Flash
@@ -356,9 +356,10 @@ begin
 				if rising_edge(CLK)	then
 					
 					--Set default Values
-					ctrl_tick.reinit	<=	'0';
-					FIFO_wrreq_TOP		<=	'0';
-					LED(9 downto 4) <= "000000";
+					ctrl_tick.reinit				<=	'0';
+					ctrl_tick.read_single		<=	'0';
+					FIFO_wrreq_TOP					<=	'0';
+					LED(9 downto 4) 				<= "000000";
 					
 					-- Generate reset Signal for SD-Card Library
 					RST_SYNC(0) <= BTN(1);
@@ -400,62 +401,70 @@ begin
 						
 						
 					case FSM_SDCARD is
-						when idle 				=>	
-																	if unit_stat	= s_ready then 
-																		if FIFO_wrusedw_TOP <= x"10" then
-																			FSM_SDCARD	<= SD_REading;
-																		else
-																			FSM_SDCARD	<= idle;
-																		end if;
-																	else
-																		CTN_init_delay	<=	CTN_init_delay	+	1;
-																		if	CTN_init_delay	=	0 then
-																			FSM_SDCARD	<= init;
-																		elsif	CTN_init_delay	>= CLK_FREQ - 1 then
-																			CTN_init_delay	<=	0;
-																		end if;
-																	end if;
+						when idle 						=>	
+																			if unit_stat	= s_ready then 
+																				if FIFO_wrusedw_TOP <= x"10" then
+																					FSM_SDCARD	<= SD_Start_Reading;
+																				else
+																					FSM_SDCARD	<= idle;
+																				end if;
+																			else
+																				CTN_init_delay	<=	CTN_init_delay	+	1;
+																				if	CTN_init_delay	=	0 then
+																					FSM_SDCARD	<= init;
+																				elsif	CTN_init_delay	>= CLK_FREQ - 1 then
+																					CTN_init_delay	<=	0;
+																				end if;
+																			end if;
 						
-						when init					=>	
-																	if unit_stat	=	s_ready then
-																		FSM_SDCARD	<= idle;	
-																	else
-																		if	fb_tick.reinit	=	'1' then
-																			FSM_SDCARD	<=	idle;
-																		else
-																			ctrl_tick.reinit	<=	'1';
-																		end if;
-																	end if;
-																	
+						when init								=>	
+																				if unit_stat	=	s_ready then
+																					FSM_SDCARD	<= idle;	
+																				else
+																					if	fb_tick.reinit	=	'1' then
+																						FSM_SDCARD	<=	idle;
+																					else
+																						ctrl_tick.reinit	<=	'1';
+																					end if;
+																				end if;
 						
-						when	SD_Reading	=>	
-																	if unit_stat	= s_ready or unit_stat	=	s_read then
-																		if dat_tick = '0' then
-																			ctrl_tick.read_single	<=	'1';
-																		else
-																			ctrl_tick.read_single	<=	'0';
-																			FSM_SDCARD	<=	sFIFO_wr;
-																		end if;
-																	else
-																		FSM_SDCARD	<= init;
-																	end if;
+						when	SD_Start_Reading	=>	if unit_stat = s_ready	then
+																				
+																				ctrl_tick.read_single		<=	'1';
+																				
+																				
+																				end if;
+																			
 						
-						when	sFIFO_wr			=>	
-																	if dat_valid	=	'1' then
-																		if CTN_dat_block	>= blocklen then
-																			CTN_dat_block		<=	0;
-																			FSM_SDCARD			<=	idle;
-																			FIFO_wrreq_TOP	<=	'0';
-																		else
-																			CTN_dat_block		<=	CTN_dat_block	+	1;
-																			--FIFO_DATA_INPUT	<=	dat_block(CTN_dat_block);
-																			FIFO_wrreq_TOP	<=	'1';
-																		end if;
-																	else
-																		FSM_SDCARD	<= idle;
-																	end if;
 						
-						when others				=> FSM_SDCARD	<=	idle;
+						when	SD_Reading				=>	
+																				if unit_stat	= s_ready or unit_stat	=	s_read then
+																					if dat_tick = '0' then
+																						ctrl_tick.read_single	<=	'1';
+																					else
+																						ctrl_tick.read_single	<=	'0';
+																						FSM_SDCARD	<=	sFIFO_wr;
+																					end if;
+																				else
+																					FSM_SDCARD	<= init;
+																				end if;
+						
+						when	sFIFO_wr					=>	
+																			if dat_valid	=	'1' then
+																				if CTN_dat_block	>= blocklen then
+																					CTN_dat_block		<=	0;
+																					FSM_SDCARD			<=	idle;
+																					FIFO_wrreq_TOP	<=	'0';
+																				else
+																					CTN_dat_block		<=	CTN_dat_block	+	1;
+																					--FIFO_DATA_INPUT	<=	dat_block(CTN_dat_block);
+																					FIFO_wrreq_TOP	<=	'1';
+																				end if;
+																			else
+																				FSM_SDCARD	<= idle;
+																			end if;
+						
+						when others							=> FSM_SDCARD	<=	idle;
 					
 					end case;
 				
