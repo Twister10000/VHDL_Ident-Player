@@ -416,26 +416,26 @@ begin
 																		end if;
 																	end if;
 						
-						when init					=>	-- Hier liegt noch ein Problem vor.
+						when init					=>	
 																	if unit_stat	=	s_ready then
-																		FSM_SDCARD	<= idle;
+																		FSM_SDCARD	<= idle;	
 																	else
-																		ctrl_tick.reinit	<=	'1';
+																		if	fb_tick.reinit	=	'1' then
+																			FSM_SDCARD	<=	idle;
+																		else
+																			ctrl_tick.reinit	<=	'1';
+																		end if;
 																	end if;
 																	
 						
 						when	SD_Reading	=>	
 																	if unit_stat	= s_ready or unit_stat	=	s_read then
-																	
 																		if dat_tick = '0' then
-																			
 																			ctrl_tick.read_single	<=	'1';
-																			
 																		else
 																			ctrl_tick.read_single	<=	'0';
 																			FSM_SDCARD	<=	sFIFO_wr;
 																		end if;
-																	
 																	else
 																		FSM_SDCARD	<= init;
 																	end if;
