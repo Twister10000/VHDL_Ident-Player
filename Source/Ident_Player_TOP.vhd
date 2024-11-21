@@ -432,10 +432,16 @@ begin
 																					end if;
 																				end if;
 						
-						when	SD_Start_Reading	=>	if unit_stat = s_ready	then
-																				
-																				ctrl_tick.read_single		<=	'1';
-																				
+						when	SD_Start_Reading	=>	LED(3)	<=	'1';
+																				if unit_stat = s_ready or unit_stat	= s_read	then
+																					
+																					ctrl_tick.read_single		<=	'1';
+																						if fb_tick.read_single =	'1' then
+																							FSM_SDCARD	<=	SD_Reading;
+																							ctrl_tick.read_single	<=	'0';
+																							
+																						end if;
+																				else
 																				
 																				end if;
 																			
