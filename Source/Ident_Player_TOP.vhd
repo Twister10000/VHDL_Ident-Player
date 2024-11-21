@@ -358,8 +358,8 @@ begin
 	
 				if rising_edge(CLK)	then
 					
-					mode.fast			<=	'1'; -- 1 = 4-Bit, 0 = 1-Bit
-					mode.wide_bus	<=	'0';	
+					mode.fast			<=	'0'; -- 1 = 4-Bit, 0 = 1-Bit
+					mode.wide_bus	<=	'1';	
 										
 					--Set default Values
 					ctrl_tick.reinit				<=	'0';
@@ -453,7 +453,7 @@ begin
 																						
 																					else
 																						FSM_SDCARD	<=	sFIFO_wr;
-																						
+																						LED(0)		<=	'1';
 																					end if;
 																				else
 																					FSM_SDCARD	<= init;
