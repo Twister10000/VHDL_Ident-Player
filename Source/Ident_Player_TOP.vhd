@@ -183,7 +183,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal rst 									: std_ulogic;
 	-- =================================
 	signal sleep								: std_ulogic := '0';
-	signal mode, mode_fb				: sd_mode_record 			:=	(others	=>	'1');
+	signal mode, mode_fb				: sd_mode_record 			/*:=	(others	=>	'1')*/;
 	signal dat_address					: sd_dat_address_type := (others=>'0');
 	signal ctrl_tick, fb_tick		: sd_tick_record;
 	signal dat_block						: dat_block_type;
@@ -191,7 +191,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal unit_stat						: sd_controller_stat_type;
 	signal SD_data_adress				:	integer range 0 to 	200e3 			:= 	0;
 	signal CTN_dat_block				:	integer	range	0	to	blocklen		:=	0;
-	signal CTN_init_delay				:	integer	range	0	to	50e6				:=	0;
+	signal CTN_init_delay				:	integer	range	0	to	CLK_FREQ	:=	0;
 	-- =================================
 	signal byte									: std_ulogic_vector(7 downto 0);
 	signal valid								: std_ulogic;
@@ -355,6 +355,9 @@ begin
 	
 				if rising_edge(CLK)	then
 					
+					mode.fast			<=	'1'; -- 1 = 4-Bit, 0 = 1-Bit
+					mode.wide_bus	<=	'0';	
+										
 					--Set default Values
 					ctrl_tick.reinit				<=	'0';
 					ctrl_tick.read_single		<=	'0';
@@ -368,6 +371,7 @@ begin
 
 					if RST_SYNC(2)	=	'0'	then
 						rst	<=	'0';
+						FSM_SDCARD	<=	init;
 					else
 						rst	<=	'1';
 					end if;
