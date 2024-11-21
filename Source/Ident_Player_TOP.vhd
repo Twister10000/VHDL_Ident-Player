@@ -259,6 +259,9 @@ begin
 	--end generate MADI_MAPPER;
 	
 	
+		--=====================================================
+	power_on_reset:				reset_unit generic map (n=>CLK_FREQ/10) port map (o_rst=>rst, i_rst=>RST_SYNC(2), clk=>clk);
+	
 	-- SD_CARD-Controller instantiation
 	
 	u_simple_sd:	simple_sd port map (rst=>rst, clk=>clk, sd_clk=>sd_clk, sd_cmd=>sd_cmd, sd_dat=>sd_dat, sd_cd=>sd_cd,
@@ -296,9 +299,9 @@ begin
 							
 							-- Basic Fnction Test with LED
 							if BTN_SYNC(2) = '1' then
-								LED(1) <= '1';
+								--LED(1) <= '1';
 							else
-								LED(1) <= '0';
+								--LED(1) <= '0';
 							end if;
 
 							
@@ -362,19 +365,13 @@ begin
 					ctrl_tick.reinit				<=	'0';
 					ctrl_tick.read_single		<=	'0';
 					FIFO_wrreq_TOP					<=	'0';
-					LED(9 downto 2) 				<= "00000000";
+					LED(9 downto 1) 				<= "000000000";
 					
 					-- Generate reset Signal for SD-Card Library
 					RST_SYNC(0) <= BTN(1);
 					RST_SYNC(1) <= RST_SYNC(0);
 					RST_SYNC(2) <= RST_SYNC(1);
 
-					if RST_SYNC(2)	=	'0'	then
-						rst	<=	'0';
-						FSM_SDCARD	<=	init;
-					else
-						rst	<=	'1';
-					end if;
 					
 					-- Integer to Vector converter
 					dat_address	<= sd_dat_address_type(to_unsigned(sd_Data_adress,32)); 
@@ -401,11 +398,14 @@ begin
 						
 						when others		=>	null;
 					end case;
-						
-						
+					
+					-- Automatic reset if error
+					if unit_stat	=	s_error	then
+						FSM_SDCARD	<=	init;
+					end if;
 						
 					case FSM_SDCARD is
-						when idle 						=>	
+						when idle 						=>	LED(1)	<=	'1';
 																			if unit_stat	= s_ready then 
 																				if FIFO_wrusedw_TOP <= x"10" then
 																					FSM_SDCARD	<= SD_Start_Reading;
@@ -421,7 +421,7 @@ begin
 																				end if;
 																			end if;
 						
-						when init								=>	
+						when init								=>	LED(2)	<=	'1';
 																				if unit_stat	=	s_ready then
 																					FSM_SDCARD	<= idle;	
 																				else
@@ -441,10 +441,11 @@ begin
 																			
 						
 						
-						when	SD_Reading				=>	
+						when	SD_Reading				=>	LED(4)	<=	'1';
 																				if unit_stat	= s_ready or unit_stat	=	s_read then
 																					if dat_tick = '0' then
 																						ctrl_tick.read_single	<=	'1';
+																						
 																					else
 																						ctrl_tick.read_single	<=	'0';
 																						FSM_SDCARD	<=	sFIFO_wr;
@@ -471,7 +472,9 @@ begin
 						when others							=> FSM_SDCARD	<=	idle;
 					
 					end case;
-				
+					if rst = '0' then
+						FSM_SDCARD	<=	idle;
+					end if;
 				end if;
 		
 	end process	SD_CARD_Controller;
