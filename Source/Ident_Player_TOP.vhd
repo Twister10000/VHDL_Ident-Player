@@ -450,11 +450,10 @@ begin
 						when	SD_Reading				=>	LED(4)	<=	'1';
 																				if unit_stat	= s_ready or unit_stat	=	s_read then
 																					if dat_tick = '0' then
-																						ctrl_tick.read_single	<=	'1';
 																						
 																					else
-																						ctrl_tick.read_single	<=	'0';
 																						FSM_SDCARD	<=	sFIFO_wr;
+																						
 																					end if;
 																				else
 																					FSM_SDCARD	<= init;
