@@ -364,7 +364,7 @@ begin
 	
 				if rising_edge(CLK)	then
 					
-					mode.fast			<=	'0'; -- 1 = 4-Bit, 0 = 1-Bit
+					mode.fast			<=	'1'; -- 1 = 4-Bit, 0 = 1-Bit
 					mode.wide_bus	<=	'1';	
 										
 					--Set default Values
