@@ -166,7 +166,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	
 	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(9 downto	0)		:=	(others	=>	'0');
 	signal			FIFO_DATA_INPUT				:	std_logic_vector	(31	downto	0)	:=	(others	=>	'0');
-	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:= (others	=> '1');
+	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:=	(others	=>	'1');
 	
 	-- Signal Declarations for Flash Memory
 	signal			FL_reset									:	std_logic												:=	'1';
@@ -195,6 +195,12 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	-- =================================
 	signal byte									: std_ulogic_vector(7 downto 0);
 	signal valid								: std_ulogic;
+	
+	
+	-- ============== Testsignals ===================
+	signal	Test_SD_DATA_1				:	std_logic_vector(7	downto	0) := (others=>	'0');
+	signal	Test_SD_DATA_2				:	std_logic_vector(7	downto	0) := (others=>	'0');
+	signal	Test_SD_DATA_3				:	std_logic_vector(7	downto	0) := (others=>	'0');
 
 begin
 	-- ONCHIP_AUDIO_STORAGE Instantiation
@@ -270,7 +276,7 @@ begin
 									
 									
 	-- SD_CARD ADDRESS COUNTER instantiation
-		add_count:		count_int generic map (max=>1465) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress); -- Testfile is 749769 Byte larger
+		--add_count:		count_int generic map (max=>1465) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress); -- Testfile is 749769 Byte larger
 	
 	-- Process Statement (optional)
 
@@ -365,6 +371,9 @@ begin
 					ctrl_tick.reinit				<=	'0';
 					ctrl_tick.read_single		<=	'0';
 					FIFO_wrreq_TOP					<=	'0';
+					HEX0										<=	(others	=>	'1');
+					HEX1										<=	(others	=>	'1');
+					HEX2										<=	(others	=>	'1');
 					LED(9 downto 1) 				<= "000000000";
 					
 					-- Generate reset Signal for SD-Card Library
@@ -382,6 +391,25 @@ begin
 					else
 						LED(4)	<=	'0';
 					end if;
+					
+					
+					
+					-- SD_CARD READING TEST to 7SEGMENT
+					
+					if TEST_SD_DATA_1	= "00000000" then
+						HEX0	<=	x"F9";
+					else
+						HEX3	<=	X"00";
+					end if;
+					
+					if TEST_SD_DATA_2 = "00000000"	then
+						HEX1	<=	x"A4";
+					end if;
+					
+					if TEST_SD_DATA_3 = "00000000"	then
+						HEX2	<=	x"B0";
+					end if;
+					
 					
 					-- LED Display for Status Info 
 					case unit_stat is
