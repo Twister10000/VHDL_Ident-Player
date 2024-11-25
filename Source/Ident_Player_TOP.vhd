@@ -489,13 +489,16 @@ begin
 						
 						when	sFIFO_wr					=>	
 																			if dat_valid	=	'1' then
-																				if CTN_dat_block	>= blocklen then
+																				if CTN_dat_block	>= 144 then
 																					CTN_dat_block		<=	0;
 																					FSM_SDCARD			<=	idle;
 																					FIFO_wrreq_TOP	<=	'0';
 																				else
-																					CTN_dat_block		<=	CTN_dat_block	+	1;
-																					--FIFO_DATA_INPUT	<=	dat_block(CTN_dat_block);
+																					CTN_dat_block		<=	CTN_dat_block	+	3;
+																					FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block + 2));
+																					Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
+																					Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
+																					Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
 																					FIFO_wrreq_TOP	<=	'1';
 																				end if;
 																			else
