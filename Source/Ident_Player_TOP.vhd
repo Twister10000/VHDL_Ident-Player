@@ -164,7 +164,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FIFO_wrreq_TOP				:	std_logic	:=	'0';
 	signal			FIFO_rdreq_TOP				:	std_logic	:=	'0';
 	
-	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(5 downto	0)		:=	(others	=>	'0');
+	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(9 downto	0)		:=	(others	=>	'0');
 	signal			FIFO_DATA_INPUT				:	std_logic_vector	(31	downto	0)	:=	(others	=>	'0');
 	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:= (others	=> '1');
 	
