@@ -1,6 +1,7 @@
 -- A library clause declares a name as a library.  It 
 -- does not create the library; it simply forward declares 
 -- it. 
+-- CYBERCHEF HEX OUTPUT (SINE FROM BINARY)
 library ieee;
 use	ieee.std_logic_1164.all;
 use	ieee.numeric_std.all;
