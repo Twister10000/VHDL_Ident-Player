@@ -490,7 +490,7 @@ begin
 						
 						when	sFIFO_wr					=>	
 																			if dat_valid	=	'1' then
-																				if CTN_dat_block	>= 144 then
+																				if CTN_dat_block	>= 144 then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
 																					CTN_dat_block		<=	0;
 																					FSM_SDCARD			<=	idle;
 																					FIFO_wrreq_TOP	<=	'0';
