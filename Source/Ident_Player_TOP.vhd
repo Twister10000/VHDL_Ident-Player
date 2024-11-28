@@ -478,18 +478,16 @@ begin
 						
 						when	SD_Reading				=>	LED(4)	<=	'1';
 																				if unit_stat	= s_ready or unit_stat	=	s_read then
-																					if dat_tick = '0' then
-																						
-																					else
+																					if dat_tick = '1' and dat_valid	= '1' then
 																						FSM_SDCARD	<=	sFIFO_wr;
-																						LED(0)		<=	'1';
+																						LED(0)		<=	'1';																						
 																					end if;
 																				else
 																					FSM_SDCARD	<= init;
 																				end if;
 						
 						when	sFIFO_wr					=>	
-																			if dat_valid	=	'1' then
+																			--if dat_valid	=	'1' then
 																				if CTN_dat_block	>= 144 then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
 																					CTN_dat_block		<=	0;
 																					FSM_SDCARD			<=	idle;
@@ -502,9 +500,9 @@ begin
 																					Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
 																					FIFO_wrreq_TOP	<=	'1';
 																				end if;
-																			else
-																				FSM_SDCARD	<= idle;
-																			end if;
+																			--else
+																			--	FSM_SDCARD	<= idle;
+																			--end if;
 						
 						when others							=> FSM_SDCARD	<=	idle;
 					
