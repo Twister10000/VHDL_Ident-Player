@@ -33,6 +33,8 @@ use work.sd_pkg.simple_sd;
 entity Ident_Player_TOP is
 	generic
 	(
+		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 4460;
+		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 304;
 		SIMULATION					: boolean	:= false);
 
 
@@ -277,7 +279,7 @@ begin
 									
 									
 	-- SD_CARD ADDRESS COUNTER instantiation
-		--add_count:		count_int generic map (max=>1465) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress); -- Testfile is 749769 Byte larger
+		--add_count:		count_int generic map (max=>SD_CARD_MAX_ADR) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress); -- Testfile is 749769 Byte larger
 	
 	-- Process Statement (optional)
 
