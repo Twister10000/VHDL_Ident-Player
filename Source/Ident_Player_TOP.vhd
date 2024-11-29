@@ -280,7 +280,7 @@ begin
 									
 									
 	-- SD_CARD ADDRESS COUNTER instantiation
-		--add_count:		count_int generic map (max=>SD_CARD_MAX_ADR) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress); -- Testfile is 749769 Byte larger
+		add_count:		count_int generic map (max=>SD_CARD_MAX_ADR) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress);
 	
 	-- Process Statement (optional)
 
@@ -387,7 +387,7 @@ begin
 
 					
 					-- Integer to Vector converter
-					dat_address	<= sd_dat_address_type(to_unsigned(sd_Data_adress,32)); 
+					dat_address	<= sd_dat_address_type(to_unsigned(sd_data_adress,32)); 
 					
 					-- Card Detect Debugging
 					if sd_cd = '1' then
@@ -471,7 +471,6 @@ begin
 																						if fb_tick.read_single =	'1' then
 																							FSM_SDCARD	<=	SD_Reading;
 																							ctrl_tick.read_single	<=	'0';
-																							
 																						end if;
 																				else
 																				
@@ -502,10 +501,8 @@ begin
 																					Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
 																					FIFO_wrreq_TOP	<=	'1';
 																				end if;
-																				
-						
+
 						when others							=> FSM_SDCARD	<=	idle;
-					
 					end case;
 					if rst = '0' then
 						FSM_SDCARD	<=	idle;
