@@ -33,8 +33,8 @@ use work.sd_pkg.simple_sd;
 entity Ident_Player_TOP is
 	generic
 	(
-		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 4460;
-		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 304;
+		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 2;
+		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 144;
 		SIMULATION					: boolean	:= false);
 
 
@@ -497,8 +497,8 @@ begin
 																						FSM_SDCARD			<=	idle;
 																						FIFO_wrreq_TOP	<=	'0';
 																					else
-																					CTN_dat_block		<=	CTN_dat_block	+	/*3*/1;
-																					FIFO_DATA_INPUT	<=	std_logic_vector(dat_block(CTN_dat_block));--x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																					CTN_dat_block		<=	CTN_dat_block	+	3;
+																					FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
 																					Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
 																					Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
 																					Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
@@ -512,8 +512,8 @@ begin
 																			
 																						FIFO_wrreq_TOP	<=	'0';
 																					else
-																						--CTN_dat_block		<=	CTN_dat_block	+	1;
-																						--FIFO_DATA_INPUT	<=	std_logic_vector(dat_block(CTN_dat_block));--FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																						CTN_dat_block		<=	CTN_dat_block	+	3;
+																						--FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
 																						--Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
 																						--Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
 																						--Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
