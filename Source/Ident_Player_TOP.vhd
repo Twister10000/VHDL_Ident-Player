@@ -193,8 +193,9 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal dat_valid, dat_tick	: std_ulogic;
 	signal unit_stat						: sd_controller_stat_type;
 	signal SD_data_adress				:	integer range 0 to 	200e3 			:= 	0;
+	signal current_read_adr			:	integer	range	0	to 	1e6					:=	0;				
 	signal CTN_dat_block				:	integer	range	0	to	blocklen		:=	0;
-	signal CTN_init_delay				:	integer	range	0	to	CLK_FREQ	:=	0;
+	signal CTN_init_delay				:	integer	range	0	to	CLK_FREQ		:=	0;
 	-- =================================
 	signal byte									: std_ulogic_vector(7 downto 0);
 	signal valid								: std_ulogic;
