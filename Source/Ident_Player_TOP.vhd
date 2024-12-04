@@ -34,7 +34,7 @@ entity Ident_Player_TOP is
 	generic
 	(
 		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 2;
-		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 144;
+		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 210;
 		SIMULATION					: boolean	:= false);
 
 
@@ -524,7 +524,9 @@ begin
 						when others							=> FSM_SDCARD	<=	idle;
 					end case;
 					if rst = '0' then
-						FSM_SDCARD	<=	idle;
+						FSM_SDCARD	<=	init;
+						CTN_dat_block	<=	0;
+						current_read_adr	<=	0;
 					end if;
 				end if;
 		
