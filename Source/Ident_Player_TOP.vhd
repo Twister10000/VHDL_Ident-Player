@@ -506,18 +506,18 @@ begin
 																					end if;
 																					
 																				else
-																					if CTN_dat_block	>= blocklen then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
+																					if CTN_dat_block	>= blocklen - 3 then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
 																						CTN_dat_block		<=	0;
 																						FSM_SDCARD			<=	idle;
 																			
 																						FIFO_wrreq_TOP	<=	'0';
 																					else
 																						CTN_dat_block		<=	CTN_dat_block	+	3;
-																						--FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																						FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
 																						--Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
 																						--Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
 																						--Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
-																						--FIFO_wrreq_TOP	<=	'1';
+																						FIFO_wrreq_TOP	<=	'1';
 																					end if;	
 																				end if;
 
