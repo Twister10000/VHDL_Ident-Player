@@ -134,7 +134,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 		type Storage_FSM	is (sSetAdr, sReading);
 		
 		-- Type for SD Card
-		type	SDCARD_FSM	is	(init, sFIFO_wr, SD_Start_Reading, SD_Reading, idle); 
+		type	SDCARD_FSM	is	(init, sFIFO_wr_0Bytes, sFIFO_wr_1Bytes, sFIFO_wr_2Bytes, SD_Start_Reading, SD_Reading, idle); 
 	
 		-- Finite-State-Maschine Declarations
 		-- FSM Declarations Internal Flash
@@ -198,6 +198,8 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal CTN_init_delay				:	integer	range	0	to	CLK_FREQ		:=	0;
 	-- =================================
 	signal byte									: std_ulogic_vector(7 downto 0);
+	signal byte1_Buffer					: std_logic_vector(7 downto 0);
+	signal byte2_Buffer					: std_logic_vector(7 downto 0);
 	signal valid								: std_ulogic;
 	
 	
@@ -205,6 +207,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal	Test_SD_DATA_1				:	std_logic_vector(7	downto	0) := (others=>	'0');
 	signal	Test_SD_DATA_2				:	std_logic_vector(7	downto	0) := (others=>	'0');
 	signal	Test_SD_DATA_3				:	std_logic_vector(7	downto	0) := (others=>	'0');
+	signal	CTN_BYTE_PUFFER				:	integer	range	0	to	15	:=	0;
 
 begin
 	-- ONCHIP_AUDIO_STORAGE Instantiation
@@ -481,7 +484,19 @@ begin
 						when	SD_Reading				=>	LED(4)	<=	'1';
 																				if unit_stat	= s_ready or unit_stat	=	s_read then
 																					if dat_tick = '1' and dat_valid	= '1' then
-																						FSM_SDCARD	<=	sFIFO_wr;
+																						case	CTN_BYTE_PUFFER	is
+																							
+																							when 0	=>
+																												FSM_SDCARD	<=	sFIFO_wr_0Bytes;
+																							
+																							when 1	=>
+																												FSM_SDCARD	<=	sFIFO_wr_1Bytes;
+																							
+																							when 2	=>
+																												FSM_SDCARD	<=	sFIFO_wr_2Bytes;
+																							
+																						when	others	=>	null;
+																						end case;
 																						LED(0)		<=	'1';
 																						current_read_adr	<=	current_read_adr + 1;																						
 																					end if;
@@ -489,43 +504,133 @@ begin
 																					FSM_SDCARD	<= init;
 																				end if;
 						
-						when	sFIFO_wr					=>	
+						when	sFIFO_wr_0Bytes		=>	
 																				if current_read_adr >= SD_CARD_MAX_ADR	then
 																					if CTN_dat_block	>= SD_LAST_BLOCK_SIZE - 1  then
-																						CTN_dat_block		<=	0;
+																						CTN_dat_block			<=	0;
+																						CTN_BYTE_PUFFER		<=	0;
 																						current_read_adr	<=	0;
-																						FSM_SDCARD			<=	idle;
-																						FIFO_wrreq_TOP	<=	'0';
+																						FSM_SDCARD				<=	idle;
+																						FIFO_wrreq_TOP		<=	'0';
 																					else
 																					CTN_dat_block		<=	CTN_dat_block	+	3;
 																					FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
-																					Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
-																					Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
-																					Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
 																					FIFO_wrreq_TOP	<=	'1';	
 																					end if;
 																					
 																				else
-																					if CTN_dat_block	>= blocklen - 3 then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
+																					if CTN_dat_block	>= blocklen - 2 then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
 																						CTN_dat_block		<=	0;
+																						CTN_BYTE_PUFFER	<=	CTN_BYTE_PUFFER	+	1;
+																						byte1_Buffer		<=	std_logic_vector(dat_block(CTN_dat_block));
+																						byte2_Buffer		<=	std_logic_vector(dat_block(CTN_dat_block + 1));
 																						FSM_SDCARD			<=	idle;
-																			
 																						FIFO_wrreq_TOP	<=	'0';
 																					else
 																						CTN_dat_block		<=	CTN_dat_block	+	3;
 																						FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
-																						--Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
-																						--Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
-																						--Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
 																						FIFO_wrreq_TOP	<=	'1';
 																					end if;	
 																				end if;
+																				
+																				
+						when	sFIFO_wr_1Bytes	=>		
+																				if current_read_adr >= SD_CARD_MAX_ADR	then
+																					if CTN_dat_block	>= SD_LAST_BLOCK_SIZE - 3  then
+																						CTN_dat_block			<=	0;
+																						current_read_adr	<=	0;
+																						CTN_BYTE_PUFFER		<=	0;
+																						FSM_SDCARD				<=	idle;
+																						FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																						FIFO_wrreq_TOP		<=	'1';
+																					else
+																					
+																						if CTN_dat_block	=	0 then
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block)) & bYTe1_Buffer & bytE2_Buffer;
+																							FIFO_wrreq_TOP	<=	'1';
+																							CTN_dat_block		<=	CTN_dat_block	+	1;
+																						else
+																							CTN_dat_block		<=	CTN_dat_block	+	3;
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																							Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
+																							Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
+																							Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
+																							FIFO_wrreq_TOP	<=	'1';
+																						end if;	
+																					end if;
+																					
+																				else
+																					if CTN_dat_block	=	0	then
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block)) & bYTe2_Buffer & bytE1_Buffer;
+																							FIFO_wrreq_TOP	<=	'1';
+																							CTN_dat_block		<=	CTN_dat_block	+	1;
+																					else
+																						if CTN_dat_block	>= blocklen - 1 then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
+																							CTN_dat_block		<=	0;
+																							CTN_BYTE_PUFFER	<=	CTN_BYTE_PUFFER	+	1;
+																							byte1_Buffer		<=	std_logic_vector(dat_block(CTN_dat_block));
+																							FSM_SDCARD			<=	idle;
+																							FIFO_wrreq_TOP	<=	'0';
+																						else
+																							CTN_dat_block		<=	CTN_dat_block	+	3;
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																							FIFO_wrreq_TOP	<=	'1';
+																						end if;
+																					end if;	
+																				end if;
+																				
+																				
+						when	sFIFO_wr_2Bytes	=>	
+																			if current_read_adr >= SD_CARD_MAX_ADR	then
+																					if CTN_dat_block	>= SD_LAST_BLOCK_SIZE - 1  then
+																						CTN_dat_block			<=	0;
+																						current_read_adr	<=	0;
+																						CTN_BYTE_PUFFER		<=	0;
+																						FSM_SDCARD				<=	idle;
+																						FIFO_wrreq_TOP		<=	'0';
+																					else
+																					
+																						if CTN_dat_block	=	0 then
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block))  & bytE1_Buffer(7	downto	0);
+																							FIFO_wrreq_TOP	<=	'1';
+																							CTN_dat_block		<=	CTN_dat_block	+	2;
+																						else
+																							CTN_dat_block		<=	CTN_dat_block	+	3;
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																							Test_SD_DATA_1	<=	std_logic_vector(dat_block(CTN_dat_block));
+																							Test_SD_DATA_2	<=	std_logic_vector(dat_block(CTN_dat_block + 1));
+																							Test_SD_DATA_3	<=	std_logic_vector(dat_block(CTN_dat_block + 2));
+																							FIFO_wrreq_TOP	<=	'1';
+																						end if;	
+																					end if;
+																					
+																				else
+																					if CTN_dat_block	=	0	then
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block)) & bytE1_Buffer(7	downto	0);
+																							FIFO_wrreq_TOP	<=	'1';
+																							CTN_dat_block		<=	CTN_dat_block	+	2;
+																					else
+																						if CTN_dat_block	>= blocklen then -- Bei nicht genauen Werte nkommt es zu Verzeerrungen 
+																							CTN_dat_block		<=	0;
+																							CTN_BYTE_PUFFER	<=	0;
+																							FSM_SDCARD			<=	idle;
+																							FIFO_wrreq_TOP	<=	'0';
+																						else
+																							CTN_dat_block		<=	CTN_dat_block	+	3;
+																							FIFO_DATA_INPUT	<=	x"00" & std_logic_vector(dat_block(CTN_dat_block + 2)) & std_logic_vector(dat_block(CTN_dat_block + 1)) & std_logic_vector(dat_block(CTN_dat_block));
+																							FIFO_wrreq_TOP	<=	'1';
+																						end if;
+																					end if;	
+																				end if;
+																			
+																			
 
 						when others							=> FSM_SDCARD	<=	idle;
 					end case;
 					if rst = '0' then
 						FSM_SDCARD	<=	init;
-						CTN_dat_block	<=	0;
+						CTN_dat_block			<=	0;
+						CTN_BYTE_PUFFER		<=	0;
 						current_read_adr	<=	0;
 					end if;
 				end if;
