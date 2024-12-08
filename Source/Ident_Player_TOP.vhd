@@ -35,6 +35,7 @@ entity Ident_Player_TOP is
 	(
 		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 83912;
 		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 428;
+		INTERNAL_FLASH			:	boolean	:=	false;
 		SIMULATION					: boolean	:= false);
 
 
@@ -115,6 +116,7 @@ end Ident_Player_TOP;
 architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	
 	-- Component Declarations
+		
 		component ONCHIP_AUDIO_STORAGE is
 		port (
 			clk_clk                         : in  std_logic                     := 'X';             -- clk
@@ -211,18 +213,18 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 
 begin
 	-- ONCHIP_AUDIO_STORAGE Instantiation
-	
-	ON_AUDIO_STORAGE : component ONCHIP_AUDIO_STORAGE
-		port map (
-			clk_clk                         => clk,                   -- clk.clk
-			reset_reset_n                   => FL_reset,              -- reset.reset_n
-			onchip_audio_data_address       => FL_data_address,       -- onchip_audio_data.address
-			onchip_audio_data_read          => FL_Data_read,          -- .read
-			onchip_audio_data_readdata      => FL_read_data,      		-- .readdata
-			onchip_audio_data_waitrequest   => FL_wait_request,   		-- .waitrequest
-			onchip_audio_data_readdatavalid => FL_readdata_valid, 		-- .readdatavalid
-			onchip_audio_data_burstcount    => FL_data_burstcount);   -- .burstcount
-	
+	INT_FLASH	:	if INTERNAL_FLASH	=	true	generate
+		ON_AUDIO_STORAGE : component ONCHIP_AUDIO_STORAGE
+			port map (
+				clk_clk                         => clk,                   -- clk.clk
+				reset_reset_n                   => FL_reset,              -- reset.reset_n
+				onchip_audio_data_address       => FL_data_address,       -- onchip_audio_data.address
+				onchip_audio_data_read          => FL_Data_read,          -- .read
+				onchip_audio_data_readdata      => FL_read_data,      		-- .readdata
+				onchip_audio_data_waitrequest   => FL_wait_request,   		-- .waitrequest
+				onchip_audio_data_readdatavalid => FL_readdata_valid, 		-- .readdatavalid
+				onchip_audio_data_burstcount    => FL_data_burstcount);   -- .burstcount
+	end generate INT_FLASH;
 	-- MADI_PLL Instantiation
 	PLL								: if SimULATION = false generate
 		MADI_PLL					:	entity	work.MADI_PLL
@@ -272,18 +274,19 @@ begin
 	--end generate MADI_MAPPER;
 	
 	
-		--=====================================================
-	power_on_reset:				reset_unit generic map (n=>CLK_FREQ/10) port map (o_rst=>rst, i_rst=>RST_SYNC(2), clk=>clk);
-	
-	-- SD_CARD-Controller instantiation
-	
-	u_simple_sd:	simple_sd port map (rst=>rst, clk=>clk, sd_clk=>sd_clk, sd_cmd=>sd_cmd, sd_dat=>sd_dat, sd_cd=>sd_cd,
-									sleep=>sleep, mode=>mode, mode_fb=>mode_fb, dat_address=>dat_address, ctrl_tick=>ctrl_tick, fb_tick=>fb_tick,
-									dat_block=>dat_block, dat_valid=>dat_valid, dat_tick=>dat_tick, unit_stat=>unit_stat);
-									
-									
-	-- SD_CARD ADDRESS COUNTER instantiation
-		add_count:		count_int generic map (max=>SD_CARD_MAX_ADR) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress);
+	SD_CARD	:	if INTERNAL_FLASH	=	false	generate	--=====================================================
+		power_on_reset:				reset_unit generic map (n=>CLK_FREQ/10) port map (o_rst=>rst, i_rst=>RST_SYNC(2), clk=>clk);
+		
+		-- SD_CARD-Controller instantiation
+		
+		u_simple_sd:	simple_sd port map (rst=>rst, clk=>clk, sd_clk=>sd_clk, sd_cmd=>sd_cmd, sd_dat=>sd_dat, sd_cd=>sd_cd,
+										sleep=>sleep, mode=>mode, mode_fb=>mode_fb, dat_address=>dat_address, ctrl_tick=>ctrl_tick, fb_tick=>fb_tick,
+										dat_block=>dat_block, dat_valid=>dat_valid, dat_tick=>dat_tick, unit_stat=>unit_stat);
+										
+										
+		-- SD_CARD ADDRESS COUNTER instantiation
+			add_count:		count_int generic map (max=>SD_CARD_MAX_ADR) port map (rst=>rst, clk=>clk, up=>dat_tick, cnt=>sd_data_adress);
+	end generate	SD_CARD;
 	
 	-- Process Statement (optional)
 
