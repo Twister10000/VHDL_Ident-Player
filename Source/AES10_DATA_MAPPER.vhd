@@ -12,7 +12,7 @@ entity AES10_DATA_MAPPER is
 	
 		MADI_Mode						:	integer	range 0 to 	64 	:= 56;
 		SIMULATION					: boolean	:= false;								
-		MADI_ACTIVE_CH			: integer	range 0	to	64	:= 56
+		MADI_ACTIVE_CH			: integer	range 0	to	64	:= 4
 	
 	);
 
@@ -155,6 +155,35 @@ begin
 									end case;
 									
 									
+									if MADI_ACTIVE_CH <= MADI_CHANEL_CTN	then
+										MADI_FRAME(23	downto	0)	<=	(others=>	'0');
+									else
+										MADI_FRAME(0)							<=	FIFO_DATA(3);
+										MADI_FRAME(1)							<=	FIFO_DATA(2);
+										MADI_FRAME(2)							<=	FIFO_DATA(1);
+										MADI_FRAME(3)							<=	FIFO_DATA(0);
+										MADI_FRAME(4)							<=	FIFO_DATA(7);
+										MADI_FRAME(5)							<=	FIFO_DATA(6);
+										MADI_FRAME(6)							<=	FIFO_DATA(5);
+										MADI_FRAME(7)							<=	FIFO_DATA(4);
+										MADI_FRAME(8)							<=	FIFO_DATA(11);
+										MADI_FRAME(9)							<=	FIFO_DATA(10);
+										MADI_FRAME(10)						<=	FIFO_DATA(9);
+										MADI_FRAME(11)						<=	FIFO_DATA(8);
+										MADI_FRAME(12)						<=	FIFO_DATA(15);
+										MADI_FRAME(13)						<=	FIFO_DATA(14);
+										MADI_FRAME(14)						<=	FIFO_DATA(13);
+										MADI_FRAME(15)						<=	FIFO_DATA(12);
+										MADI_FRAME(16)						<=	FIFO_DATA(19);
+										MADI_FRAME(17)						<=	FIFO_DATA(18);
+										MADI_FRAME(18)						<=	FIFO_DATA(17);
+										MADI_FRAME(19)						<=	FIFO_DATA(16);
+										MADI_FRAME(20)						<=	FIFO_DATA(23);
+										MADI_FRAME(21)						<=	FIFO_DATA(22);
+										MADI_FRAME(22)						<=	FIFO_DATA(21);
+										MADI_FRAME(23)						<=	FIFO_DATA(20);
+									end if;
+									
 									MADI_FRAME(26)								<=	'0';
 									MADI_FRAME(27)								<=	'0'; 
 																		
@@ -168,9 +197,7 @@ begin
 										when 184   	to 192		=>	MADI_FRAME(25)	<= 	BYTECRC(MADI_BLOCk_CTN - 184);
 										when others				=>	MADI_FRAME(25)	<= '0'; -- Channel Active 
  									end case;
-									
 
-									
 									MADI_FRAME_PARITY	<= '1';
 									
 								end if;
