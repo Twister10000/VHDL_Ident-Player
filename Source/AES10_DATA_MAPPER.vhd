@@ -241,14 +241,22 @@ begin
 									Madi_Chanel_CTN		<=	Madi_Chanel_CTN + 1;
 									MADI_FRAME_READY	<=	'0';
 									MADI_FRAME_PARITY	<=	'0';
-									NEW_AUDIO_DATA_RQ	<=	'1';
+									
+									if MADI_ACTIVE_CH	<=	MADI_CHANEL_CTN	then
+										NEW_AUDIO_DATA_RQ	<=	'0';
+									else
+										NEW_AUDIO_DATA_RQ	<=	'1';
+									end if;
+									
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 									-- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
-									if MADI_CHANEL_CTN	= MADI_MODE - 1 then
-										NEW_AUDIO_DATA_RQ	<= 	'1';
-									else
-										NEW_AUDIO_DATA_RQ	<=	'0';
-									end if;
+
+--									if MADI_CHANEL_CTN	= MADI_MODE - 1 then
+--										NEW_AUDIO_DATA_RQ	<= 	'1';
+--									else
+--										NEW_AUDIO_DATA_RQ	<=	'0';
+--									end if;
+
 									-- Test Szenario für das Testen wo welches BIt beim ANNA-LISA ankommt. 
 									--MADI_FRAME_FIFO(0)					<=	'0'; 		--MADI_FRAME(0);
 									--MADI_FRAME_FIFO(1)					<=	'0'; 		--MADI_FRAME(1);	
