@@ -332,6 +332,12 @@ begin
 	
 			if rising_edge(CLK)	then
 				FIFO_wrreq_TOP			<=	'0';
+				
+				/*
+				
+				CODE Für Startverzögerung für den MAPPER
+				
+				*/
 				case FSM_Storage is
 					when sSetAdr	=>	
 					
