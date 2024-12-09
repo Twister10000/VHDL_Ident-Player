@@ -169,7 +169,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FIFO_wrreq_TOP				:	std_logic	:=	'0';
 	signal			FIFO_rdreq_TOP				:	std_logic	:=	'0';
 	
-	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(9 downto	0)		:=	(others	=>	'0');
+	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(12 downto	0)		:=	(others	=>	'0');
 	signal			FIFO_DATA_INPUT				:	std_logic_vector	(31	downto	0)	:=	(others	=>	'0');
 	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:=	(others	=>	'1');
 	
@@ -446,7 +446,7 @@ begin
 						case FSM_SDCARD is
 							when idle 						=>	LED(1)	<=	'1';
 																				if unit_stat	= s_ready then 
-																					if FIFO_wrusedw_TOP <= x"258" then
+																					if FIFO_wrusedw_TOP <= x"1D4C" then
 																						FSM_SDCARD	<= SD_Start_Reading;
 																					else
 																						FSM_SDCARD	<= idle;

@@ -25,6 +25,6 @@ component FIFO_FLASH_AES10
 		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
 		rdempty		: OUT STD_LOGIC ;
 		wrfull		: OUT STD_LOGIC ;
-		wrusedw		: OUT STD_LOGIC_VECTOR (9 DOWNTO 0)
+		wrusedw		: OUT STD_LOGIC_VECTOR (12 DOWNTO 0)
 	);
 end component;
