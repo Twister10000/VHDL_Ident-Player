@@ -35,7 +35,7 @@ entity Ident_Player_TOP is
 	(
 		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 83912;
 		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 428;
-		USE_INTERNAL_FLASH	:	boolean	:=	true;
+		USE_INTERNAL_FLASH	:	boolean	:=	true;		-- True = Internal memory false = SD_Card
 		SIMULATION					: boolean	:= false);
 
 
