@@ -51,7 +51,7 @@ ENTITY FIFO_FLASH_AES10 IS
 		q		: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
 		rdempty		: OUT STD_LOGIC ;
 		wrfull		: OUT STD_LOGIC ;
-		wrusedw		: OUT STD_LOGIC_VECTOR (12 DOWNTO 0)
+		wrusedw		: OUT STD_LOGIC_VECTOR (13 DOWNTO 0)
 	);
 END FIFO_FLASH_AES10;
 
@@ -61,7 +61,7 @@ ARCHITECTURE SYN OF fifo_flash_aes10 IS
 	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (31 DOWNTO 0);
 	SIGNAL sub_wire1	: STD_LOGIC ;
 	SIGNAL sub_wire2	: STD_LOGIC ;
-	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (12 DOWNTO 0);
+	SIGNAL sub_wire3	: STD_LOGIC_VECTOR (13 DOWNTO 0);
 
 
 
@@ -90,7 +90,7 @@ ARCHITECTURE SYN OF fifo_flash_aes10 IS
 			q	: OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
 			rdempty	: OUT STD_LOGIC ;
 			wrfull	: OUT STD_LOGIC ;
-			wrusedw	: OUT STD_LOGIC_VECTOR (12 DOWNTO 0)
+			wrusedw	: OUT STD_LOGIC_VECTOR (13 DOWNTO 0)
 	);
 	END COMPONENT;
 
@@ -98,17 +98,17 @@ BEGIN
 	q    <= sub_wire0(31 DOWNTO 0);
 	rdempty    <= sub_wire1;
 	wrfull    <= sub_wire2;
-	wrusedw    <= sub_wire3(12 DOWNTO 0);
+	wrusedw    <= sub_wire3(13 DOWNTO 0);
 
 	dcfifo_mixed_widths_component : dcfifo_mixed_widths
 	GENERIC MAP (
 		intended_device_family => "MAX 10",
-		lpm_numwords => 8192,
+		lpm_numwords => 16384,
 		lpm_showahead => "ON",
 		lpm_type => "dcfifo_mixed_widths",
 		lpm_width => 32,
-		lpm_widthu => 13,
-		lpm_widthu_r => 13,
+		lpm_widthu => 14,
+		lpm_widthu_r => 14,
 		lpm_width_r => 32,
 		overflow_checking => "ON",
 		rdsync_delaypipe => 5,
@@ -141,7 +141,7 @@ END SYN;
 -- Retrieval info: PRIVATE: AlmostFullThr NUMERIC "-1"
 -- Retrieval info: PRIVATE: CLOCKS_ARE_SYNCHRONIZED NUMERIC "0"
 -- Retrieval info: PRIVATE: Clock NUMERIC "4"
--- Retrieval info: PRIVATE: Depth NUMERIC "8192"
+-- Retrieval info: PRIVATE: Depth NUMERIC "16384"
 -- Retrieval info: PRIVATE: Empty NUMERIC "1"
 -- Retrieval info: PRIVATE: Full NUMERIC "1"
 -- Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "MAX 10"
@@ -169,12 +169,12 @@ END SYN;
 -- Retrieval info: PRIVATE: wsUsedW NUMERIC "1"
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "MAX 10"
--- Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "8192"
+-- Retrieval info: CONSTANT: LPM_NUMWORDS NUMERIC "16384"
 -- Retrieval info: CONSTANT: LPM_SHOWAHEAD STRING "ON"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "dcfifo_mixed_widths"
 -- Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "32"
--- Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "13"
--- Retrieval info: CONSTANT: LPM_WIDTHU_R NUMERIC "13"
+-- Retrieval info: CONSTANT: LPM_WIDTHU NUMERIC "14"
+-- Retrieval info: CONSTANT: LPM_WIDTHU_R NUMERIC "14"
 -- Retrieval info: CONSTANT: LPM_WIDTH_R NUMERIC "32"
 -- Retrieval info: CONSTANT: OVERFLOW_CHECKING STRING "ON"
 -- Retrieval info: CONSTANT: RDSYNC_DELAYPIPE NUMERIC "5"
@@ -189,7 +189,7 @@ END SYN;
 -- Retrieval info: USED_PORT: wrclk 0 0 0 0 INPUT NODEFVAL "wrclk"
 -- Retrieval info: USED_PORT: wrfull 0 0 0 0 OUTPUT NODEFVAL "wrfull"
 -- Retrieval info: USED_PORT: wrreq 0 0 0 0 INPUT NODEFVAL "wrreq"
--- Retrieval info: USED_PORT: wrusedw 0 0 13 0 OUTPUT NODEFVAL "wrusedw[12..0]"
+-- Retrieval info: USED_PORT: wrusedw 0 0 14 0 OUTPUT NODEFVAL "wrusedw[13..0]"
 -- Retrieval info: CONNECT: @data 0 0 32 0 data 0 0 32 0
 -- Retrieval info: CONNECT: @rdclk 0 0 0 0 rdclk 0 0 0 0
 -- Retrieval info: CONNECT: @rdreq 0 0 0 0 rdreq 0 0 0 0
@@ -198,7 +198,7 @@ END SYN;
 -- Retrieval info: CONNECT: q 0 0 32 0 @q 0 0 32 0
 -- Retrieval info: CONNECT: rdempty 0 0 0 0 @rdempty 0 0 0 0
 -- Retrieval info: CONNECT: wrfull 0 0 0 0 @wrfull 0 0 0 0
--- Retrieval info: CONNECT: wrusedw 0 0 13 0 @wrusedw 0 0 13 0
+-- Retrieval info: CONNECT: wrusedw 0 0 14 0 @wrusedw 0 0 14 0
 -- Retrieval info: GEN_FILE: TYPE_NORMAL FIFO_FLASH_AES10.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL FIFO_FLASH_AES10.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL FIFO_FLASH_AES10.cmp TRUE

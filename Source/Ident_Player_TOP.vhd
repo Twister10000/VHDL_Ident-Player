@@ -33,8 +33,8 @@ use work.sd_pkg.simple_sd;
 entity Ident_Player_TOP is
 	generic
 	(
-		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 107031;
-		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 128;
+		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 44596;
+		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 480;
 		USE_INTERNAL_FLASH	:	boolean	:=	false;		-- True = Internal memory false = SD_Card
 		SIMULATION					: boolean	:= false);
 
@@ -169,7 +169,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FIFO_wrreq_TOP				:	std_logic	:=	'0';
 	signal			FIFO_rdreq_TOP				:	std_logic	:=	'0';
 	
-	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(12 downto	0)		:=	(others	=>	'0');
+	signal			FIFO_wrusedw_TOP			:	std_logic_vector	(13 downto	0)		:=	(others	=>	'0');
 	signal			FIFO_DATA_INPUT				:	std_logic_vector	(31	downto	0)	:=	(others	=>	'0');
 	signal			FIFO_DATA_SEND_32_Bit	:	std_logic_vector	(31 downto	0) 	:=	(others	=>	'1');
 	
@@ -452,7 +452,7 @@ begin
 						case FSM_SDCARD is
 							when idle 						=>	LED(1)	<=	'1';
 																				if unit_stat	= s_ready then 
-																					if FIFO_wrusedw_TOP <= x"1D4C" then
+																					if FIFO_wrusedw_TOP <= x"3E80" then
 																						FSM_SDCARD	<= SD_Start_Reading;
 																					else
 																						FSM_SDCARD	<= idle;
