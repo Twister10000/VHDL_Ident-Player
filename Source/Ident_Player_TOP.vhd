@@ -33,8 +33,8 @@ use work.sd_pkg.simple_sd;
 entity Ident_Player_TOP is
 	generic
 	(
-		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 62435;
-		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 160;
+		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 80273;
+		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 352;
 		USE_INTERNAL_FLASH	:	boolean	:=	false;		-- True = Internal memory false = SD_Card
 		SIMULATION					: boolean	:= false);
 
@@ -498,7 +498,7 @@ begin
 							when	SD_Reading				=>	LED(4)	<=	'1';
 
 																						if unit_stat	= s_ready or unit_stat	=	s_read then
-																							if CTN_SD_BLOCKS	>=	30	then
+																							if CTN_SD_BLOCKS	>=	36	then
 																								
 																								if fb_tick.stop_transfer	=	'1'	then
 																									CTN_SD_BLOCKS	<=	0;
