@@ -33,8 +33,10 @@ use work.sd_pkg.simple_sd;
 entity Ident_Player_TOP is
 	generic
 	(
-		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6	:= 80273;
-		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6	:= 352;
+		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6		:= 107031;-- Die Daten werden vom SKript ausgegeben
+		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6		:= 128;		-- Die Daten werden vom SKript ausgegeben
+		SD_BLOCK_READ				:	integer	range	0	to	1e3		:=	56;		
+		FIFO_READ_THRESHOLD	:	integer	range	0	to	64e3	:=	23000;--Das FIFO ist 32000 Wörter breit
 		USE_INTERNAL_FLASH	:	boolean	:=	false;		-- True = Internal memory false = SD_Card
 		SIMULATION					: boolean	:= false);
 
@@ -458,7 +460,7 @@ begin
 						case FSM_SDCARD is
 							when idle 						=>	LED(1)	<=	'1';
 																				if unit_stat	= s_ready then 
-																					if FIFO_wrusedw_TOP <= x"59D8" then
+																					if FIFO_wrusedw_TOP <= std_logic_vector(to_Unsigned(FIFO_READ_THRESHOLD,15)) then
 																						FSM_SDCARD	<= SD_Start_Reading;
 																					else
 																						FSM_SDCARD	<= idle;
@@ -498,7 +500,7 @@ begin
 							when	SD_Reading				=>	LED(4)	<=	'1';
 
 																						if unit_stat	= s_ready or unit_stat	=	s_read then
-																							if CTN_SD_BLOCKS	>=	36	then
+																							if CTN_SD_BLOCKS	>=	SD_BLOCK_READ	then
 																								
 																								if fb_tick.stop_transfer	=	'1'	then
 																									CTN_SD_BLOCKS	<=	0;
