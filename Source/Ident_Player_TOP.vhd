@@ -163,6 +163,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FAKE_AUDIO						: integer	range	0	to 17e6 := 0;
 	signal			BTN_SYNC							: std_logic_vector	(2 downto	0) := (others	=>	'0');
 	signal			RST_SYNC							: std_logic_vector	(2 downto	0) := (others	=>	'0');
+	signal			WORD_CLK_SYNC					:	std_logic_vector	(2	downto	0	)	:=	(others=>'0');
 	
 	
 	-- Signal Declarations FOR FIFO_FLASH_AES10
@@ -300,18 +301,26 @@ begin
 						if rising_edge(MADI_CLK_PLL)	then
 							
 							Divider 		<= Divider + 1;
-
+							HEX0										<=	(others	=>	'1');
 							FIFO_DATA_SEND_24_Bit(23	downto	0)	<= FIFO_DATA_SEND_32_Bit(23	downto	0);
 							
 							if Divider	= 2603 then --2624 @ 126MHZ 2603@125MHZ
 								Divider 	<= 0;
 							end if;
-						
-							if Divider 	= 0 then
-								Word_CLK 		<= '1';
+							
+							WORD_CLK_SYNC(0) 	<=	ArduiNO_IO(4);
+							WORD_CLK_SYNC(1)	<=	WORD_CLK_SYNC(0);
+							WORD_CLK_SYNC(2)	<=	WORD_CLK_SYNC(1);
+							
+							if WORD_CLK_SYNC(2) =	'0' and WORD_CLK_SYNC(1)	=	'1' then
+								Word_CLK		<=	'1';
+								HEX0	<=	x"F9";			
 							else
-								Word_CLK		<= '0';
-							end if;			
+								WORD_CLK		<=	'0';
+								HEX0	<=	x"F9";
+							end if;
+							
+
 							BTN_SYNC(0) <= BTN(0);
 							BTN_SYNC(1) <= BTN_SYNC(0);
 							BTN_SYNC(2) <= BTN_SYNC(1);
@@ -393,7 +402,7 @@ begin
 						ctrl_tick.reinit				<=	'0';
 						ctrl_tick.read_single		<=	'0';
 						FIFO_wrreq_TOP					<=	'0';
-						HEX0										<=	(others	=>	'1');
+						
 						HEX1										<=	(others	=>	'1');
 						HEX2										<=	(others	=>	'1');
 						LED(9 downto 0) 				<= "0000000000";
@@ -416,19 +425,19 @@ begin
 
 						-- SD_CARD READING TEST to 7SEGMENT
 						
-						if TEST_SD_DATA_1	= "00000000" then
-							HEX0	<=	x"F9";
-						else
-							HEX3	<=	X"00";
-						end if;
-						
-						if TEST_SD_DATA_2 = "00000000"	then
-							HEX1	<=	x"A4";
-						end if;
-						
-						if TEST_SD_DATA_3 = "00000000"	then
-							HEX2	<=	x"B0";
-						end if;
+--						if TEST_SD_DATA_1	= "00000000" then
+--							HEX0	<=	x"F9";
+--						else
+--							HEX3	<=	X"00";
+--						end if;
+--						
+--						if TEST_SD_DATA_2 = "00000000"	then
+--							HEX1	<=	x"A4";
+--						end if;
+--						
+--						if TEST_SD_DATA_3 = "00000000"	then
+--							HEX2	<=	x"B0";
+--						end if;
 						
 						if FIFO_FULL_TOP	=	'1' then
 							LED(0)	<=	'1';
