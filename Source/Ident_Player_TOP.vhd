@@ -433,7 +433,7 @@ begin
 						if FIFO_FULL_TOP	=	'1' then
 							LED(0)	<=	'1';
 						elsif	FIFO_EMPTY_TOP	=	'1'	then
-							LED(8)	<=	'1';
+							--LED(8)	<=	'1';
 						end if;
 						
 						-- LED Display for Status Info 
