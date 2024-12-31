@@ -163,7 +163,8 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal			FAKE_AUDIO						: integer	range	0	to 17e6 := 0;
 	signal			BTN_SYNC							: std_logic_vector	(2 downto	0) := (others	=>	'0');
 	signal			RST_SYNC							: std_logic_vector	(2 downto	0) := (others	=>	'0');
-	signal			WORD_CLK_SYNC					:	std_logic_vector	(2	downto	0	)	:=	(others=>'0');
+	signal			WORD_CLK_SYNC					:	std_logic_vector	(2	downto	0)	:=	(others=>'0');
+	signal			SLIDER_SYNC						:	std_logic_vector	(2	downto	0)	:=	(others=>'0');
 	
 	
 	-- Signal Declarations FOR FIFO_FLASH_AES10
@@ -214,6 +215,7 @@ architecture BEH_Ident_Player_TOP of Ident_Player_TOP is
 	signal	Test_SD_DATA_3				:	std_logic_vector(7	downto	0) := (others=>	'0');
 	signal	CTN_BYTE_PUFFER				:	integer	range	0	to	15	:=	0;
 	signal	CTN_SD_BLOCKS					:	integer	range	0	to	100	:=	0;
+	signal	MAPPER_ENA						:	std_logic := '0';
 
 begin
 	-- ONCHIP_AUDIO_STORAGE Instantiation
@@ -271,6 +273,7 @@ begin
 			
 				MADI_CLK					=>	MADI_CLK_PLL,
 				Word_CLK					=>	Word_CLK,
+				MAPPER_ENA				=>	MAPPER_ENA,
 				FIFO_DATA					=>	FIFO_DATA_SEND_32_Bit,
 				MADI_FRAME_OUT		=>	MADI_DATA,
 				NEW_AUDIO_DATA_RQ	=>	FIFO_rdreq_TOP,
@@ -312,6 +315,18 @@ begin
 							WORD_CLK_SYNC(1)	<=	WORD_CLK_SYNC(0);
 							WORD_CLK_SYNC(2)	<=	WORD_CLK_SYNC(1);
 							
+							SLIDER_SYNC(0)		<=	SLIDER(0);
+							SLIDER_SYNC(1)		<=	SLIDER_SYNC(0);
+							SLIDER_SYNC(2)		<=	SLIDER_SYNC(1);
+							
+							if SLIDER_SYNC(2)	=	'1' and WORD_CLK_SYNC(2) = '0'	and WORD_CLK_SYNC(1)	=	'1' then
+								MAPPER_ENA	<=	'1';
+							end if;
+							
+							if SLIDER_SYNC(2)	=	'0'	then
+								MAPPER_ENA	<=	'0';
+							end if;
+							
 							if WORD_CLK_SYNC(2) =	'0' and WORD_CLK_SYNC(1)	=	'1' then
 								Word_CLK		<=	'1';
 								HEX0	<=	x"F9";			
@@ -325,13 +340,6 @@ begin
 							BTN_SYNC(1) <= BTN_SYNC(0);
 							BTN_SYNC(2) <= BTN_SYNC(1);
 							
-							-- Basic Fnction Test with LED
-							if BTN_SYNC(2) = '1' then
-								--LED(1) <= '1';
-							else
-								--LED(1) <= '0';
-							end if;
-
 							
 						end if;
 	
@@ -662,6 +670,7 @@ begin
 							CTN_SD_BLOCKS			<=	0;
 							LED(0)						<=	'0';
 							current_read_adr	<=	0;
+							
 						end if;
 					end if;
 			

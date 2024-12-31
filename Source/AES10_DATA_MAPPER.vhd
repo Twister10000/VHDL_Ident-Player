@@ -21,6 +21,7 @@ entity AES10_DATA_MAPPER is
 		-- Input ports
 		MADI_CLK						: in  std_logic;
 		Word_CLK						:	in	std_logic;
+		MAPPER_ENA					:	in	std_logic;
 		FIFO_DATA						: in  std_logic_vector (31 downto 0) 	:= (others => '1');
 
 		-- Output ports
@@ -134,7 +135,7 @@ begin
 						MADI_FRAME_PARITY		<= 	'0';
 						NEW_AUDIO_DATA_RQ		<=	'0';
 						
-						if	FIFO_wrusedw	< x"3D"  then	
+						if	FIFO_wrusedw	< x"3D" and MAPPER_ENA	=	'1' then	
 
 								if MADI_FRAME_READY = '0' and MADI_FRAME_PARITY = '0' then
 								case	MADI_SUBFRAME_Start is 		-- Das Subframe 0 Bit wird hinzugefügt falls nötig
