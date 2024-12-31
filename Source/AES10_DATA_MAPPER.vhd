@@ -106,7 +106,6 @@ begin
 					wrreq				=>	FIFO_wrrq,
 					q						=>	MADI_DATA,
 					rdempty			=>	FIFO_EMPTY,
-					--rdusedw			=>	FIFO_rdusedw,
 					wrfull			=>	FIFO_FULL,
 					wrusedw			=>	FIFO_wrusedw);
 		--end generate FIFO_MAP_ENCO;
@@ -252,12 +251,6 @@ begin
 									MADI_FRAME_FIFO(31 downto 0) <= MADI_FRAME(31 downto	0); -- Test Zweck
 									-- Wenn der letzte Kanal geschickt wird muss ein neuer SubFrame gestartet werden
 
---									if MADI_CHANEL_CTN	= MADI_MODE - 1 then
---										NEW_AUDIO_DATA_RQ	<= 	'1';
---									else
---										NEW_AUDIO_DATA_RQ	<=	'0';
---									end if;
-
 									-- Test Szenario für das Testen wo welches BIt beim ANNA-LISA ankommt. 
 									--MADI_FRAME_FIFO(0)					<=	'0'; 		--MADI_FRAME(0);
 									--MADI_FRAME_FIFO(1)					<=	'0'; 		--MADI_FRAME(1);	
@@ -312,7 +305,7 @@ begin
 							MADI_BLOCk_Start	<=	'0';
 							FIFO_wrrq					<= 	'0';
 							MADI_Block_CTN		<=	MADI_BLock_CTN	+	1;
-
+							
 							-- Wenn 192 Subframe geschickt worden sind muss ein neuer AES3-Block gestartet werden
 							if MADI_BLock_CTN	>= 191 then
 								MADI_BLOCK_Start	<=	'1';

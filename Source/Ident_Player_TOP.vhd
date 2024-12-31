@@ -314,7 +314,6 @@ begin
 							WORD_CLK_SYNC(0) 	<=	ArduiNO_IO(4);
 							WORD_CLK_SYNC(1)	<=	WORD_CLK_SYNC(0);
 							WORD_CLK_SYNC(2)	<=	WORD_CLK_SYNC(1);
-							
 							SLIDER_SYNC(0)		<=	SLIDER(0);
 							SLIDER_SYNC(1)		<=	SLIDER_SYNC(0);
 							SLIDER_SYNC(2)		<=	SLIDER_SYNC(1);
@@ -335,12 +334,10 @@ begin
 								HEX0	<=	x"F9";
 							end if;
 							
-
 							BTN_SYNC(0) <= BTN(0);
 							BTN_SYNC(1) <= BTN_SYNC(0);
 							BTN_SYNC(2) <= BTN_SYNC(1);
-							
-							
+														
 						end if;
 	
 	end process	main;
@@ -352,12 +349,7 @@ begin
 	
 			if rising_edge(CLK)	then
 				FIFO_wrreq_TOP			<=	'0';
-				
-				/*
-				
-				CODE Für Startverzögerung für den MAPPER
-				
-				*/
+
 				case FSM_Storage is
 					when sSetAdr	=>	
 					
@@ -395,7 +387,6 @@ begin
 		end process FLASH_CONTROLLER;
 	end generate	ONCHIP_FLASH_CONTROLLER;
 	
-	
 	SD_CARD_PROCESS			:	if USE_INTERNAL_FLASH = false	generate
 		SD_CARD_Controller	:	process(all) 
 		
@@ -410,16 +401,12 @@ begin
 						ctrl_tick.reinit				<=	'0';
 						ctrl_tick.read_single		<=	'0';
 						FIFO_wrreq_TOP					<=	'0';
-						
-						HEX1										<=	(others	=>	'1');
-						HEX2										<=	(others	=>	'1');
 						LED(9 downto 0) 				<= "0000000000";
 						
 						-- Generate reset Signal for SD-Card Library
 						RST_SYNC(0) <= BTN(1);
 						RST_SYNC(1) <= RST_SYNC(0);
 						RST_SYNC(2) <= RST_SYNC(1);
-	
 						
 						-- Integer to Vector converter
 						dat_address	<= sd_dat_address_type(to_unsigned(sd_data_adress,32)); 
@@ -431,22 +418,6 @@ begin
 							LED(4)	<=	'0';
 						end if;
 
-						-- SD_CARD READING TEST to 7SEGMENT
-						
---						if TEST_SD_DATA_1	= "00000000" then
---							HEX0	<=	x"F9";
---						else
---							HEX3	<=	X"00";
---						end if;
---						
---						if TEST_SD_DATA_2 = "00000000"	then
---							HEX1	<=	x"A4";
---						end if;
---						
---						if TEST_SD_DATA_3 = "00000000"	then
---							HEX2	<=	x"B0";
---						end if;
-						
 						if FIFO_FULL_TOP	=	'1' then
 							LED(0)	<=	'1';
 						elsif	FIFO_EMPTY_TOP	=	'1'	then
@@ -670,10 +641,8 @@ begin
 							CTN_SD_BLOCKS			<=	0;
 							LED(0)						<=	'0';
 							current_read_adr	<=	0;
-							
 						end if;
 					end if;
-			
 		end process	SD_CARD_Controller;
 	end generate	SD_CARD_PROCESS;
 end BEH_Ident_Player_TOP;
