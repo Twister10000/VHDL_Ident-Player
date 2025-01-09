@@ -49,6 +49,7 @@ entity Ident_Player_TOP is
 			CLK 						: in	std_logic;
 			MADI_CLK				:	in	std_logic;
 			MAX10_CLK2_50 	: in 	std_logic;
+			WORD_CLK_EXT		:	in	std_logic;
 			
 			
 			-- MADI--
@@ -64,9 +65,6 @@ entity Ident_Player_TOP is
 			SD_CD						:	in	std_logic;
 		
 		-- Inout ports
-			-- ARDUINO Shield Pins
-			ARDUINO_IO 			: inout std_logic_vector(8 downto 	0)	:=	(others=>'0');
-			ARDUINO_RESET_N : inout std_logic := '1';
 			
 			-- SD-Card Pins
 			SD_CMD					:	inout	std_logic;
@@ -311,7 +309,7 @@ begin
 								Divider 	<= 0;
 							end if;
 							
-							WORD_CLK_SYNC(0) 	<=	ArduiNO_IO(4);
+							WORD_CLK_SYNC(0) 	<=	WORD_CLK_EXT;
 							WORD_CLK_SYNC(1)	<=	WORD_CLK_SYNC(0);
 							WORD_CLK_SYNC(2)	<=	WORD_CLK_SYNC(1);
 							SLIDER_SYNC(0)		<=	SLIDER(0);
