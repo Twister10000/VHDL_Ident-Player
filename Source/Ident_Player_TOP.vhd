@@ -495,7 +495,13 @@ begin
 																								else
 																									ctrl_tick.stop_transfer	<=	'1';
 																								end if;
+																								
+																							elsif	FIFO_wrusedw_TOP >= std_logic_vector(to_Unsigned(FIFO_READ_THRESHOLD,15)) then
+																								
+																								sleep <=	'1';
+																								LED(2)	<=	'1';
 																							else
+																								sleep	<=	'0';
 																								if dat_tick = '1' and dat_valid	= '1' then
 																									CTN_SD_BLOCKS	<=	CTN_SD_BLOCKS	+	1;
 																									case	CTN_BYTE_PUFFER	is
