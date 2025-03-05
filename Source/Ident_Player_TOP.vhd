@@ -33,8 +33,8 @@ use work.sd_pkg.simple_sd;
 entity Ident_Player_TOP is
 	generic
 	(
-		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6		:= 107031;-- Die Daten werden vom SKript ausgegeben
-		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6		:= 128;		-- Die Daten werden vom SKript ausgegeben
+		SD_CARD_MAX_ADR			:	integer	range	0	to	1e6		:= 114751;-- Die Daten werden vom SKript ausgegeben
+		SD_LAST_BLOCK_SIZE	:	integer	range	0	to	1e6		:= 0;		-- Die Daten werden vom SKript ausgegeben
 		SD_BLOCK_READ				:	integer	range	0	to	1e3		:=	56;		
 		FIFO_READ_THRESHOLD	:	integer	range	0	to	64e3	:=	23000;--Das FIFO ist 32000 Wörter breit
 		USE_INTERNAL_FLASH	:	boolean	:=	false;		-- True = Internal memory false = SD_Card
